@@ -1,0 +1,47 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="d:Miscellaneous Files/f:text.html/l:C!?Documents and Settings?QuyetNV?Desktop?TEMPLATE?cms_xhtml?text.html" caret="5034" fromTop="170" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="35" fromTop="0" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:Default.aspx" caret="362" fromTop="4" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="13698" fromTop="13" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="5387" fromTop="0" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="5389" fromTop="6" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="6534" fromTop="7" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="12826" fromTop="8" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="11478" fromTop="0" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="11762" fromTop="10" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="12162" fromTop="0" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="12020" fromTop="9" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="588" fromTop="11" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="5227" fromTop="16" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="1722" fromTop="10" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="11879" fromTop="8" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="5571" fromTop="7" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="6936" fromTop="9" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="11132" fromTop="7" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="11353" fromTop="11" />
+      <File id="BD9F7218-72D3-4FBF-8846-DD5D18B7761E/f:MainTemplate.Master" caret="6258" fromTop="7" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>
