@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ServiceDirectory" Class="ServiceDirectoryDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=ServiceDirectory;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ServiceDirectoryConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Directorate" Member="Directorates">
+    <Type Name="Directorate">
+      <Column Name="DirID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrgID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LeadContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DirSICCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DirName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DirShortDescription" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DirFullDescription" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DirPostCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DirAddr1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="DirAddr2" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DirAddr3" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DirEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DirWebAddr" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DirPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DirFax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DirCharNumb" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="DirCompNumb" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CityTown" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DirIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfBusiness" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Directorate_Department" Member="Departments" ThisKey="DirID" OtherKey="DirID" Type="Department" />
+      <Association Name="Directorate_ProjectMinorWork" Member="ProjectMinorWorks" ThisKey="DirID" OtherKey="Directorate" Type="ProjectMinorWork" />
+      <Association Name="Contact_Directorate" Member="Contact" ThisKey="LeadContactID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Organisation_Directorate" Member="Organisation" ThisKey="OrgID" OtherKey="OrgID" Type="Organisation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department">
+      <Column Name="DepID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DirID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DepName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DepShortDescription" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DepFullDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TypeOfBusiness" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DepSICCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LeadContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DepPostCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepAddr1" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DepAddr2" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DepAddr3" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DepPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepFax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepWebAddr" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CityTown" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Department_Team" Member="Teams" ThisKey="DepID" OtherKey="DepID" Type="Team" />
+      <Association Name="Directorate_Department" Member="Directorate" ThisKey="DirID" OtherKey="DirID" Type="Directorate" IsForeignKey="true" />
+      <Association Name="Contact_Department" Member="Contact" ThisKey="LeadContactID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Team" Member="Teams">
+    <Type Name="Team">
+      <Column Name="TeamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DepID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamShortDescription" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TeamFullDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LeadContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeOfBusiness" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamSICCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TeamPostCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TeamAddr1" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TeamAddr2" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TeamAddr3" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TeamEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TeamWebAddr" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TeamPhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TeamFax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CityTown" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TeamIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Department_Team" Member="Department" ThisKey="DepID" OtherKey="DepID" Type="Department" IsForeignKey="true" />
+      <Association Name="Contact_Team" Member="Contact" ThisKey="LeadContactID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SupportingMaterial" Member="SupportingMaterials">
+    <Type Name="SupportingMaterial">
+      <Column Name="MatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrgID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MatURL" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MatDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="MatType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MatAddDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MatIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_SupportingMaterial" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Organisation_SupportingMaterial" Member="Organisation" ThisKey="OrgID" OtherKey="OrgID" Type="Organisation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Country" Member="Countries">
+    <Type Name="Country">
+      <Column Name="CountryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Country_TrustRegion" Member="TrustRegions" ThisKey="CountryID" OtherKey="CountryID" Type="TrustRegion" />
+      <Association Name="Country_Address" Member="Addresses" ThisKey="CountryID" OtherKey="CountryID" Type="Address" />
+      <Association Name="Country_GovOfficeRegion" Member="GovOfficeRegions" ThisKey="CountryID" OtherKey="CountryID" Type="GovOfficeRegion" />
+      <Association Name="Country_Premise" Member="Premises" ThisKey="CountryID" OtherKey="CountryID" Type="Premise" />
+      <Association Name="Country_County" Member="Counties" ThisKey="CountryID" OtherKey="CountryID" Type="County" />
+      <Association Name="Country_Town" Member="Towns" ThisKey="CountryID" OtherKey="CountryID" Type="Town" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrustDistrict" Member="TrustDistricts">
+    <Type Name="TrustDistrict">
+      <Column Name="TrustDistrictID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrustRegionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrustDistrictName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TrustDistrictDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TrustDistrictIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TrustRegion_TrustDistrict" Member="TrustRegion" ThisKey="TrustRegionID" OtherKey="TrustRegionID" Type="TrustRegion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrustRegion" Member="TrustRegions">
+    <Type Name="TrustRegion">
+      <Column Name="TrustRegionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrustRegionName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TrustRegionDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TrustRegionIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TrustRegion_TrustDistrict" Member="TrustDistricts" ThisKey="TrustRegionID" OtherKey="TrustRegionID" Type="TrustDistrict" />
+      <Association Name="Country_TrustRegion" Member="Country" ThisKey="CountryID" OtherKey="CountryID" Type="Country" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReferenceData" Member="ReferenceDatas">
+    <Type Name="ReferenceData">
+      <Column Name="RefValue" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RefName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RefText" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="RefFrom" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RefType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contact" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="ContactID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ManagerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContactType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BestContactMethod" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KnownAs" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobRole" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OfficePhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="STHomePhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EmailAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Workbase" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JobTitle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ContactIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Contact_Directorate" Member="Directorates" ThisKey="ContactID" OtherKey="LeadContactID" Type="Directorate" />
+      <Association Name="Contact_Department" Member="Departments" ThisKey="ContactID" OtherKey="LeadContactID" Type="Department" />
+      <Association Name="Contact_Team" Member="Teams" ThisKey="ContactID" OtherKey="LeadContactID" Type="Team" />
+      <Association Name="Contact_Contact" Member="Contacts" ThisKey="ContactID" OtherKey="ManagerID" Type="Contact" />
+      <Association Name="Contact_FundingDetail" Member="FundingDetails" ThisKey="ContactID" OtherKey="FundingContractDetail" Type="FundingDetail" />
+      <Association Name="Contact_PremiseDetail" Member="PremiseDetails" ThisKey="ContactID" OtherKey="CateringContact" Type="PremiseDetail" />
+      <Association Name="Contact_PremiseDetail1" Member="PremiseDetails1" ThisKey="ContactID" OtherKey="HostingContact" Type="PremiseDetail" />
+      <Association Name="Contact_PremiseDetail2" Member="PremiseDetails2" ThisKey="ContactID" OtherKey="MediaContact" Type="PremiseDetail" />
+      <Association Name="Contact_Facility" Member="Facilities" ThisKey="ContactID" OtherKey="LeadContact" Type="Facility" />
+      <Association Name="Contact_Facility1" Member="Facilities1" ThisKey="ContactID" OtherKey="RoomHost" Type="Facility" />
+      <Association Name="Contact_Volunteering" Member="Volunteerings" ThisKey="ContactID" OtherKey="VolunteeringContact" Type="Volunteering" />
+      <Association Name="Contact_ProjectMinorWork" Member="ProjectMinorWorks" ThisKey="ContactID" OtherKey="AuthorisedByName" Type="ProjectMinorWork" />
+      <Association Name="Contact_ProjectMinorWork1" Member="ProjectMinorWorks1" ThisKey="ContactID" OtherKey="PMWContact" Type="ProjectMinorWork" />
+      <Association Name="Contact_Organisation" Member="Organisations" ThisKey="ContactID" OtherKey="LeadContactID" Type="Organisation" />
+      <Association Name="Contact_Programme" Member="Programmes" ThisKey="ContactID" OtherKey="ContactID" Type="Programme" />
+      <Association Name="Contact_Premise" Member="Premises" ThisKey="ContactID" OtherKey="LocationOrganisation" Type="Premise" />
+      <Association Name="Contact_Service" Member="Services" ThisKey="ContactID" OtherKey="LeadContactID" Type="Service" />
+      <Association Name="Contact_Contact" Member="Contact1" ThisKey="ManagerID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FundingDetail" Member="FundingDetails">
+    <Type Name="FundingDetail">
+      <Column Name="SerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FundingSource" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FundingNeeds" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FundingContractDetail" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FundingAmount" Type="System.Decimal" DbType="Decimal(11,2) NOT NULL" CanBeNull="false" />
+      <Column Name="FundingContinuationNeeded" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FundingContinuationAmount" Type="System.Decimal" DbType="Decimal(11,2)" CanBeNull="true" />
+      <Column Name="FundingContinuationDetail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FundraisingForText" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FundraisingWhy" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FundraisingNeeds" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FundraisingRequiredBy" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FundraisingComplete" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FundraisingCompletedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FundraisingDonorAnonymous" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FundraisingDonorAmount" Type="System.Decimal" DbType="Decimal(11,2)" CanBeNull="true" />
+      <Column Name="FundraisingDonationDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FundraisingDonationIncremental" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FundingStart" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FundingEnd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Contact_FundingDetail" Member="Contact" ThisKey="FundingContractDetail" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Service_FundingDetail" Member="Service" ThisKey="SerID" OtherKey="SerID" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Address" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Address" Member="Address1" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="PostCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TownID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Country_Address" Member="Country" ThisKey="CountryID" OtherKey="CountryID" Type="Country" IsForeignKey="true" />
+      <Association Name="County_Address" Member="County" ThisKey="CountyID" OtherKey="CountyID" Type="County" IsForeignKey="true" />
+      <Association Name="Town_Address" Member="Town" ThisKey="TownID" OtherKey="TownID" Type="Town" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GovOfficeRegion" Member="GovOfficeRegions">
+    <Type Name="GovOfficeRegion">
+      <Column Name="GovOfficeRegionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GovOfficeRegionName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GovOfficeRegionDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CountyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GovIsActivate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Country_GovOfficeRegion" Member="Country" ThisKey="CountryID" OtherKey="CountryID" Type="Country" IsForeignKey="true" />
+      <Association Name="County_GovOfficeRegion" Member="County" ThisKey="CountyID" OtherKey="CountyID" Type="County" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PremiseDetail" Member="PremiseDetails">
+    <Type Name="PremiseDetail">
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RefListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PremiseJSPListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="MediaContactCheck" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MediaContact" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MediaContactName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CateringFacilities" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CateringContact" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CateringType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ClientITFacilities" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientITFacilitiesDetail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RoomAvailability" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VolunteeringOpportunuties" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocalDemographicNote" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PremiseOutreachLocationListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PremiseLocalHotelListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TravelDetail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TravelNearestBus" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TravelNearestRail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TravelNearestAirport" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="VisitorParkingOnsite" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VisitorParkingSpace" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VisitorParkingAlternative" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="HostVisits" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HostingContact" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Contact_PremiseDetail" Member="Contact" ThisKey="CateringContact" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Contact_PremiseDetail1" Member="Contact1" ThisKey="HostingContact" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Contact_PremiseDetail2" Member="Contact2" ThisKey="MediaContact" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Premise_PremiseDetail" Member="Premise" ThisKey="PremiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PermiseDetailForCost" Member="PermiseDetailForCosts">
+    <Type Name="PermiseDetailForCost">
+      <Column Name="PermiseID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoomOnlyRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NegotiatedRoomonlyRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BBRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BBNegotiatedRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DBBRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DBBNegotiatedRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DDRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DDNegotiatedRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="pre24hrRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="pre24hrNeotiatedRate" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TeaAndCoffee" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Lunch" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastNegotiatedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RenegotiateOn" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NoOfMeetingRooms" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="PreferredStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MeetingRoomRatePerDay" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Codings" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Premise_PermiseDetailForCost" Member="Premise" ThisKey="PermiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GovCounty" Member="GovCounties">
+    <Type Name="GovCounty">
+      <Column Name="GovCountyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GovOfficeRegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Facility" Member="Facilities">
+    <Type Name="Facility">
+      <Column Name="FacilityID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FacilityDescription" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="FacilityType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="RoomCapacity" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="RoomSize" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="RoomConnectivity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConnectivityType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WirelessAccessInfor" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LeadContact" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RoomHost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EquipmentAvailable" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EquipmentName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RoomEquipmentNotes" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FacilityIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Contact_Facility" Member="Contact" ThisKey="LeadContact" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Contact_Facility1" Member="Contact1" ThisKey="RoomHost" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Premise_Facility" Member="Premise" ThisKey="PremiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Volunteering" Member="Volunteerings">
+    <Type Name="Volunteering">
+      <Column Name="VolunteeringID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VolunteeringContact" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VolunteeringPurpose" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="VolunteeringDetail" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VolunteerNos" Type="System.Decimal" DbType="Decimal(4,0)" CanBeNull="true" />
+      <Column Name="VolunteeringIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Contact_Volunteering" Member="Contact" ThisKey="VolunteeringContact" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Premise_Volunteering" Member="Premise" ThisKey="PremiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectMinorWork" Member="ProjectMinorWorks">
+    <Type Name="ProjectMinorWork">
+      <Column Name="PMWID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PMWDescription" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ProjectOrMinorWork" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PMWIsTBA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PMWContact" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AuthorisedByName" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PMWStatus" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PMWEnquiryReceivedDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="AuthorisedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ActualStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AnticipatedCompletion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ActualCompletionDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NotesActions" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EstimatedCost" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ActualCost" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Directorate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PMWIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Contact_ProjectMinorWork" Member="Contact" ThisKey="AuthorisedByName" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Contact_ProjectMinorWork1" Member="Contact1" ThisKey="PMWContact" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Directorate_ProjectMinorWork" Member="Directorate1" ThisKey="Directorate" OtherKey="DirID" Type="Directorate" IsForeignKey="true" />
+      <Association Name="Premise_ProjectMinorWork" Member="Premise" ThisKey="PremiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrganisationLinkService" Member="OrganisationLinkServices">
+    <Type Name="OrganisationLinkService">
+      <Column Name="OrgID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LinkID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Organisation_OrganisationLinkService" Member="Organisation" ThisKey="OrgID" OtherKey="OrgID" Type="Organisation" IsForeignKey="true" />
+      <Association Name="Service_OrganisationLinkService" Member="Service" ThisKey="SerID" OtherKey="SerID" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PremiseLinkService" Member="PremiseLinkServices">
+    <Type Name="PremiseLinkService">
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LinkID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Premise_PremiseLinkService" Member="Premise" ThisKey="PremiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+      <Association Name="Service_PremiseLinkService" Member="Service" ThisKey="ServiceID" OtherKey="SerID" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SICCode" Member="SICCodes">
+    <Type Name="SICCode">
+      <Column Name="SICID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SICCode" Member="SICCode1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeOfBusiness" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PremiseOpenSchedule" Member="PremiseOpenSchedules">
+    <Type Name="PremiseOpenSchedule">
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartMonday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndMonday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="StartTuesday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndTuesday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="StartWednesday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndWednesday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="StartThursday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndThursday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="StartFriday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndFriday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="StartSaturday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndSaturday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="StartSunday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="EndSunday" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Association Name="Premise_PremiseOpenSchedule" Member="Premise" ThisKey="PremiseID" OtherKey="PremiseID" Type="Premise" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="User_SupportingMaterial" Member="SupportingMaterials" ThisKey="UserID" OtherKey="UserID" Type="SupportingMaterial" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Organisation" Member="Organisations">
+    <Type Name="Organisation">
+      <Column Name="OrgID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrgName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OrgShortDescription" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OrgFullDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LeadContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TypeOfBusiness" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OrgSICCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgAddr1" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="OrgAddr2" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="OrgAddr3" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="OrgPostCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OrgPhone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OrgFax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OrgEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OrgWebAddr" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OrgExprList" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="OrgCharNumb" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="OrgCompNumb" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CityTown" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RefListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="OrgIsPreterred" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgServiceList" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="OrgProgrammeList" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TrustDistrictID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrustRegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpressionOfInterest" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Organisation_Directorate" Member="Directorates" ThisKey="OrgID" OtherKey="OrgID" Type="Directorate" />
+      <Association Name="Organisation_SupportingMaterial" Member="SupportingMaterials" ThisKey="OrgID" OtherKey="OrgID" Type="SupportingMaterial" />
+      <Association Name="Organisation_OrganisationLinkService" Member="OrganisationLinkServices" ThisKey="OrgID" OtherKey="OrgID" Type="OrganisationLinkService" />
+      <Association Name="Organisation_Premise" Member="Premises" ThisKey="OrgID" OtherKey="LocationOrganisation" Type="Premise" />
+      <Association Name="Contact_Organisation" Member="Contact" ThisKey="LeadContactID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Programme" Member="Programmes">
+    <Type Name="Programme">
+      <Column Name="ProgrammeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProgrammeName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProgrammeIsActivate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Programme_Service" Member="Services" ThisKey="ProgrammeID" OtherKey="ProgrammeID" Type="Service" />
+      <Association Name="Contact_Programme" Member="Contact" ThisKey="ContactID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Premise" Member="Premises">
+    <Type Name="Premise">
+      <Column Name="PremiseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PrimaryLocation" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationManaged" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KnownAS" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RefListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LocationOrganisation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LocationStatus" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LocationStatusDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LocationDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PremiseAddr1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PremiseAddr2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PremiseAddr3" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PremisePostCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CityTown" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PremisePhone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PremisFax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PremisMinicomn" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PremiseIsNew" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PremiseShopFlagDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PremiseSpecialistShop" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SerLinkListID" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PremiseIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Premise_PremiseDetail" Member="PremiseDetail" ThisKey="PremiseID" OtherKey="PremiseID" Type="PremiseDetail" Cardinality="One" />
+      <Association Name="Premise_PermiseDetailForCost" Member="PermiseDetailForCost" ThisKey="PremiseID" OtherKey="PermiseID" Type="PermiseDetailForCost" Cardinality="One" />
+      <Association Name="Premise_Facility" Member="Facilities" ThisKey="PremiseID" OtherKey="PremiseID" Type="Facility" />
+      <Association Name="Premise_Volunteering" Member="Volunteerings" ThisKey="PremiseID" OtherKey="PremiseID" Type="Volunteering" />
+      <Association Name="Premise_ProjectMinorWork" Member="ProjectMinorWorks" ThisKey="PremiseID" OtherKey="PremiseID" Type="ProjectMinorWork" />
+      <Association Name="Premise_PremiseLinkService" Member="PremiseLinkServices" ThisKey="PremiseID" OtherKey="PremiseID" Type="PremiseLinkService" />
+      <Association Name="Premise_PremiseOpenSchedule" Member="PremiseOpenSchedule" ThisKey="PremiseID" OtherKey="PremiseID" Type="PremiseOpenSchedule" Cardinality="One" />
+      <Association Name="Contact_Premise" Member="Contact" ThisKey="LocationOrganisation" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Country_Premise" Member="Country" ThisKey="CountryID" OtherKey="CountryID" Type="Country" IsForeignKey="true" />
+      <Association Name="Organisation_Premise" Member="Organisation" ThisKey="LocationOrganisation" OtherKey="OrgID" Type="Organisation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
+      <Column Name="SerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SerName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SerShortDescription" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SerFullDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SerSubType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SerDeptCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LeadContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SerDescriptionDelivery" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SerAttendance" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SerContractCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SerContractValue" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SerContractRefList" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SerStartExpected" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SerStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SerEndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SerExtendable" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerExtendYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerExtendMonth" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerTimeLimited" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerTimeLimitedYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerTimeLimitedMonth" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerStagedPayment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerReferralProcess" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SerDetail2RefList" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ProgrammeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SerIsActive" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OtherService" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SerDetail3RefList" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Service_FundingDetail" Member="FundingDetail" ThisKey="SerID" OtherKey="SerID" Type="FundingDetail" Cardinality="One" />
+      <Association Name="Service_OrganisationLinkService" Member="OrganisationLinkServices" ThisKey="SerID" OtherKey="SerID" Type="OrganisationLinkService" />
+      <Association Name="Service_PremiseLinkService" Member="PremiseLinkServices" ThisKey="SerID" OtherKey="ServiceID" Type="PremiseLinkService" />
+      <Association Name="Contact_Service" Member="Contact" ThisKey="LeadContactID" OtherKey="ContactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Programme_Service" Member="Programme" ThisKey="ProgrammeID" OtherKey="ProgrammeID" Type="Programme" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.County" Member="Counties">
+    <Type Name="County">
+      <Column Name="CountyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PostCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="County_Address" Member="Addresses" ThisKey="CountyID" OtherKey="CountyID" Type="Address" />
+      <Association Name="County_GovOfficeRegion" Member="GovOfficeRegions" ThisKey="CountyID" OtherKey="CountyID" Type="GovOfficeRegion" />
+      <Association Name="County_Town" Member="Towns" ThisKey="CountyID" OtherKey="CountyID" Type="Town" />
+      <Association Name="Country_County" Member="Country" ThisKey="CountryID" OtherKey="CountryID" Type="Country" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Town" Member="Towns">
+    <Type Name="Town">
+      <Column Name="TownID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TownName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PostCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Town_Address" Member="Addresses" ThisKey="TownID" OtherKey="TownID" Type="Address" />
+      <Association Name="Country_Town" Member="Country" ThisKey="CountryID" OtherKey="CountryID" Type="Country" IsForeignKey="true" />
+      <Association Name="County_Town" Member="County" ThisKey="CountyID" OtherKey="CountyID" Type="County" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,645 @@
+﻿@{
+    ViewBag.Title = "Add Premise";
+}
+
+<script type="text/javascript" language="javascript">
+    function OpeningTimes() {
+        var StartMonday = document.AddPremise.StartMonday.value; var CheckMonday= document.AddPremise.CheckMonday.value;
+        var EndMonday = document.AddPremise.EndMonday.value;
+        var StartTuesday = document.AddPremise.StartTuesday.value;var CheckTuesday= document.AddPremise.CheckTuesday.value;
+        var EndTuesday = document.AddPremise.EndTuesday.value;
+        var StartWednesday = document.AddPremise.StartWednesday.value;var CheckWednesday= document.AddPremise.CheckWednesday.value;
+        var EndWednesday = document.AddPremise.EndWednesday.value;
+        var StartThursday = document.AddPremise.StartThursday.value;var CheckThursday= document.AddPremise.CheckThursday.value;
+        var EndThursday = document.AddPremise.EndThursday.value;
+        var StartFriday = document.AddPremise.StartFriday.value;var CheckFriday= document.AddPremise.CheckFriday.value;
+        var EndFriday = document.AddPremise.EndFriday.value;
+        var StartSaturday = document.AddPremise.StartSaturday.value;var CheckSaturday= document.AddPremise.CheckSaturday.value;
+        var EndSaturday = document.AddPremise.EndSaturday.value;
+        var StartSunday = document.AddPremise.StartSunday.value;var CheckSunday= document.AddPremise.CheckSunday.value;
+        var EndSunday = document.AddPremise.EndSunday.value;
+        var win=window.open("/Premise/OpeningTimes?StartMonday=" + StartMonday + "&EndMonday=" + EndMonday + "&StartTuesday=" + StartTuesday + "&EndTuesday=" + EndTuesday + "&StartWednesday=" + StartWednesday + "&EndWednesday=" + EndWednesday + "&StartThursday=" + StartThursday + "&EndThursday=" + EndThursday + "&StartFriday=" + StartFriday + "&EndFriday=" + EndFriday + "&StartSaturday=" + StartSaturday + "&EndSaturday=" + EndSaturday + "&StartSunday=" + StartSunday + "&EndSunday=" + EndSunday + "&CheckMonday=" + CheckMonday + "&CheckTuesday=" + CheckTuesday + "&CheckWednesday=" + CheckWednesday + "&CheckThursday=" + CheckThursday + "&CheckFriday=" + CheckFriday + "&CheckSaturday=" + CheckSaturday + "&CheckSunday=" + CheckSunday, 'OpeningTimes', 'width=450,height=350,left=150,top=150,scrollbars=yes,resizable=no');
+    }
+    function AddContactWithCheck(FormName, IdTag, NameTag, IsAllow) {
+        if(IsAllow==true)
+            AddrLookUp(FormName, IdTag, NameTag);
+    }
+    function MediaCheckBoxClick(IsChecked) {
+        if (IsChecked == true) {
+            document.AddPremise.MediaContactName.disabled = false;
+            $("#LookUpMedia").removeClass("disable").addClass("link").css("color","blue");
+        }
+        else if (IsChecked == false) {
+            document.AddPremise.MediaContactName.disabled = true;
+            $("#LookUpMedia").removeClass("link").addClass("disable").css("color","gray");
+        }
+    }
+    function CateringCheckBoxClick(IsChecked) {
+        if (IsChecked == true) {
+            document.AddPremise.CateringContactName.disabled = false;document.AddPremise.CateringType.disabled = false;
+            $("#LookUpCatering").removeClass("disable").addClass("link").css("color","blue");
+        }
+        else if (IsChecked == false) {
+            document.AddPremise.CateringContactName.disabled = true;document.AddPremise.CateringType.disabled = true;
+            $("#LookUpCatering").removeClass("link").addClass("disable").css("color","gray");
+        }
+    }
+    function HostVisitsCheckBoxClick(IsChecked) {
+        if (IsChecked == true) {
+            document.AddPremise.HostingContactName.disabled = false;
+            $("#LookUpHost").removeClass("disable").addClass("link").css("color","blue");
+        }
+        else if (IsChecked == false) {
+            document.AddPremise.HostingContactName.disabled = true;
+            $("#LookUpHost").removeClass("link").addClass("disable").css("color","gray");
+        }
+    }
+    function ITCheckBoxClick(IsChecked) {
+        if (IsChecked == true) {
+            document.AddPremise.ClientITFacilitiesDetail.disabled = false;
+        }
+        else if (IsChecked == false) {
+            document.AddPremise.ClientITFacilitiesDetail.disabled = true;
+        }
+    }
+    function ParkingCheckBoxClick(IsChecked) {
+        if (IsChecked == true) {
+            document.AddPremise.VisitorParkingSpace.disabled = true;
+            document.AddPremise.VisitorParkingAlternative.disabled = false;
+        }
+        else if (IsChecked == false) {
+            document.AddPremise.VisitorParkingSpace.disabled = false;
+            document.AddPremise.VisitorParkingAlternative.disabled = true;
+        }
+    }
+    function ChangeShopFlagDate(value) {
+        var day=DiffDate(GetToday(), value);
+        if(day<=60)
+            document.AddPremise.PremiseIsNew.checked = true;
+        else
+            document.AddPremise.PremiseIsNew.checked = false;
+    }
+    function AppearTab4() {
+        var hotel_venue = IsHotelVenue();
+        var shop = IsShop();
+
+        if (hotel_venue==true) {
+                $("#detail4").css("display", "inline");
+        }
+        else {
+            $("#detail4").css("display", "none");
+        }
+        ShopChecked(shop);
+    }
+    function IsHotelVenue() {
+        var type = document.getElementsByName("LocationType[]");
+        var Hotel = false;
+        var Venue = false;
+        for (var i = 0; i < type.length; i++) {
+            if (type[i].value == 78)
+                Hotel = type[i].checked;
+            else if (type[i].value == 79)
+                Venue = type[i].checked;
+        }
+        return Hotel || Venue;
+    }
+    function IsShop() {
+        var type = document.getElementsByName("LocationType[]");
+        var Shop = false;
+        for (var i = 0; i < type.length; i++) {
+            if (type[i].value == 87)
+                Shop = type[i].checked;
+        }
+        return Shop;
+    }
+    function ShopChecked(isChecked) {
+        if (isChecked == true) {
+            document.AddPremise.PremiseIsNew.disabled = false;
+            document.AddPremise.PremiseShopFlagDate.disabled = false;
+            document.AddPremise.PremiseSpecialistShop.disabled = false;
+        }
+        else {
+            document.AddPremise.PremiseIsNew.disabled = true;
+            document.AddPremise.PremiseShopFlagDate.disabled = true;
+            document.AddPremise.PremiseSpecialistShop.disabled = true;
+        }
+    }
+    $.validator.addMethod("moneytary", function (value, element, param) {
+        if (!value) return true;
+        if (IsHotelVenue() == false) return true;
+        return /^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?$/.test(value);
+    }, "Some money fields is not correct");
+    $.validator.addMethod("digital", function (value, element, param) {
+        if (!value) return true;
+        if (IsHotelVenue() == false) return true;
+        return /^\d+$/.test(value);
+    }, "Some number fields is not correct");
+    $.validator.addMethod("maxmoney", function (value, element, param) {
+        if (!value) return true;
+        if (IsHotelVenue() == false) return true;
+        return value.replace(",","").split(".")[0].length<=5;
+    }, "Detail 4: Some money fields is too big");
+    $(function () {
+        $("#LocationStatusDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#PremiseShopFlagDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#LastNegotiatedDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#RenegotiateOn").datepicker({ dateFormat: 'dd/mm/yy' });
+        $("#AddPremise").submit(function (e) {
+            var form = this;
+            if ($(this).valid()) {
+                if (form.pendding.value == 1)
+                    return false;
+                var PremiseAddr1 = document.AddPremise.PremiseAddr1.value;
+                var PostCode = document.AddPremise.PostCode.value;
+                var LocationName = document.AddPremise.LocationName.value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Premise/CheckUnique",
+                    data: ({ LocationName: LocationName, PremiseAddr1: PremiseAddr1, PostCode: PostCode }),
+                    success: function (data) {
+                        form.pendding.value = 1;
+                        if (data == "true") {
+                            var Address1 = form.PremiseAddr1.value;
+                            var PostCode = form.PostCode.value;
+                            var Town = form.CityTown.value;
+                            var County = form.County.value;
+                            var CountryID = form.CountryID.value;
+                            $.ajax({
+                                type: "POST",
+                                url: "/Address/AddressIsNew",
+                                data: ({ Address1: Address1, PostCode: PostCode, Town: Town, County: County, CountryID: CountryID }),
+                                success: function (data) {
+                                    form.pendding.value = 1;
+                                    if (data == "true") {
+                                        var re = confirm("Address Details cannot be confirmed\nDo you wish to enter Unconfirmed Address Data");
+                                        if (re == true) {
+                                            form.submit();
+                                        } else {
+                                            form.PremiseAddr1.value = "";
+                                            form.PostCode.value = "";
+                                            form.CityTown.value = "";
+                                            form.County.value = "";
+                                            form.CountryID.selectedIndex = 0;
+                                            form.PremiseAddr1.focus();
+                                        }
+                                    }
+                                    else {
+                                        form.submit();
+                                    }
+                                    form.pendding.value = 0;
+                                }
+                            });
+                        }
+                        else {
+                            alert("Invalid: This Location Name with Address and PostCode aready have");
+                            $("#LocationName").addClass("error");
+                            document.AddPremise.LocationName.focus();
+                        }
+                        form.pendding.value = 0;
+                    }
+                });
+            }
+            return false;
+        });
+        $("#AddPremise").validate({
+            errorLabelContainer: $("div.error"),
+            rules: {
+                LocationName: { required: true, maxlength: 100 },
+                LocationStatus: { required: true },
+                "LocationType[]": { required: true },
+                PremisePhone: { required: true },
+                RoomOnlyRate: { moneytary: true, maxmoney: true },
+                NegotiatedRoomonlyRate: { moneytary: true, maxmoney: true },
+                BBRate: { moneytary: true, maxmoney: true },
+                BBNegotiatedRate: { moneytary: true, maxmoney: true },
+                DBBRate: { moneytary: true, maxmoney: true },
+                DBBNegotiatedRate: { moneytary: true, maxmoney: true },
+                DDRate: { moneytary: true, maxmoney: true },
+                DDNegotiatedRate: { moneytary: true, maxmoney: true },
+                pre24hrRate: { moneytary: true, maxmoney: true },
+                pre24hrNeotiatedRate: { moneytary: true, maxmoney: true },
+                TeaAndCoffee: { moneytary: true, maxmoney: true },
+                MeetingRoomRatePerDay: { moneytary: true, maxmoney: true },
+                NoOfMeetingRooms: { digital: true },
+                VisitorParkingSpace: { digits: true }
+            },
+            messages: {
+                LocationName: {
+                    required: "Please input the Location Name",
+                    maxlength: "Short Description is too long"
+                },
+                LocationStatus: { required: "Please choose the Location Status" },
+                "LocationType[]": { required: "Please choose at least one Location Type" },
+                PremisePhone: { required: "Please inout the Phone Number" },
+                RoomOnlyRate: {
+                    moneytary: "Detail 4: The Room Only Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The Room Only Rate can's be much more than 9,999.99"
+                },
+                NegotiatedRoomonlyRate: {
+                    moneytary: "Detail 4: The Negotiated Roomonly Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: can's be much more than 9,999.99"
+                },
+                BBRate: {
+                    moneytary: "Detail 4: The B&B Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The B&B Rate can's be much more than 9,999.99"
+                },
+                BBNegotiatedRate: {
+                    moneytary: "The B&B Negotiated Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The B&B Negotiated Rate can's be much more than 9,999.99"
+                },
+                DBBRate: {
+                    moneytary: "Detail 4: The DBB Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The DBB Rate can's be much more than 9,999.99"
+                },
+                DBBNegotiatedRate: {
+                    moneytary: "Detail 4: The DBB NegotiatedRate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The DBB NegotiatedRate can's be much more than 9,999.99"
+                },
+                DDRate: {
+                    moneytary: "Detail 4: The DD Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The DD Rate can's be much more than 9,999.99"
+                },
+                DDNegotiatedRate: {
+                    moneytary: "Detail 4: The DD Negotiated Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The DD Negotiated Rate can's be much more than 9,999.99"
+
+                },
+                pre24hrRate: {
+                    moneytary: "Detail 4: The 24hr Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The 24hr Rate can's be much more than 9,999.99"
+                },
+                pre24hrNeotiatedRate: {
+                    moneytary: "Detail 4: The 24hr Neotiated Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The 24hr Neotiated Rate can's be much more than 9,999.99"
+                },
+                TeaAndCoffee: {
+                    moneytary: "Detail 4: The Tea And Coffee Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The Tea And Coffee Rate can's be much more than 9,999.99"
+                },
+                MeetingRoomRatePerDay: {
+                    moneytary: "Detail 4: The Meeting Room Rate must be money format (9,999.99)",
+                    maxmoney: "Detail 4: The Meeting Room Rate can's be much more than 9,999.99"
+                },
+                NoOfMeetingRooms: { digital: "Detail 4: The No. Of Meeting Rooms must be number" },
+                VisitorParkingSpace: { digits: "Detail 3: The Visitor Parking Space must be number" }
+            }
+        });
+        $(".hight-light-type").click(function () {
+            var divID = $(this).attr("value");
+            var isChecked = $(this).attr("checked");
+            if (isChecked == "checked")
+            //$("#" + divID).css("background-color", "#8CB8FF");
+                $(this).parent("p").css("background-color", "#8CB8FF");
+            else
+            //$("#" + divID).css("background-color", "white");
+                $(this).parent("p").css("background-color", "white");
+            AppearTab4();
+
+        });
+        AppearTab4();
+    });
+</script>
+<div class="container-right">
+		<div class="table-content">
+        @using (Html.BeginForm("Add", "Premise", FormMethod.Post, new { name = "AddPremise", enctype = "multipart/form-data", id = "AddPremise" }))
+        {
+            <input type="hidden" name="pendding" value="0" />
+			<p style="color:#69a017;font-size:large;margin-bottom:10px">Premise Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+			<input type="submit" value="Save" /> 
+			<a href="/Premise/List" style="text-decoration:none"><input type="button" value="Back" /> </a>
+			</span>
+			</p>
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details 1</a></li>
+				<li><a href="#tabs-2">Details 2</a></li>
+				<li><a href="#tabs-3">Details 3</a></li>
+                <li id="detail4"><a href="#tabs-4">Details 4</a></li>
+			</ul>
+			<div id="tabs-1">
+			<table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">Location Name &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><input id="LocationName" class="standar-textbox" name="LocationName" type="text"/></td>
+					<td width="150px">Primary Location</td>
+					<td><input type="checkbox" value="1" name="PrimaryLocation" /></td>
+				</tr>
+				<tr>
+					<td>Known AS</td>
+					<td><input type="text" class="standar-textbox" name="KnownAS" /></td>
+					<td>Location Managed</td>
+					<td><input type="checkbox" value="1" name="LocationManaged"/></td>
+				</tr>
+                <tr>
+                    <td>Location Organisation</td>
+                    <td><input name="LocationOrganisation" type="hidden" /><input name="LocationOrganisationName" readonly="readonly" type="text"/><a onclick="" class="link" style="color:Blue">Lookup</a></td>
+					<td rowspan="4">Location Type<span style="color:red">*</span></td>
+					<td rowspan="4"><div class="scroll">
+	                @foreach (var item in ViewBag.LocationType) 
+	                {
+		                <p style="width: 300px;" id="@item.Id"><input class="hight-light-type" type="checkbox" name="LocationType[]" value="@item.Id" />@item.Text</p>
+		            }
+		            </div></td>
+				</tr>
+
+                <tr>
+                    <td>Location Status<span style="color:red">*</span></td>
+					<td><select name="LocationStatus" class="standar-dropdown">
+                        <option></option>
+                        <option value="Pending Active">Pending Active</option>
+                        <option value="Active">Active</option>
+                        <option value="Pending Closure">Pending Closure</option>
+                        <option value="Closed">Closed</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Location Status Date</td>
+                    <td><input type="text" name="LocationStatusDate" id="LocationStatusDate"/></td>
+                </tr>
+                <tr>
+                    <td>Address Line 1</td>
+                    <td><input type="text" name="PremiseAddr1" class="standar-textbox"/></td>
+                </tr>
+                <tr>
+                    <td>Address Line 2</td>
+                    <td><input type="text" name="PremiseAddr2" class="standar-textbox"/></td>
+                    <td rowspan="2">Location Description</td>
+                    <td rowspan="2"><textarea class="standar-textarea" name="LocationDescription"></textarea></td>
+                </tr>
+				<tr>
+                    <td >Address Line 3</td>
+                    <td><input type="text" name="PremiseAddr3" class="standar-textbox"/></td>
+                </tr>
+                <tr>
+                    <td>Postcode </td>
+				    <td><input id="PostCode" type="text" name="PostCode" /> <a onclick="PostCodeLookUp('PostCode','PremiseAddr1','CityTown','County','CountryID')" class="link" style="color:Blue">Lookup</a></td>
+                    <td>Phone Number&nbsp;<span style="color:red">*</span></td>
+                    <td><input type="text" name="PremisePhone" class="standar-textbox"/></td>
+                </tr>
+                <tr>
+                    <td>City/Town</td>
+				    <td><input class="standar-textbox"  type="text" name="CityTown" /> </td>
+                    <td>General Fax Number</td>
+                    <td><input type="text" name="PremisFax" class="standar-textbox"/></td>
+                </tr>
+                <tr>
+                    <td>County</td>
+				    <td><input class="standar-textbox"  type="text" name="County" /> </td>
+                    <td>Minicomn Number</td>
+                    <td><input type="text" name="PremisMinicomn" class="standar-textbox"/></td>
+                </tr>
+                <tr>
+                    <td>Nation/Country</td>
+				    <td>
+                        <select class="standar-dropdown" name="CountryID">
+                        <option></option>
+                        @foreach (var country in ViewBag.ListCountry)
+                        {
+                                <option value="@country.CountryID">@country.CountryName</option>
+                        }
+                        </select>
+                    </td>
+                    <td >Is New Shop?</td>
+                    <td><input type="checkbox" value="1" disabled="disabled" name="PremiseIsNew"/></td>    
+                </tr>
+                <tr>
+                    <td style="vertical-align:top;" rowspan="3" colspan="2">
+                    <input type="hidden" name="StartMonday" value="09:00" />
+                    <input type="hidden" name="CheckMonday" value="true" />
+                    <input type="hidden" name="EndMonday" value="17:00" />
+                    <input type="hidden" name="StartTuesday" value="09:00" />
+                    <input type="hidden" name="CheckTuesday" value="true" />
+                    <input type="hidden" name="EndTuesday" value="17:00" />
+                    <input type="hidden" name="StartWednesday" value="09:00" />
+                    <input type="hidden" name="CheckWednesday" value="true" />
+                    <input type="hidden" name="EndWednesday" value="17:00" />
+                    <input type="hidden" name="StartThursday" value="09:00" />
+                    <input type="hidden" name="CheckThursday" value="true" />
+                    <input type="hidden" name="EndThursday" value="17:00" />
+                    <input type="hidden" name="StartFriday" value="09:00" />
+                    <input type="hidden" name="CheckFriday" value="true" />
+                    <input type="hidden" name="EndFriday" value="17:00" />
+                    <input type="hidden" name="StartSaturday" />
+                    <input type="hidden" name="CheckSaturday" value="false" />
+                    <input type="hidden" name="EndSaturday"/>
+                    <input type="hidden" name="StartSunday" />
+                    <input type="hidden" name="CheckSunday" value="false" />
+                    <input type="hidden" name="EndSunday" />
+                    <a onclick="OpeningTimes()" class="link" style="color:Blue">Location Opening Times</a></td>
+                    <td>Shop Flag Date</td>
+                    <td><input type="text" disabled="disabled" name="PremiseShopFlagDate" onchange="ChangeShopFlagDate(this.value)" id="PremiseShopFlagDate"/></td>
+                </tr>
+                <tr>
+                    <td>Specialist Shop</td>
+                    <td>
+                    <input type="checkbox" disabled="disabled" value="1" name="PremiseSpecialistShop"/></td>
+                </tr>
+                <tr><td></td><td></td><td></td><td></td></tr>
+			</table>
+            
+			</div>
+			<div id="tabs-2">
+			<table class="table-only-border-out" width="750px">
+				
+				 <tr>
+                    <td width="130px">Accreditaions</td>
+                    <td width="230px"><div class="scroll">			
+	                @foreach (var item in ViewBag.Accreditation) 
+	                {
+		                <p style="width: 300px;" id="@item.Id"><input class="hight-light-onclick" type="checkbox" name="RefListID[]" value="@item.Id" />@item.Text</p>
+		            }
+		            </div></td>
+                    <td width="130px">JSP Offices</td>
+                    <td><div class="scroll">
+                    @foreach (var item in ViewBag.JCP) 
+	                    {
+		                    <p style="width: 300px;" id="@item.Id"><input class="hight-light-onclick" type="checkbox" name="RefListID[]" value="@item.Id" />@item.Text</p>
+		                }
+                    </div></td>
+                 </tr>
+                 <tr>
+                    <td>Media Contact</td>
+                    <td><input name="MediaContactCheck" value="1" type="checkbox" onclick="MediaCheckBoxClick(this.checked)" /></td>
+                    <td>Catering Facilities</td>
+                    <td><input name="CateringFacilities" value="1" type="checkbox" onclick="CateringCheckBoxClick(this.checked)" /></td>
+                 </tr>
+                 <tr>
+                    <td>Media Contact Name</td>
+                    <td><input name="MediaContact" type="hidden"/><input name="MediaContactName" disabled="disabled" readonly="readonly" type="text" /><a onclick="AddContactWithCheck('AddPremise', 'MediaContact', 'MediaContactName', document.AddPremise.MediaContact.checked)" id="LookUpMedia" class="disable" style="color:Gray">Lookup</a></td>
+                    <td>Catering Contact</td>
+                    <td><input type="hidden" name="CateringContact"/><input name="CateringContactName" disabled="disabled" type="text" readonly="readonly" /><a onclick="AddContactWithCheck('AddPremise', 'CateringContact', 'CateringContactName', document.AddPremise.CateringFacilities.checked)" id="LookUpCatering" class="disable" style="color:Gray">Lookup</a></td>
+                 </tr>
+				 <tr>
+                    <td rowspan="3">Local Demographic Issues </td>
+                    <td rowspan="3"> <div class="scroll">			
+	                @foreach (var item in ViewBag.Demographic) 
+	                {
+		                <p style="width: 300px;" id="@item.Id"><input class="hight-light-onclick" type="checkbox" name="RefListID[]" value="@item.Id"  />@item.Text</p>
+		            }
+		            </div></td>
+                    <td>Catering Type</td>
+                    <td><select name="CateringType" class="standar-dropdown" disabled="disabled">
+                        <option></option>
+                        <option value="1">On-Premise</option>
+                        <option value="2">Off-Premise</option>
+                    </select></td>
+                 </tr>
+                 <tr>
+                    <td>IS/Network</td>
+                    <td><select name="RefListID[]" class="standar-dropdown">
+                        <option></option>
+                        @foreach (var item in ViewBag.ISNetwork) 
+	                {
+		                <option value="@item.Id">@item.Text</option>
+		            }
+                    </select></td>
+                 </tr>
+                 <tr>
+                    <td>Client IT Facilities</td>
+                    <td><input name="ClientITFacilities" type="checkbox" value="1" onclick="ITCheckBoxClick(this.checked)" /></td>
+                 </tr>
+                 <tr>
+                    <td rowspan="3">Local Demographic Notes</td>
+                    <td rowspan="3"><textarea cols="29" rows="5"  name="LocalDemographicNote"></textarea></td>
+                    <td>Client IT Facilities Details</td>
+                    <td><textarea disabled="disabled" cols="28" rows="3" name="ClientITFacilitiesDetail"></textarea></td>
+                 </tr>
+                 <tr>
+                    <td>Room Availability</td>
+                    <td><input type="checkbox" name="RoomAvailability" value="1"/></td>
+                 </tr>
+                 <tr>
+                    <td>Volunteering Opportunuties</td>
+                    <td><input type="checkbox" value="1" name="VolunteeringOpportunuties" /></td>
+                 </tr>
+			</table>
+			</div>
+			<div id="tabs-3">
+                <table class="table-only-border-out" width="750px">
+                    <tr>
+                        <td width="130px">Outreach Location </td>
+                        <td width="230px"><div class="scroll">
+                        @foreach (var item in ViewBag.Outreach) 
+	                    {
+		                    <p style="width: 300px;" id="@item.Id"><input class="hight-light-onclick" type="checkbox" name="PremiseOutreachLocationListID[]" value="@item.Id" />@item.Text</p>
+		                }
+                        </div></td>
+                        <td width="130px">Local Hotel </td>
+                        <td><div class="scroll">
+                        @foreach (var item in ViewBag.Hotel) 
+	                    {
+		                    <p style="width: 300px;" id="@item.Id"><input class="hight-light-onclick" type="checkbox" name="PremiseLocalHotelListID[]" value="@item.Id" />@item.Text</p>
+		                }
+                        </div></td>
+                    </tr>
+                    <tr><th colspan="4">Travel</th></tr>
+                    <tr>
+                        <td>Travel Details</td>
+                        <td><input type="text" name="TravelDetail" class="standar-textbox" /></td>
+                        <td>Visitor Parking Onsite</td>
+                        <td><input type="checkbox" value="1" name="VisitorParkingOnsite" onclick="ParkingCheckBoxClick(this.checked)" /></td>
+                    </tr>
+                    <tr>
+                        <td>Nearest - Bus</td>
+                        <td><input type="text" name="TravelNearestBus" class="standar-textbox"/></td>
+                        <td>Visitor Parking Space</td>
+                        <td><input type="text" class="standar-textbox" name="VisitorParkingSpace"/></td>
+                    </tr>
+                    <tr>
+                        <td>Nearest - Rail</td>
+                        <td><input type="text" name="TravelNearestRail" class="standar-textbox"/></td>
+                        <td rowspan="4">Visitor Parking Alternative</td>
+                        <td rowspan="4"><textarea disabled="disabled" cols="28" rows="5" name="VisitorParkingAlternative"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Nearest - Airport</td>
+                        <td><input type="text" name="TravelNearestAirport" class="standar-textbox"/></td>
+                    </tr>
+                    <tr>
+                        <td>Host Visits</td>
+                        <td><input type="checkbox" name="HostVisits" value="1" onclick="HostVisitsCheckBoxClick(this.checked)" /></td>
+                    </tr>
+                    <tr>
+                        <td>Hosting Contact</td>
+                        <td><input type="hidden" name="HostingContact" /><input name="HostingContactName" disabled="disabled" type="text" readonly="readonly" /><a onclick="AddContactWithCheck('AddPremise', 'HostingContact', 'HostingContactName', document.AddPremise.HostVisits.checked)" id="LookUpHost" class="disable" style="color:Gray">Lookup</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="tabs-4">
+                <table class="table-only-border-out" width="750px">
+                    <tr>
+                        <td>Room Only Rate</td>
+                        <td><input type="text" name="RoomOnlyRate" /></td>
+                        <td>Negotiated Room only Rate</td>
+                        <td><input type="text" name="NegotiatedRoomonlyRate" /></td>
+                    </tr>
+                    <tr>
+                        <td>B&B Rate</td>
+                        <td><input type="text" name="BBRate" /></td>
+                        <td>B&B NegotiatedRate</td>
+                        <td><input type="text" name="BBNegotiatedRate"/></td>
+                    </tr>
+                    <tr>
+                        <td >DBB Rate</td>
+                        <td ><input type="text" name="DBBRate" /></td>
+                        <td >DBB NegotiatedRate</td>
+                        <td><input type="text" name="DBBNegotiatedRate" /></td>
+                    </tr>
+                    <tr>
+                        <td >DD Rate</td>
+                        <td ><input type="text" name="DDRate"/></td>
+                        <td >DD NegotiatedRate</td>
+                        <td><input type="text" name="DDNegotiatedRate" /></td>
+                    </tr>
+                    <tr>
+                        <td> 24hr Rate</td>
+                        <td><input type="text" name="pre24hrRate" /></td>
+                        <td> 24hr Neotiated Rate</td>
+                        <td><input type="text" name="pre24hrNeotiatedRate"/></td>
+                    </tr>
+                    <tr>
+                        <td>Tea And Coffee</td>
+                        <td><input type="text" name="TeaAndCoffee"/></td>
+                        <td>Last Negotiated Date</td>
+                        <td><input type="text" name="LastNegotiatedDate" id="LastNegotiatedDate" /></td>
+                    </tr>
+                    <tr>
+                        <td>Lunch</td>
+                        <td><input type="checkbox" value="1" name="Lunch" /></td>
+                        <td>Re-negotiate On</td>
+                        <td><input type="text" name="RenegotiateOn" id="RenegotiateOn"/></td>
+                    </tr>
+                    <tr>
+                        <td>No. Of Meeting Rooms</td>
+                        <td><input type="text" name="NoOfMeetingRooms"/></td>
+                        <td>Preferred Status</td>
+                        <td><select name="PreferredStatus" class="standar-dropdown">
+                            <option></option>
+                            <option value="1">Status 1</option>
+                            <option value="2">Status 2</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Meeting Room Rate Per Day</td>
+                        <td><input type="text" name="MeetingRoomRatePerDay" /></td>
+                        <td rowspan="2">Comments</td>
+                        <td rowspan="2"><textarea cols="25" rows="3" name="Comments"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Codings</td>
+                        <td><select name="Codings" class="standar-dropdown">
+                            <option></option>
+                            <option value="1">Coding 1</option>
+                            <option value="2">Coding 2</option>
+                        </select></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="error"></div>
+        </div>
+        }	
+		</div>
+	</div>

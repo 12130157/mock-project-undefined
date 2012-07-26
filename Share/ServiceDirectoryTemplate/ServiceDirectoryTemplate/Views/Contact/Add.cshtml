@@ -1,0 +1,112 @@
+﻿ @model IEnumerable<ServiceDirectoryTemplate.Models.Contact>
+@{
+    Layout = "../Shared/LayOutNull.cshtml";
+    ViewBag.Title = "Add Contact";
+}
+<script language="javascript">
+$(document).ready(function () {
+    $("#myform").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            firstname: { required: true, maxlength: 100 },
+            surname: { required: true, maxlength: 100 },
+            ContactType: { required: true }
+        },
+        messages: {
+            firstname: {
+                required: "Please input the First Name",
+                maxlength: "First Name is too long"
+            },
+            surname: {
+                required: "Please input the SurName",
+                maxlength: "SurName is too long"
+            },
+            ContactType: { required: "Please choose the Contact Type" }
+        }
+    });
+});
+</script>
+    <div class="container-right" style=" border: 1px solid #999999; background:#efefef;width:775px">
+		<div class="table-content" style="width:750px">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px">Create New Contact</p>
+			<form action="/Contact/Create?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName" name="myform" id="myform" method ="post">
+			<div><table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="140px">First Name <span style="color:red">*</span></td>
+					<td width="230px"><input class="standar-textbox" type="text" name="firstname" /></td>
+					<td>Manager Name:</td>
+					<td><input class="lookup-textbox" type="hidden" name="managerId" /><input class="lookup-textbox" type="text" name="managerName" /><a class="link" onclick="ManagerLookUp('myform', 'managerId', 'managerName')">Lookup</a></td>
+				</tr>
+				
+				<tr>
+					<td width="140px">SurName <span style="color:red">*</span></td>
+					<td width="230px"><input class="standar-textbox" type="text" name="surname" /></td>
+					<td>Contact Type  <span style="color:red">* </span>
+                    </td>
+                    <td>
+                    <select name="ContactType">
+                        <option></option>
+                    @foreach (var type in ViewBag.ContactType)
+                        {
+                                <option value="@type.RefText" >@type.RefText</option>
+                        }
+                    </select>
+                    </td>
+                  
+			    </tr>
+				<tr>
+					<td width="140px">Known As </td>
+					<td width="230px"><input class="standar-textbox" type="text" name="KnowAs" /></td>
+					 <td>Best Contact Method <span></td>
+                     <td>
+                    <select name="bestContactMethod">
+                        <option value="" ></option>
+                    @foreach (var method in ViewBag.BestContactMethod)
+                        {
+                                <option value="@method.RefText" >@method.RefText</option>
+                        }
+                    </select></span>
+                    </td>
+					
+			    </tr>
+				
+				<tr>
+					<td width="140px">Office Phone</td>
+					<td width="230px"><input class="standar-textbox" type="text" name="OfficePhone" /></td>
+					<td width="140px">Job Role </td>
+					<td width="230px"><input class="standar-textbox" type="text" name="JobRole" /></td>
+				</tr>
+				
+				<tr>
+					<td width="140px">Mobile Phone</td>
+					<td width="230px"><input class="standar-textbox" type="text" name="MobilePhone" /></td>
+					<td width="140px">Workbase</td>
+					<td width="230px"><input class="standar-textbox" type="text" name="Workbase" /></td>
+				</tr>
+				
+				<tr>
+					<td width="140px">ST Home Phone</td>
+					<td width="230px"><input class="standar-textbox" type="text" name="STHomePhone" /></td>
+					<td width="140px">Job Title</td>
+					<td width="230px"><input class="standar-textbox" type="text" name="JobTitle" /></td>
+				</tr>
+				
+				<tr>
+					<td width="140px">Email Address</td>
+					<td width="230px"><input class="standar-textbox" type="text"  name="EmailAddress"/></td>
+					<td>Is Active?</td> 
+				<td><input type ="checkbox" value="1" name="ContactIsActive" checked="checked" /></td>
+				</tr>
+				
+			</table></div>
+            <div style=" margin-bottom:40px">
+            <span style="float:right;margin-right:10px; margin-bottom:40px">
+			<input type="submit" value="Save" style=" width:80px" />
+			<a href="/Contact/List?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName"><input type="button" value="Back" style="width:80px" /> </a>
+			</span>	
+            </div>
+            <div class="error"></div>
+            </form>
+		</div>
+
+	</div>

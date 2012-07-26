@@ -1,0 +1,341 @@
+﻿@model ServiceDirectoryTemplate.Models.Organisation
+@{
+    ViewBag.Title = "Amend Organisation";
+}
+<div class="container-right">
+    
+    
+	<div class="table-content">
+		<p style="color:#69a017;font-size:large;margin-bottom:10px">Organisation Details</p>
+<script language="javascript">
+    $(document).ready(function () {
+        $("#AddOrg").submit(function (e) {
+            var form=this;
+            if ($(this).valid()) {
+                if (form.pendding.value == 1)
+                    return false;
+                var Address1 = form.AddressLine1.value;
+                var PostCode = form.PostCode.value;
+                var Town = form.CityTown.value;
+                var County = form.County.value;
+                var CountryID = form.CountryID.value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Address/AddressIsNew",
+                    data: ({ Address1: Address1, PostCode: PostCode, Town: Town, County: County, CountryID: CountryID }),
+                    success: function (data) {
+                        form.pendding.value=1;
+                        if (data == "true") {
+                            var re = confirm("Address Details cannot be confirmed\nDo you wish to enter Unconfirmed Address Data");
+                            if (re == true) {
+                                form.submit();
+                            } else {
+                                form.AddressLine1.value = "";
+                                form.PostCode.value = "";
+                                form.CityTown.value = "";
+                                form.County.value = "";
+                                form.CountryID.selectedIndex = 0;
+                                form.AddressLine1.focus();
+                            }
+                        }
+                        else {
+                            form.submit();
+                        }
+                        form.pendding.value=0;
+                    }
+                });
+            }
+            return false;
+        });
+        $("#AddOrg").validate({
+            errorLabelContainer: $("div.error"),
+            rules: {
+                OrgName: { required: true, maxlength: 100, remote: { url: "/Organisation/CheckUnique1/@Model.OrgID"} },
+                OrgShortDescription: { required: true, maxlength: 100 },
+                TypeOfBusinessID: { required: true },
+                PostCode: { required: true },
+                AddressLine1: { required: true },
+                PhoneNumber: { required: true }
+            },
+            messages: {
+                OrgName: {
+                    required: "Please input the Organisation Name",
+                    maxlength: "Organisation Name is too long",
+                    remote: "Please input other Organisation Name (the cause is duplicate)"
+                },
+                OrgShortDescription: {
+                    required: "Please input the Short Description",
+                    maxlength: "Short Description is too long"
+                },
+                TypeOfBusinessID: { required: "Please choose the Bussiness Type" },
+                AddressLine1: { required: "Please input the Address Line" },
+                PostCode: { required: "Please input the PostCode" },
+                PhoneNumber: { required: "Please input the Phone Number" }
+            }
+        });
+    });  
+</script>
+	<div id="tabs">
+<form action="/Organisation/Update" name="AddOrg" id="AddOrg" method="post" enctype="multipart/form-data">
+<input type="hidden" name="pendding" value="0" />
+        <span style="float:right;margin-right:5px">
+        <input type="button" onclick="window.location='/Organisation/MarkInactivate/@Model.OrgID'" value="In-activate" />
+		<input type="submit" value="Save" /> 
+		<a title="Return to list Organisation" href="/Organisation/List"><input type="button" value="Back" /> </a>
+		</span>
+		<ul>
+			<li><a href="#tabs-1">Details 1</a></li>
+			<li><a href="#tabs-2">Details 2</a></li>
+			<li><a href="#tabs-3">Details 3</a></li>
+            <li><a href="#tabs-4">Details 4</a></li>
+            <li><a href="#tabs-5">Details 5</a></li>
+            <li><a href="#tabs-6">BU/Directorates</a></li>
+				
+		</ul>
+
+        <!--start tabs 1 -->
+        
+        <input type="hidden" name="OrgID" value="@Html.DisplayFor(model => model.OrgID)" />
+		<div id="tabs-1">
+        <table class="table-only-border-out" width="750px">
+			<tr>
+				<td width="140px">Organisation Name <span style="color:red">*</span></td>
+				<td width="230px">
+                    <input class="standar-textbox" type="text" name="OrgName" value="@Html.DisplayFor(model => model.OrgName)" />
+                </td>
+				<td width="140px">Preferred Organisation</td>
+				<td width="230px"><input type="checkbox" name="PreferredOrg" value="1" @(Model.OrgIsPreterred == 1 ? "checked=checked" : "")/></td>
+			</tr>
+				
+			<tr>
+				<td rowspan="2">Organisation Short Description &nbsp;<span style="color:red">*</span></td>
+				<td rowspan="2">
+                    <textarea class="standar-textarea" name="OrgShortDescription">@Html.DisplayFor(model => model.OrgShortDescription)</textarea>
+                </td>
+				
+			<td>Expression of Interest</td> 
+			<td><input type="checkbox" name="ExpressionOfInterest" value="1"/></td>
+			</tr>
+				
+			<tr>
+				<td>Type of Business</td> 
+				<td><input class="lookup-textbox" type="text" readonly="readonly" name="TypeOfBusinessID" value="@Model.TypeOfBusiness" /><a onclick="SICLookUp('TypeOfBusinessID', 'SICCode')" class="link" style="color:Blue">Lookup</a></td> 
+			</tr>
+				
+			<tr>
+				<td>Lead Contact</td>
+				<td><input type="hidden" name="ContactID" value="@Model.LeadContactID" /><input class="lookup-textbox" type="text" name="ContactName" value="@(Model.LeadContactID==null?"":Model.Contact.FirstName)"readonly="readonly" /> <a onclick="AddrLookUp('AddOrg', 'ContactID', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+				<td>SIC Code</td>
+				<td><input class="short-textbox" type="text" name="SICCode" readonly="readonly" value="@Model.OrgSICCode" /></td>
+			</tr>
+				
+				
+				
+				
+			<tr>
+				<td>
+					Address Line 1 &nbsp;<span style="color:red">*</span>
+				</td>
+				<td>
+					<input class="standar-textbox"  type="text" name="AddressLine1" value="@Html.DisplayFor(model => model.OrgAddr1)" />
+				</td>
+					
+				<td rowspan="2">
+					Organisation Full Description
+				</td>
+				<td rowspan="2">
+					<textarea class="standar-textarea" name="OrgFullDescription">@Html.DisplayFor(model => model.OrgFullDescription)</textarea>
+				</td>
+					
+			</tr>
+						
+			<tr>
+				<td>
+					Address Line 2
+				</td>
+				<td>
+					<input class="standar-textbox"  type="text" name="AddressLine2"  value="@Html.DisplayFor(model => model.OrgAddr2)" />
+				</td>
+					
+			</tr>	
+				
+			<tr>
+				<td>Address Line 3</td>
+				<td><input class="standar-textbox"  type="text" name="AddressLine3"  value="@Html.DisplayFor(model => model.OrgAddr3)" /> </td>
+				<td>Phone Number &nbsp;<span style="color:red">*</span></td>
+				<td><input class="standar-textbox"   type="text" name="PhoneNumber"  value="@Html.DisplayFor(model => model.OrgPhone)" /></td>
+			</tr>		
+				
+			<tr>
+				<td>Postcode &nbsp;<span style="color:red">*</span></td>
+				<td><input type="text" name="PostCode" value="@Model.OrgPostCode" /> <a onclick="PostCodeLookUp('PostCode','AddressLine1','CityTown','County','CountryID')" class="link" style="color:Blue">Lookup</a></td>
+				<td>Fax</td>
+				<td><input class="standar-textbox"   type="text" name="Fax"  value="@Html.DisplayFor(model => model.OrgFax)" /></td>
+			</tr>
+			<tr>
+				<td>City/Town</td>
+				<td><input class="standar-textbox"  type="text" name="CityTown"  value="@Html.DisplayFor(model => model.CityTown)" /> </td>
+				<td>Email</td>
+				<td><input class="standar-textbox"   type="text" name="Email" value="@Html.DisplayFor(model => model.OrgEmail)" /></td>
+			</tr>	
+			<tr>
+				<td>County</td>
+				<td><input class="standar-textbox"  type="text" name="County" value="@Html.DisplayFor(model => model.County)" /> </td>
+				<td>Web Address</td>
+				<td><input class="standar-textbox"   type="text" name="WebAdress" value="@Html.DisplayFor(model => model.OrgWebAddr)"  /></td>
+			</tr>	
+			<tr>
+				<td>Nation/Country</td>
+				<td>
+                    <select class="standar-dropdown" name="CountryID">
+                    <option></option>
+                    @foreach (var country in ViewBag.ListCountry)
+                    {
+                                <option value="@country.CountryID" @if (Model.CountryID == @country.CountryID)
+                                                                   { @("selected=selected")}>@country.CountryName</option>
+                    }
+                    </select>
+                </td>
+				<td>Charity Number</td>
+				<td><input class="standar-textbox"   type="text" name="CharityNumber" value="@Html.DisplayFor(model => model.OrgCharNumb)" /></td>
+			</tr>	
+				
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp; </td>
+				<td>Company Number</td>
+				<td><input class="standar-textbox"   type="text" name="CompanyNumber" value="@Html.DisplayFor(model => model.OrgCompNumb)" /></td>
+			</tr>	
+				
+		</table>
+        </div>
+        <!--end tabs 1 -->
+
+        <!--start tabs 2 -->
+		<div id="tabs-2">
+        <table class="table-only-border-out" width="750px">
+			@{ Html.RenderAction("GetHtml", "RefData", new { strFrom = "OrganisationDetail2", refChecked = Model.RefListID });  }
+		</table>
+        </div>
+        <!--end tabs 2 -->
+
+        <!--start tabs 3 -->
+		<div id="tabs-3">
+        <table class="table-only-border-out" width="750px">
+			<tr>
+				<td width="130px">EOI Programmes</td>
+				<td width="240px">
+					<div class="scroll">
+					@foreach (var pro in ViewBag.ListProgramme)
+                    {
+                        <p><input name="EOIProgramme[]" @(Model.OrgProgrammeList.Contains(","+pro.ProID+",")? "checked=checked":"") type="checkbox" value="@pro.ProID" />@pro.ProName</p>
+                    }
+					</div>
+				</td>
+				<td width="130px">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+				
+				
+			<tr>
+				<td width="130px">EOI Service</td>
+				<td width="240px">
+					<div class="scroll">
+					@foreach (var ser in ViewBag.ListService)
+                    {
+                        <p><input name="EOIService[]" @(Model.OrgServiceList.Contains("," + ser.SerID + ",") ? "checked=checked" : "") type="checkbox" value="@ser.SerID" />@ser.SerName</p>
+                    }
+					</div>
+				</td>
+				<td width="130px">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+				
+			</table>
+
+		</div>
+        <!--end tabs 3 -->
+
+        <!--start tabs 4 -->
+        <div id="tabs-4">
+           <table class="table-only-border-out" width="750px">
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Premise</legend>
+                        <table class="sample" width="700px">
+                            <tr style="font-weight:bold;background:#d6d8db">
+                                <td width="220px">Premise Name</td>
+                                <td width="220px">Address</td>
+                                <td width="150px">Primary Location</td>
+                                <td width="100px">Phone Number</td>
+                            </tr>
+                            <tr>
+                                <td>Ngay ay bay gio</td>
+                                <td>Hoang Hoa Tham</td>
+                                <td>To Vinh Dien</td>
+                                <td>0989647828</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Located In</legend>
+
+                        <table class="table-only-border-out" width="700px">
+                            <tr>
+                                <td width="100px">Ward</td>
+                                <td><input type="textbox" class="other-textbox" /></td>
+                                <td>NHS Authority</td>
+                                <td><input type="textbox" class="other-textbox" /></td>
+                            </tr>
+                            <tr>
+                                <td>Borough</td>
+                                <td><input type="textbox" class="other-textbox" /></td>
+                                <td>Govt Office Region</td>
+                                <td>
+                                    <select class="standar-dropdown"><option></option></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Local Aurthority</td>
+                                <td><input type="textbox" class="other-textbox" /></td>
+                                <td>Trust Region</td>
+                                <td>
+                                    <select class="standar-dropdown"><option></option></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Unitary Authority</td>
+                                <td><input type="textbox" class="other-textbox" /></td>
+                                <td>Trust District</td>
+                                <td>
+                                    <select class="standar-dropdown"><option></option></select>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+           </table>
+        </div>
+        </form>
+        <!--end tabs 4 -->
+
+        <!--start tabs 5 -->
+        <div id="tabs-5">
+           @{ Html.RenderAction("ListMaterial", "Organisation", Model.OrgID);  }
+        </div>
+        
+        <!--end tabs 5 -->
+
+        <!--start tabs 6 -->
+        <div id="tabs-6">
+            @{ Html.RenderAction("ListDirectorate", "Organisation", Model.OrgID);  }
+        </div>
+        <!--end tabs 6 -->
+        <div class="error"></div>
+	</div>
+			
+	</div>
+</div>

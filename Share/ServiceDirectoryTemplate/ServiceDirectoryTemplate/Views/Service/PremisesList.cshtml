@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.PremiseLinkService>
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-premise").tablesorter({ widgets: ['zebra'] });
+});
+
+    function ReloadPremiseList(strArr) { 
+        AjaxPaging('/Service/PremisesList/'+strArr[0],'#tabs-7',document.pagingPremise,document.pagingPremise.page.value);
+    }
+    function RemoveLink(LinkID, SerID) {
+        loading("#tabs-7");
+        $.ajax({
+            url: "/Service/RemovePremiseLink",
+            type: "POST",
+            data: ({ LinkID: LinkID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok") {
+                    AjaxPaging('/Service/PremisesList/' + SerID, '#tabs-7', document.pagingPremise, document.pagingPremise.page.value);
+                }
+                else {alert(data);
+                    alert("Have error while processing your request");
+                    loaded("#tabs-7");
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded("#tabs-7");
+            }
+        }); 
+    }
+</script>
+<table class="sample" id="table-premise" width="750px">
+<thead>
+<tr style="font-weight:bold;background:#d6d8db">
+	<th>Premise name</th>
+	<th>Address</th>
+	<th>Phone Number</th>
+	<th>Project Code</th>
+    <td></td>
+</tr>
+</thead>
+
+<tbody>
+@foreach (var item in Model)
+{
+	<tr>
+        <td><a style="color:Blue;" href="javascript:OpenPopup('/Service/EnterProjectCode/@item.LinkID','ReloadPremiseList',['@ViewBag.SerID',null])">@item.Premise.LocationName</a></td>
+        <td>@item.Premise.PremiseAddr1</td>
+        <td>@item.Premise.PremisePhone</td>
+        <td>@item.ProjectCode</td>
+        <td><a style="color:Blue; font-style:italic" href="javascript:RemoveLink('@item.LinkID','@ViewBag.SerID')">Remove</a></td>
+    </tr>
+}
+
+</tbody>
+
+</table>
+@{ Html.RenderAction("PagingHtml", "RefData", new {
+    urlRequest = "/Service/PremisesList/"+ViewBag.SerID,
+    tagContainer = "#tabs-7",
+    formName = "pagingPremise",
+    page = ViewBag.Page,
+    totalPage = ViewBag.TotalPage,
+    filter = ViewBag.Filter,
+    include = 0
+       
+});  }
+<p><span style="float:right;"><input type="button" onclick="OpenPopup('/Service/NewPremiseLink/@ViewBag.SerID','ReloadPremiseList',['@ViewBag.SerID'])" value="Associate new premise" /></span><div style="clear:both"></div></p>

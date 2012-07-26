@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Add Trust Region";
+}
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#myform").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            TrustRegionName: { required: true, maxlength: 100, remote: { url: "/TrustRegion/CheckUnique" } },
+            CountryID: { required: true}
+        },
+        messages: {
+            TrustRegionName: {
+                required: "Please input the Trust Region Name",
+                maxlength: "Trust Region Name is too long",
+                remote: "Please input other Trust Region Name (the cause is duplicate)"
+            },
+            CountryID: { required: "Please choose the Nation/Country" }
+        }
+    });
+});
+
+</script>
+<form action="/TrustRegion/Create" method="post" name="myform" id="myform">
+<div class="container-right">
+	<div class="table-content">
+		<p style="color:#69a017;font-size:large;margin-bottom:10px">Trust Region Details</p>
+		<p>
+			
+		<span style="float:right;margin-right:10px">
+		<input type="submit" value="Save"/>  
+		<a href="/TrustRegion/List" title="List Organisation Screen"><input type="button" value="Back" /> </a>
+		</span>
+			
+		</p>
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Details</a></li>
+		</ul>
+		<div id="tabs-1">
+        <table class="table-only-border-out" width="750px">
+             <tr>
+				<td>Nation/Country<span style="color:red">*</span></td>
+				<td>
+                    <select class="standar-dropdown" name="CountryID">
+                    <option></option>
+                    @foreach (var country in Model)
+                    {
+                            <option value="@country.CountryID">@country.CountryName</option>
+                    }
+                    </select>
+                </td>
+				<td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>	
+			<tr>
+				<td width="140px">Trust Region Name <span style="color:red">*</span></td>
+				<td width="230px"><input id="TrustRegionName" class="standar-textbox" type="text" name="TrustRegionName" /></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+			<tr>
+				<td>Organisation Short Description</td>
+				<td><textarea class="standar-textarea" name="Description"></textarea></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+				
+				
+		</table>
+        </div>
+	</div>
+		<div class="error"></div>
+	</div>
+</div>
+</form>

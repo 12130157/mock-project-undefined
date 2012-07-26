@@ -1,0 +1,226 @@
+﻿@{
+    //Layout = null;
+}
+@{
+    ViewBag.Title = "Add Department";
+}
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#AddDep").submit(function (e) {
+            var form=this;
+            if ($(this).valid()) {
+                if (form.pendding.value == 1)
+                    return false;
+                var Address1 = form.AddressLine1.value;
+                var PostCode = form.PostCode.value;
+                var Town = form.CityTown.value;
+                var County = form.County.value;
+                var CountryID = form.CountryID.value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Address/AddressIsNew",
+                    data: ({ Address1: Address1, PostCode: PostCode, Town: Town, County: County, CountryID: CountryID }),
+                    success: function (data) {
+                        form.pendding.value=1;
+                        if (data == "true") {
+                            var re = confirm("Address Details cannot be confirmed\nDo you wish to enter Unconfirmed Address Data");
+                            if (re == true) {
+                                form.submit();
+                            } else {
+                                form.AddressLine1.value = "";
+                                form.PostCode.value = "";
+                                form.CityTown.value = "";
+                                form.County.value = "";
+                                form.CountryID.selectedIndex = 0;
+                                form.AddressLine1.focus();
+                            }
+                        }
+                        else {
+                            form.submit();
+                        }
+                        form.pendding.value=0;
+                    }
+                });
+            }
+            return false;
+        });
+    $("#AddDep").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            DepName: { required: true, maxlength: 100, remote: { url: "/Department/CheckUnique" } },
+            DepShortDescription: { required: true, maxlength: 100 },
+            TypeOfBusinessID: { required: true },
+            AddressLine1: { required: true }
+        },
+        messages: {
+            DepName: {
+                required: "Please input the Department Name",
+                maxlength: "Department Name is too long",
+                remote: "Please input other Department Name (the cause is duplicate)"
+            },
+            DepShortDescription: {
+                required: "Please input the Short Description",
+                maxlength: "Short Description is too long"
+            },
+            TypeOfBusinessID: { required: "Please choose the Bussiness Type" },
+            AddressLine1: { required: "Please input the Address Line" }
+        }
+    });
+});
+function ChangeAddr() {
+    document.AddDep.CopyAddr[0].checked=false;
+    document.AddDep.CopyAddr[1].checked=false;
+}
+function CopyAddress() {
+    if (document.AddDep.CopyAddr[0].checked == true) {
+        document.AddDep.AddressLine1.value = document.AddDep.OrgAddr1.value;
+        document.AddDep.AddressLine2.value = document.AddDep.OrgAddr2.value;
+        document.AddDep.AddressLine3.value = document.AddDep.OrgAddr3.value;
+        document.AddDep.PostCode.value = document.AddDep.OrgCode.value;
+        document.AddDep.CityTown.value = document.AddDep.OrgTown.value;
+        document.AddDep.County.value = document.AddDep.OrgCounty.value;
+        for (var i = 0; i < document.AddDep.CountryID.length; i++) {
+            if (document.AddDep.CountryID[i].value == document.AddDep.OrgCountry.value)
+                document.AddDep.CountryID[i].selected = true;
+        }
+    }
+    else if(document.AddDep.CopyAddr[1].checked == true) {
+        document.AddDep.AddressLine1.value = document.AddDep.ParAddr1.value;
+        document.AddDep.AddressLine2.value = document.AddDep.ParAddr2.value;
+        document.AddDep.AddressLine3.value = document.AddDep.ParAddr3.value;
+        document.AddDep.PostCode.value = document.AddDep.ParCode.value;
+        document.AddDep.CityTown.value = document.AddDep.ParTown.value;
+        document.AddDep.County.value = document.AddDep.ParCounty.value;
+        for (var i = 0; i < document.AddDep.CountryID.length; i++) {
+            if (document.AddDep.CountryID[i].value == document.AddDep.ParCountry.value)
+                document.AddDep.CountryID[i].selected = true;
+        }
+    }
+}
+	</script>
+<form action="/Department/Create/@ViewBag.DirID" name="AddDep" id="AddDep" method="post">
+<input type="hidden" name="pendding" value="0" />
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="ListOrganisation.php">Organisation </a> &gt; <a href="">Directorate</a> &gt;</p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Department Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+			<input type="submit" value="Save" /> 
+			<a title="Return to amend Directorate" href="/Directorate/Amend/@ViewBag.DirID#tabs-2"><input type="button" value="Back" /></a> 
+			</span>
+			
+			</p>
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+			<table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="140px">Department Name &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><input class="standar-textbox" type="text" name="DepName" /></td>
+					<td width="140px">Type of Business<span style="color:red">*</span></td>
+					<td><input class="lookup-textbox" type="text" name="TypeOfBusinessID" readonly="readonly" /> <a onclick="SICLookUp('TypeOfBusinessID', 'SICCode')" class="link" style="color:Blue">Lookup</a></td>
+				</tr>
+				
+				<tr>
+					<td>Department Short Description &nbsp;<span style="color:red">*</span></td>
+					<td><textarea class="standar-textbox" name="DepShortDescription"></textarea></td>
+					<td>SIC Code</td>
+					<td><input class="short-textbox" name="SICCode" type="text" readonly="readonly" /></td>
+				</tr>
+				
+				
+				<TR>
+					<TD>Lead Contact</TD>
+					<TD><input type="hidden" name="ContactID" value="" /><input class="lookup-textbox" type="text" name="ContactName" readonly="readonly" /> <a onclick="AddrLookUp('AddDep', 'ContactID', 'ContactName')" class="link" style="color:Blue">Lookup</a></TD>
+					<TD rowspan=2>Department Full Description</TD>
+					<TD rowspan=2><textarea class="standar-textarea" name="DepFullDescription"></textarea></TD>
+				</TR>
+				<TR>
+					<TD>Copy Address from</TD>
+					<TD>
+                    <input type="hidden" name="OrgAddr1" value="@ViewBag.OrgAddr1" />
+                    <input type="hidden" name="OrgAddr2" value="@ViewBag.OrgAddr2" />
+                    <input type="hidden" name="OrgAddr3" value="@ViewBag.OrgAddr3" />
+                    <input type="hidden" name="OrgCode" value="@ViewBag.OrgCode" />
+                    <input type="hidden" name="OrgTown" value="@ViewBag.OrgTown" />
+                    <input type="hidden" name="OrgCounty" value="@ViewBag.OrgCounty" />
+                    <input type="hidden" name="OrgCountry" value="@ViewBag.OrgCountry" />
+                    <input type="radio" name="CopyAddr" onclick="CopyAddress()" />Organisation 
+                    <input type="hidden" name="ParAddr1" value="@ViewBag.ParAddr1" />
+                    <input type="hidden" name="ParAddr2" value="@ViewBag.ParAddr2" />
+                    <input type="hidden" name="ParAddr3" value="@ViewBag.ParAddr3" />
+                    <input type="hidden" name="ParCode" value="@ViewBag.ParCode" />
+                    <input type="hidden" name="ParTown" value="@ViewBag.ParTown" />
+                    <input type="hidden" name="ParCounty" value="@ViewBag.ParCounty" />
+                    <input type="hidden" name="ParCountry" value="@ViewBag.ParCountry" />
+                    <input type="radio" name="CopyAddr" onclick="CopyAddress()" />Parent</TD>
+					
+				</TR>	
+				
+				<tr>
+					<td>Address Line 1 &nbsp;<span style="color:red">*</span></td>
+					<td><input class="standar-textbox" type="text" name="AddressLine1" onchange="ChangeAddr()" /></td>
+					<td>Phone Number</td>
+					<td><input class="standar-textbox" type="text" name="PhoneNumber" /></td>
+				</tr>
+				
+				<tr>
+					<td>Address Line 2</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine2" onchange="ChangeAddr()" /></td>
+					<td>Fax</td>
+					<td><input class="standar-textbox" type="text" name="Fax" /></td>
+				</tr>
+				<tr>
+					<td>Address Line 3</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine3" onchange="ChangeAddr()" /></td>
+					<td>Email</td>
+					<td><input class="standar-textbox" type="text" name="Email" /></td>
+				</tr>
+				
+				<tr>
+					<td>Postcode</td>
+					<td><input type="text" name="PostCode" /><a onclick="PostCodeLookUp('PostCode','AddressLine1','CityTown','County','CountryID','ChangeAddr')" class="link" style="color:Blue">Lookup</a></td>
+					<td>Web Address</td>
+					<td><input class="standar-textbox" type="text" name="WebAddress" /></td>
+				</tr>
+				<tr>
+					<td>Town/Village/City</td>
+					<td><input class="standar-textbox" type="text" name="CityTown" onchange="ChangeAddr()" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>County</td>
+					<td><input class="standar-textbox" type="text" name="County" onchange="ChangeAddr()" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				<tr>
+					<td>Nation/Country</td>
+					<td>
+                    <select class="standar-dropdown" onchange="ChangeAddr()" name="CountryID">
+                    <option></option>
+                        @foreach (var country in Model)
+                        {
+                                <option value="@country.CountryID">@country.CountryName</option>
+                        }
+                        </select>
+                    </td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				
+			</table>
+			
+			</div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+</form>

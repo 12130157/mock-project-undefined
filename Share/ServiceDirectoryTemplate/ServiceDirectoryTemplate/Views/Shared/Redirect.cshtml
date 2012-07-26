@@ -1,0 +1,10 @@
+﻿@{ Layout = null;}
+<script type="text/javascript" language="javascript">
+if(@ViewBag.Alert==true){
+    alert("@ViewBag.Message");
+    window.location="@ViewBag.URL";
+}else{
+    document.write("Have some error when process your request<br />");
+    document.write("Click <a href='javascript:history.back()'>here</a> to return");
+}
+</script>

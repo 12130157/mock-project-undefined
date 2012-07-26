@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.OrganisationLinkService>
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-organisation").tablesorter({ widgets: ['zebra'] });
+});
+    function ReloadOrgList(strArr) { 
+        AjaxPaging('/Service/OrganisationsList/'+strArr[0],'#tabs-6',document.pagingOrg,document.pagingOrg.page.value);
+    }
+</script>
+<table class="sample" id="table-organisation" width="750px">
+<thead>
+    <tr style="font-weight:bold;background:#d6d8db">
+	    <th>Organisation name</th>
+	    <th>Description</th>
+	    <th>Role</th>
+	    <td></td>
+    </tr>
+</thead>
+
+<tbody>
+@foreach (var item in Model)
+{
+	<tr>
+        <td>@item.Organisation.OrgName</td>
+        <td>@item.Organisation.OrgShortDescription</td>
+        <td>@item.Role</td>
+        <td><a style="color:Blue; font-style:italic" href="javascript:OpenPopup('/Service/EditRole/@item.LinkID','ReloadOrgList',['@ViewBag.SerID','@item.OrgID'])">edit roles</a></td>
+    </tr>
+}
+</tbody>
+
+</table>
+@{ Html.RenderAction("PagingHtml", "RefData", new {
+    urlRequest = "/Service/OrganisationsList/"+ViewBag.SerID,
+    tagContainer = "#tabs-6",
+    formName="pagingOrg",
+    page = ViewBag.Page,
+    totalPage = ViewBag.TotalPage,
+    filter = ViewBag.Filter,
+    include = 0
+         
+});  }

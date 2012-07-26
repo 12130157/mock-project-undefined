@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.RefItem>
+@{var isSelect = 0; var endLine=1;}
+<tr></tr>
+@foreach (var block in TempData)
+{
+    if (endLine == 0) { endLine = 1; } else { endLine = 0; }
+	<td width="130px">@block.Key</td>
+	<td width="240px">
+    @foreach (var item in (block.Value as List<ServiceDirectoryTemplate.Models.RefItem>))
+    {
+        isSelect = (item.RefType == 1 ? 0 : 1);
+        break;
+    }
+    @if (isSelect == 1)
+	{
+		<select name="@ViewBag.ListName" style="width:100%;">
+        <option value=""></option>
+		@foreach (var item in (block.Value as List<ServiceDirectoryTemplate.Models.RefItem>))
+		{
+			<option @item.RefChecked value="@item.RefValue">@item.RefText</option>	
+		}
+		</select>
+	}
+    else
+    {
+        <div class="scroll">			
+	    @foreach (var item in (block.Value as List<ServiceDirectoryTemplate.Models.RefItem>)) 
+	    {
+		    <p style="width: 300px;" id="@item.RefValue"><input class="hight-light-onclick" type="checkbox" name="@ViewBag.ListName" @item.RefChecked value="@item.RefValue" />@item.RefText</p>
+		}
+		</div>
+    }
+	</td>
+    if(endLine==1) {<tr></tr>}
+}

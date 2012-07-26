@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.Programme>
+@{
+    ViewBag.Title = "List Programme";
+}
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-programme").tablesorter({widgets: ['zebra']});
+});
+function FilterProgramme(str) {
+    document.paging.filter.value = str;
+    AjaxPaging('/Programme/List','.container-body',document.paging,document.paging.page.value);
+}
+function ActivateProgramme(SerID) {
+    var re = confirm("Do you want to make this Programme active?");
+    if (re) {
+        $.ajax({
+            url: "/Programme/MarkActivate",
+            type: "GET",
+            data: ({ id: SerID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/Programme/List', '.container-body', document.paging, document.paging.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+<div class="container-right">
+	<div class="table-content">
+		<p style="color:#69a017;font-size:large;margin-bottom:10px">Programme List</p>
+		<p>
+		<span style="font-size:10px">
+		<a href="javascript:FilterProgramme('all')">All</a> | <a href="javascript:FilterProgramme('0-9')">0-9</a> | <a href="javascript:FilterProgramme('abcde')">A B C D E </a>
+		| <a href="javascript:FilterProgramme('fghij')">F G H I J</a> | <a href="javascript:FilterProgramme('klmn')">K L M N</a> | <a href="javascript:FilterProgramme('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterProgramme('stuv')">S T U V</a> | <a href="javascript:FilterProgramme('wxyz')">W X Y Z</a>
+		</span>
+		<span style="float:right;margin-right:10px"><a href="/Programme/Add" style="text-decoration:none"><input type="submit" value="Create" /></a> <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.paging.include.value=this.checked;AjaxPaging('/Programme/List','.container-body',document.paging,document.paging.page.value);" /> Include In-active</span>
+			
+		</p>
+			
+		<table class="sample" id="table-programme" width="750px">
+        <thead>
+			<tr style="font-weight:bold;background:#d6d8db">
+				<th width="220px">Programme Name</th>
+				<th width="180px">Description</th>
+				<th width="110px">Contact</th>
+				<th>Is Active?</th>
+			</tr>
+		</thead>
+        <tbody>            
+        @foreach (var item in Model)
+        {
+			<tr>
+                <td class="organisation-name"><a href="@(item.ProgrammeIsActivate == 1 ? "/Programme/Amend/" + item.ProgrammeID : "javascript:ActivateProgramme('" + item.ProgrammeID + "')")">@item.ProgrammeName</a></td>
+                <td>@item.Description</td>
+                <td>@item.Contact.FirstName</td>
+                <td>@(item.ProgrammeIsActivate==1? "Yes":"No")</td>
+            </tr>
+        }
+		</tbody>
+		</table>
+		@{ Html.RenderAction("PagingHtml", "RefData", new {
+         urlRequest = "/Programme/List",
+         tagContainer = ".container-body",
+         formName="paging",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+	</div>
+</div>

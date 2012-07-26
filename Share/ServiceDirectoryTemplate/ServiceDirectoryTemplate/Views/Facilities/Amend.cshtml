@@ -1,0 +1,159 @@
+﻿@model ServiceDirectoryTemplate.Models.Facility
+@{
+    ViewBag.Title = "Amend Facility";
+}
+<script type="text/javascript">
+    function InactiveFacility() {
+        var con = confirm("Do you want to make this Facility in-active?");
+        if (con) {
+            window.location="/Facilities/MarkInactivate/@Model.FacilityID";
+        }
+    }
+$(document).ready(function () {
+    $("#AddFacility").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            FacilityType: { required: true },
+            FacilityDescription: { required: true },
+            RoomCapacity: { digits: true, min: 0, max: 9999 },
+            RoomSize: { digits: true },
+        },
+        messages: {
+            FacilityType: { required: "Please chose the Facility Type" },
+            FacilityDescription: { required: "Please input the Facility Description" },
+            RoomCapacity: { 
+                digits: "The Room Capacity must be numberic",
+                min: "The Room Capacity lower zero",
+                max: "The Room Capacity must less than 9999"
+            },
+            RoomSize: { 
+                digits: "The Room Size must be numberic",
+                min: "The Room Size lower zero",
+                max: "The Room Size must less than 9999"
+            }
+        }
+    });
+    ChangeFacType(document.AddFacility.FacilityType.value);
+    ConnectivityChecked(document.AddFacility.RoomConnectivity.checked);
+    ConnectivityChange(document.AddFacility.ConnectivityType.value);
+    EquipmentClick(document.AddFacility.EquipmentAvailable.checked);
+});
+function ChangeFacType(value){
+    if(value=="Room"){
+        document.AddFacility.RoomCapacity.disabled=false;
+        document.AddFacility.RoomSize.disabled=false;
+        document.AddFacility.RoomConnectivity.disabled=false;
+        document.AddFacility.RoomEquipmentNotes.disabled=false;
+        document.AddFacility.EquipmentAvailable.disabled=false;
+        document.AddFacility.ConnectivityType.disabled=true;
+    }
+    else if(value=="Internet Access"){
+        document.AddFacility.ConnectivityType.disabled=false;
+        document.AddFacility.RoomCapacity.disabled=true;
+        document.AddFacility.RoomSize.disabled=true;
+        document.AddFacility.RoomConnectivity.disabled=true;
+        document.AddFacility.RoomEquipmentNotes.disabled=true;
+        document.AddFacility.EquipmentAvailable.disabled=true;
+    }else{
+        document.AddFacility.RoomCapacity.disabled=true;
+        document.AddFacility.RoomSize.disabled=true;
+        document.AddFacility.RoomConnectivity.disabled=true;
+        document.AddFacility.RoomEquipmentNotes.disabled=true;
+        document.AddFacility.EquipmentAvailable.disabled=true;
+        document.AddFacility.ConnectivityType.disabled=true;
+    }
+}
+function ConnectivityChecked(check){
+    if(document.AddFacility.FacilityType.value!="Room") return;
+    if(check==true){
+        document.AddFacility.ConnectivityType.disabled=false;
+    }else if(check==false) document.AddFacility.ConnectivityType.disabled=true;
+}
+function ConnectivityChange(value){
+    if(value=="Wireless"&&(document.AddFacility.RoomConnectivity.checked==true||document.AddFacility.FacilityType.value=="Internet Access")){
+        document.AddFacility.WirelessAccessInfor.disabled=false;
+    }else document.AddFacility.WirelessAccessInfor.disabled=true;
+}
+function EquipmentClick(checked){
+    if(checked==true&&document.AddFacility.FacilityType.value=="Room")
+        $("#EquipmentName").css("display","inline");
+    else
+        $("#EquipmentName").css("display","none");
+}
+</script>
+<form action="/Facilities/Amend/@Model.FacilityID" name="AddFacility" id="AddFacility" method="post">
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="">Premise </a> &gt; </p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Facility Details</p>
+			
+			<span style="float:right;margin-right:10px">
+            <input type="button" value="In-active" onclick="InactiveFacility()" />
+			<input type="submit" value="Save" /> 
+			<a title="Return to amend Department" href="/Premise/Amend/@ViewBag.PremiseId#tabs-5"><input type="button" value="Back" /></a> 
+			</span>
+
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+			<table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">Facility Type &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><select name="FacilityType" class="standar-dropdown" onchange="ChangeFacType(this.value)">
+                        <option></option>
+                    @foreach (var item in ViewBag.FacilityType)
+                    {
+                        <option @(Model.FacilityType == item.Type? "selected=selected":"") value="@item.Type">@item.Type</option>
+                    }
+                    </select></td>
+                    <td>Lead Contact</td>
+                    <td><input type="hidden" value="@Model.LeadContact" name="LeadContact" /><input value="@(Model.LeadContact==null?"":Model.Contact.FirstName)" type="text" name="ContactName" readonly="readonly" /> <a onclick="AddrLookUp('AddFacility', 'LeadContact', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+                </tr>
+                <tr>
+					<td width="130px">Facility Description &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><textarea class="standar-textarea" name="FacilityDescription">@Model.FacilityDescription</textarea></td>
+                    <td style="vertical-align:top">Room Host</td>
+                    <td style="vertical-align:top"><input type="hidden" value="@Model.RoomHost" name="RoomHost" /><input type="text" name="RoomHostName" readonly="readonly" value="@(Model.RoomHost==null?"":Model.Contact1.FirstName)" /> <a onclick="AddrLookUp('AddFacility', 'RoomHost', 'RoomHostName')" class="link" style="color:Blue">Lookup</a></td>
+				</tr>
+                <tr>
+					<td>Room Capacity</td>
+                    <td><input type="text" name="RoomCapacity" value="@Model.RoomCapacity" disabled="disabled"/></td>
+                    <td>Equipment Available</td>
+                    <td><input type="checkbox" name="EquipmentAvailable" onclick="EquipmentClick(this.checked)" value="1" disabled="disabled" @(Model.EquipmentAvailable==1?"checked=checked":"")/>
+                    <input type="text" name="EquipmentName" id="EquipmentName" value="@Model.EquipmentName" style="display:none"/></td>
+				</tr>
+                <tr>
+					<td>Room Size</td>
+					<td><input type="text" name="RoomSize" value="@Model.RoomSize" disabled="disabled"/></td>
+                    <td rowspan="3">Room & Equipment Notes</td>
+                    <td rowspan="3"><textarea cols="28" rows="5" disabled="disabled" name="RoomEquipmentNotes">@Model.RoomEquipmentNotes</textarea></td>
+				</tr>
+				<tr>
+					<td>Room Connectivity</td>
+					<td><input type="checkbox" value="1" @(Model.RoomConnectivity==1?"checked=checked":"") onclick="ConnectivityChecked(this.checked)" disabled="disabled" name="RoomConnectivity"/></td>
+                </tr>
+                <tr>
+                    <td>Connectivity Type</td>
+                    <td><select name="ConnectivityType" onchange="ConnectivityChange(this.value)" disabled="disabled" class="standar-dropdown">
+                        <option></option>
+                    @foreach (var item in ViewBag.ConnectivityType)
+                    {
+                        <option @(Model.ConnectivityType == item.Type?"selected=selected":"") value="@item.Type">@item.Type</option>
+                    }
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Wireless Access Information </td>
+                    <td><input type="text" name="WirelessAccessInfor" value="@Model.WirelessAccessInfor" disabled="disabled" class="standar-textbox" /></td>
+                </tr>
+                
+			</table>
+			
+			</div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+</form>

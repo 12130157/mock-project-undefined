@@ -1,0 +1,37 @@
+﻿<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#input-page").bind('keypress', function (e) {
+            if (e.keyCode == 13) {
+                var frm=document.@ViewBag.FormName;
+                if(!frm) return;
+                if($("#input-page").val()==frm.page.value)
+                    return;
+                frm.page.value = $("#input-page").val();
+                AjaxPaging('@ViewBag.UrlRequest','@ViewBag.TagContainer',frm,frm.page.value);
+            }
+        });
+        $("#input-page").blur(function () {
+            var frm=document.@ViewBag.FormName;
+            if(!frm) return;
+            if($("#input-page").val()==frm.page.value)
+                return;
+            frm.page.value = $("#input-page").val();
+            AjaxPaging('@ViewBag.UrlRequest','@ViewBag.TagContainer',frm,frm.page.value);
+        });
+    });
+</script>
+<form name="@ViewBag.FormName"	id="@ViewBag.FormName">
+	<input type="hidden" name="page" value="@ViewBag.Page" />
+	<input type="hidden" name="filter" value="@ViewBag.Filter" />
+	<input type="hidden" name="include" value="@(ViewBag.Include==true ? "true":"false")" />
+    <input type="hidden" name="totalpage" value="@ViewBag.TotalPage" />
+</form>
+<div class="paging-container">
+    <div class="loading-@ViewBag.TagLoading" style="display:none; float:left;">loading...</div>
+	<div class="paging-container-left"><img onclick="AjaxPaging('@ViewBag.UrlRequest','@ViewBag.TagContainer',document.@ViewBag.FormName,1);" src="/Content/images/first.png" title="First page=1" class="first"></div>
+	<div class="paging-container-left" ><img onclick="AjaxPaging('@ViewBag.UrlRequest','@ViewBag.TagContainer',document.@ViewBag.FormName,@ViewBag.Prev);" src="/Content/images/prev.png" onclick title="Prev page=@ViewBag.Prev" class="prev"></div>
+	<div class="paging-container-mid"><div>Page <input style="width:30px;height:14px" type="text" value="@ViewBag.Page" id="input-page" /> of @ViewBag.TotalPage</div></div>
+	<div class="paging-container-left"><img onclick="AjaxPaging('@ViewBag.UrlRequest','@ViewBag.TagContainer',document.@ViewBag.FormName,@ViewBag.Next);" src="/Content/images/next.png" title="Next page=@ViewBag.Next" class="next"></div>
+	<div class="paging-container-left"><img onclick="AjaxPaging('@ViewBag.UrlRequest','@ViewBag.TagContainer',document.@ViewBag.FormName,@ViewBag.TotalPage);" src="/Content/images/last.png" title="Last page=@ViewBag.TotalPage" class="last"></div>
+</div>
+<div style="clear:both"></div>
