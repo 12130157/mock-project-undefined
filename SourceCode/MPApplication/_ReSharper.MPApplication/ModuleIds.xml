@@ -1,9 +1,0 @@
-<Modules>
-  <Module PersistentId="95C3F827-D1D6-4C28-B46D-964F28E23309" ModuleId="MPApplication" />
-  <Module PersistentId="F927B690-315E-404F-AED1-DB7579492356" ModuleId="MK.Business" />
-  <Module PersistentId="8B3764D3-87B6-4B1A-A067-ECEBDF96904E" ModuleId="MP.Business" />
-  <Module PersistentId="54840367-5416-490C-9592-D7A72EECD7E2" ModuleId="MP.Commons" />
-  <Module PersistentId="9EFCDDEA-E1AC-46FF-BD48-CD21D17789E3" ModuleId="MP.DataAccess" />
-  <Module PersistentId="CDD37C0D-A810-4305-A0A2-1BC193C224FE" ModuleId="MP.Entities" />
-  <Module PersistentId="E1A5721A-3B1C-4FD0-B6F7-2C152591A590" ModuleId="MP.Web" />
-</Modules>
