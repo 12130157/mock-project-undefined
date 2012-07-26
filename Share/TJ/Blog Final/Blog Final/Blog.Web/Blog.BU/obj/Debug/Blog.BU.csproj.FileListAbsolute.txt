@@ -1,0 +1,121 @@
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 2\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 2 o tren lop\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu 3 tren lop\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+D:\hoc tap\Fsoft\tech\Bai tech cuoi\Blog thu4 tren lop\Blog thu4 o nha\Blog thu 3 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog 5 o nha\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.DAL.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog day5 tren lop gan xong\Blog\Blog.WebUI\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\obj\Debug\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\obj\Debug\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Dao.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Dao.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.BU.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.BU.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Dao.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Entities.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Common.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Dao.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Common.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\bin\Debug\Blog.Entities.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\obj\Debug\ResolveAssemblyReference.cache
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\obj\Debug\Blog.BU.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.BU\obj\Debug\Blog.BU.pdb

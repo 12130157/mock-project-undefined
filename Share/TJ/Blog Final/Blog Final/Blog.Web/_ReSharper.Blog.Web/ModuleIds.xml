@@ -1,0 +1,8 @@
+<Modules>
+  <Module PersistentId="3AD3E06B-540C-4893-B4C7-D4E69F2C7023" ModuleId="Blog.Web" />
+  <Module PersistentId="E65B315D-BDA3-4055-BD31-3DE5DFE81134" ModuleId="Blog.Dal" />
+  <Module PersistentId="A52F63D1-C120-4DFE-BCA0-3955F0CEB479" ModuleId="Blog.Common" />
+  <Module PersistentId="EAE3A777-2A9D-4F0D-8257-968901EFEA64" ModuleId="Blog.Dao" />
+  <Module PersistentId="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44" ModuleId="Blog.BU" />
+  <Module PersistentId="ED0C0803-4042-4988-A504-7A95F9ABB094" ModuleId="Blog.Entities" />
+</Modules>
