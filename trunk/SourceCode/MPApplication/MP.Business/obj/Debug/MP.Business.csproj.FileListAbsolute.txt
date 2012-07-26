@@ -1,0 +1,5 @@
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Business\bin\MP.Business.dll
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Business\bin\MP.Business.pdb
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Business\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Business\obj\Debug\MP.Business.dll
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Business\obj\Debug\MP.Business.pdb

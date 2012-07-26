@@ -1,0 +1,5 @@
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.DataAccess\bin\MP.DataAccess.dll
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.DataAccess\bin\MP.DataAccess.pdb
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.DataAccess\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.DataAccess\obj\Debug\MP.DataAccess.dll
+C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.DataAccess\obj\Debug\MP.DataAccess.pdb
