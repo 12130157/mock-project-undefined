@@ -1,0 +1,5 @@
+E:\QUYET\MockProject\MockProject.Web\obj\Debug\ResolveAssemblyReference.cache
+E:\QUYET\MockProject\MockProject.Web\bin\MockProject.Web.dll
+E:\QUYET\MockProject\MockProject.Web\bin\MockProject.Web.pdb
+E:\QUYET\MockProject\MockProject.Web\obj\Debug\MockProject.Web.dll
+E:\QUYET\MockProject\MockProject.Web\obj\Debug\MockProject.Web.pdb
