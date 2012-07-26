@@ -3,3 +3,8 @@ C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MockProject\MockProject\bin
 C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MockProject\MockProject\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MockProject\MockProject\obj\Debug\MockProject.dll
 C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MockProject\MockProject\obj\Debug\MockProject.pdb
+C:\Documents and Settings\QuyetNV\Desktop\mock-project-undefined\MockProject\MockProject\bin\MockProject.dll
+C:\Documents and Settings\QuyetNV\Desktop\mock-project-undefined\MockProject\MockProject\bin\MockProject.pdb
+C:\Documents and Settings\QuyetNV\Desktop\mock-project-undefined\MockProject\MockProject\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\QuyetNV\Desktop\mock-project-undefined\MockProject\MockProject\obj\Debug\MockProject.dll
+C:\Documents and Settings\QuyetNV\Desktop\mock-project-undefined\MockProject\MockProject\obj\Debug\MockProject.pdb
