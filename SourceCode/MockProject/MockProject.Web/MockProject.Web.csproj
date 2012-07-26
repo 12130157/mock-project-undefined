@@ -166,6 +166,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateProgramme.aspx.cs">
       <DependentUpon>CreateProgramme.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,9 +197,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contact.aspx" />
     <Content Include="CreateProgramme.aspx" />
     <Content Include="ListProgramme.aspx" />
     <Content Include="MainTemplate.Master" />
+    <Content Include="skins\css\ContactStyle.css" />
     <None Include="skins\images\forms\Thumbs.db" />
     <None Include="skins\images\login\Thumbs.db" />
     <None Include="skins\images\table\Thumbs.db" />
