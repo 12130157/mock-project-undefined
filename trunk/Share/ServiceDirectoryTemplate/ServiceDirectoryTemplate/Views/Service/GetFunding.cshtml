@@ -1,0 +1,78 @@
+﻿            <table class="table-only-border-out" width="750px">
+                
+                <tr>
+					<th colspan="4">General</th>
+				</tr>
+                <tr>
+					<td width="130px">Funding Source</td>
+					<td width="240px"><select class="standar-dropdown" name="fundingsource">
+                        <option></option>
+                        <option @(ViewBag.FundingSource == "Source 1" ? "selected=selected" : "") value="Source 1">Source 1</option>
+                        <option @(ViewBag.FundingSource == "Source 2" ? "selected=selected" : "") value="Source 2">Source 2</option>
+                        <option @(ViewBag.FundingSource == "Source 3" ? "selected=selected" : "") value="Source 3">Source 3</option>
+                    </select></td>
+					<td width="200px">Funding Needs</td>
+					<td><input type="text" name="fundingneeds" value="@ViewBag.FundingNeeds" /></td>
+				</tr>
+                <tr>
+					<td>Funding Contact Details&nbsp;<span style="color:red">*</span></td>
+					<td><input type="hidden" name="fundingcontactid" value="@ViewBag.FundingContactID"/><input type="text" readonly="readonly" name="fundingcontact" value="@ViewBag.FundingContractDetail"/><a id="look-up-contact" onclick="AddrLookUp('AddService', 'fundingcontactid', 'fundingcontact')" class="link">Lookup</a></td>
+					<td>Funding Continuation Needs</td>
+					<td><input type="checkbox" value="1" name="fundingcontinuation" @(ViewBag.FundingContinuationNeeded == 1 ? "checked=checked" : "")  id="funding-continuation-checkbox"/></td>
+				</tr>
+                <tr>
+					<td>Funding Amount&nbsp;<span style="color:red">*</span></td>
+					<td><input type="text" name="fundingamount" value="@ViewBag.FundingAmount" ></td>
+					<td>Funding Continuation Amount</td>
+					<td><input @(ViewBag.FundingContinuationNeeded == 1 ? "" : "disabled=disabled") type="text" name="continuationamount" value="@ViewBag.FundingContinuationAmount" /></td>
+				</tr>
+                <tr>
+					<td>Funding Start </td>
+					<td><input type="text" id="funding_start" name="fundingstart" value="@ViewBag.FundingStart" /></td>
+					<td rowspan="2">Funding Continuation Details</td>
+					<td rowspan="2"><textarea @(ViewBag.FundingContinuationNeeded == 1 ? "" : "disabled=disabled") type="text" name="continuationdetail">@ViewBag.FundingContinuationDetail</textarea></td>
+				</tr>
+                <tr>
+					<td>Funding End </td>
+					<td><input type="text" id="funding_end" name="fundingend" value="@ViewBag.FundingEnd"/></td>
+			    </tr>
+                <tr>
+					<th colspan="4">Fundraising For Service Project</th>
+				</tr>
+                <tr>
+					<td rowspan="2">Fundraising For Text</td>
+					<td rowspan="2"><textarea type="text" name="fundraisingtext" class="standar-textarea">@ViewBag.FundraisingForText</textarea></td>
+                    <td>Fundraising Needs </td>
+					<td><input type="text" name="fundraisingneeds" value="@ViewBag.FundraisingNeeds"></td>
+				</tr>
+                <tr>
+					<td>Fundraising Required By </td>
+					<td><input type="text" id="funding_required_by" name="fundingrequiredby" value="@ViewBag.RequiredByDate" /></td>
+			    </tr>
+                <tr>
+					<td rowspan="2">Fundraising Why</td>
+					<td rowspan="2"><textarea type="text" name="fundingfundraisingwhy" class="standar-textarea">@ViewBag.FundraisingWhy</textarea></td>
+                    <td>Fundraising Complete </td>
+					<td><input type="checkbox" value="1" @(ViewBag.FundraisingComplete == 1 ? "checked=checked" : "") name="fundingcomplete" id="fundingcomplete-checkbox" /></td>
+				</tr>
+                <tr>
+					<td>Fundraising Complete Date</td>
+					<td><input type="text" @(ViewBag.FundraisingComplete == 1 ? "" : "disabled=disabled") value="@ViewBag.FundraisingCompletedDate" id="funding_complete_date" name="fundingcompletedate" /></td>
+			    </tr>
+                <tr>
+					<th colspan="4">Fundraising Donor</th>
+				</tr>
+                <tr>
+					<td>Fundraising Donor Anonymous</td>
+					<td><input type="checkbox" value="1" name="donoranonymous" @(ViewBag.FundraisingDonorAnonymous == 1 ? "checked=checked" : "")/></td>
+					<td>Fundraising Donation Date</td>
+					<td><input type="text" name="donationdate" id="donation_date" value="@ViewBag.DonationDate"/></td>
+				</tr>
+                <tr>
+					<td>Fundraising Donor Amount</td>
+					<td><input type="text" name="donoramount" value="@ViewBag.FundraisingDonorAmount"/></td>
+					<td>Fundraising Donation Incremental</td>
+					<td><input type="checkbox" value="1" name="fundingincremental" value="@ViewBag.FundraisingDonationIncremental" /></td>
+				</tr>
+
+                </table>

@@ -1,0 +1,10 @@
+C:\Users\THINH GA CON\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\bin\ServiceDirectoryTemplate.dll
+C:\Users\THINH GA CON\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\bin\ServiceDirectoryTemplate.pdb
+C:\Users\THINH GA CON\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\THINH GA CON\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\obj\Debug\ServiceDirectoryTemplate.dll
+C:\Users\THINH GA CON\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\obj\Debug\ServiceDirectoryTemplate.pdb
+C:\Users\thiendianhan\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\bin\ServiceDirectoryTemplate.dll
+C:\Users\thiendianhan\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\bin\ServiceDirectoryTemplate.pdb
+C:\Users\thiendianhan\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\thiendianhan\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\obj\Debug\ServiceDirectoryTemplate.dll
+C:\Users\thiendianhan\Desktop\ServiceDirectoryTemplate\ServiceDirectoryTemplate\obj\Debug\ServiceDirectoryTemplate.pdb

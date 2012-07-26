@@ -1,0 +1,89 @@
+﻿@model ServiceDirectoryTemplate.Models.Volunteering
+@{
+    ViewBag.Title = "Add Volunteering Opportunity";
+}
+<script type="text/javascript">
+    function InactiveVolunteering() {
+        var con = confirm("Do you want to make this Volunteering Opportunity in-active?");
+        if (con) {
+            window.location="/Volunteering/MarkInactivate/@Model.VolunteeringID";
+        }
+    }
+    $.validator.addMethod("ValidEndDate", function(value, element, param) {
+	    if(!value) return true;
+	    var start = document.AddVol.StartDate.value;
+        if(!start) return true;
+        return IsDateBefore(value, start);
+	}, "End Date must before Start Date");
+$(document).ready(function () {
+    $("#VolStartDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#VolEndDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#AddVol").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            VolunteeringContact: { required: true },
+            EndDate: { ValidEndDate: true },
+            VolunteerNos: { digits: true, max: 9999}
+        },
+        messages: {
+            VolunteeringContact: { required: "Please choose the Volunteering Contact" },
+            VolunteerNos: { 
+                digits: "The Volunteering Nos must be number",
+                max: "The Volunteering Nos must under 9999" 
+            }
+        }
+    });
+});
+
+</script>
+<form action="/Volunteering/Amend/@Model.VolunteeringID" name="AddVol" id="AddVol" method="post">
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="">Premise </a> &gt; </p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Voluteering Opportunity Details</p>
+			
+			<span style="float:right;margin-right:10px">
+            <input type="button" value="In-active" onclick="InactiveVolunteering()" />
+			<input type="submit" value="Save" /> 
+			<a title="Return to amend Department" href="/Premise/Amend/@Model.PremiseID#tabs-6"><input type="button" value="Back" /></a> 
+			</span>
+
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+			<table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">Volunteering Contact &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><input type="hidden" value="@Model.VolunteeringContact" name="VolunteeringContact" /><input type="text" name="ContactName" value="@Model.Contact.FirstName" readonly="readonly" /> <a onclick="AddrLookUp('AddVol', 'VolunteeringContact', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+                    <td></td><td></td></tr>
+                <tr>
+					<td width="150px">Volunteering Purpose</td>
+					<td width="230px"><textarea class="standar-textarea" name="VolunteeringPurpose">@Model.VolunteeringPurpose</textarea></td>
+				</tr>
+				
+				<tr>
+					<td>Volunteering Details</td>
+					<td><textarea class="standar-textarea" name="VolunteeringDetail">@Model.VolunteeringDetail</textarea></td>
+                </tr>
+                <tr>
+					<td>Start Date</td>
+					<td><input type="text" name="StartDate" id="VolStartDate" value="@ViewBag.StartDate" /></td>
+				</tr>
+                <tr>
+					<td>End Date</td>
+					<td><input type="text" name="EndDate" id="VolEndDate" value="@ViewBag.EndDate" /></td>
+				</tr>
+				<tr>
+					<td>Volunteering Nos</td>
+					<td><input type="text" name="VolunteerNos" value="@Model.VolunteerNos"/></td>
+                </tr>
+			</table>
+			
+			</div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,416 @@
+﻿@model ServiceDirectoryTemplate.Models.Service
+@{
+    ViewBag.Title = "Amend Service, number: "+ViewBag.ID;
+}
+
+<script type="text/javascript" language="javascript">
+// validate StartDate <= today
+$.validator.addMethod("ValidStartDate", function(value, element, param) {
+	    if(!value) return true;
+        return IsDateAfter(value,GetToday());
+	}, "Start Date must be <= today:"+GetToday());
+// validate EndDate + extend >= today
+$.validator.addMethod("ValidEndDate", function(value, element, param) {
+	    if(!value) return true;
+        if(document.AddService.Extendable.checked)
+            value=AddDate(value, document.AddService.ExtendYear.value, document.AddService.ExtendMonth.value);
+        return IsDateBefore(value,GetToday());
+	}, "End Date + extend time must be > today:"+GetToday());
+$.validator.addMethod("AmountRequired", function(value, element, param) {
+	    if(document.AddService.SubType.value!="Funded") return true;
+        return value!="";
+	}, 'Please input the Funding Amount, in Funding tab');
+$.validator.addMethod("ValidMoney", function(value, element, param) {
+	    if(document.AddService.SubType.value!="Funded") return true;
+        return ValidMoneyField(value);
+	}, 'Some money field is not correct, in Funding tab');
+$.validator.addMethod("ContactRequired", function(value, element, param) {
+	    if(document.AddService.SubType.value!="Funded") return true;
+        return value!="";
+    }, 'Please input the Funding Contact Details, in Funding tab');
+$.validator.addMethod("fundingenddate", function(value, element, param) {
+	    if(document.AddService.SubType.value!="Funded") return true;
+        if(document.AddService.fundingstart.value==""||value=="") return true;
+        return IsDateBefore(value,document.AddService.fundingstart.value);
+    }, 'Funding End date must be > Funding Start date, in Funding tab');
+$(document).ready(function(){
+    //date picker cho textbox
+	$("#service_start_date_textbox").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#service_end_date_textbox").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#service_start_expected_textbox").datepicker({ dateFormat: 'dd/mm/yy' });
+
+    $("#funding_start").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#funding_end").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#funding_required_by").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#funding_complete_date").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#donation_date").datepicker({ dateFormat: 'dd/mm/yy' });
+    
+    
+    //thay doi subtype
+    ServiceHiddenTabs(document.AddService.SubType.value);
+    $("#subtype-dropdown").change(function () {
+        switch(document.AddService.SubType.value){
+            case "Contract": {
+                $("#contract-tab").css("display", "inline");
+                $("#funding-tab").css("display", "none");
+                break;
+            }
+            case "Funded": {
+                $("#contract-tab").css("display", "none");
+                $("#funding-tab").css("display", "inline");
+                break;
+            }
+            default: {
+                $("#contract-tab").css("display", "none");
+                $("#funding-tab").css("display", "none");
+            }
+        }            
+    });
+    //hien tuong click vao checkbox
+    $("#extendable-checkbox").click(function(){
+        if(this.checked){
+            document.AddService.ExtendYear.disabled=false;
+            document.AddService.ExtendMonth.disabled=false;
+        }else{
+            document.AddService.ExtendYear.disabled=true;
+            document.AddService.ExtendMonth.disabled=true;
+        }
+    });
+    $("#timelimited-checkbox").click(function(){
+        if(this.checked){
+            document.AddService.LimitedYear.disabled=false;
+            document.AddService.LimitedMonth.disabled=false;
+        }else{
+            document.AddService.LimitedYear.disabled=true;
+            document.AddService.LimitedMonth.disabled=true;
+        }
+    });
+    $("#funding-continuation-checkbox").click(function(){
+        if(this.checked){
+            document.AddService.continuationamount.disabled=false;
+            document.AddService.continuationdetail.disabled=false;
+        } else {
+            document.AddService.continuationamount.value="";
+            document.AddService.continuationdetail.value="";
+            document.AddService.continuationamount.disabled=true;
+            document.AddService.continuationdetail.disabled=true;
+        }
+    });
+    $("#fundingcomplete-checkbox").click(function(){
+        if(this.checked){
+            document.AddService.fundingcompletedate.disabled=false;
+        } else {
+            document.AddService.fundingcompletedate.value="";
+            document.AddService.fundingcompletedate.disabled=true;
+        }
+    });
+
+
+    $("#AddService").validate({
+		errorLabelContainer: $("#AddService div.error"),
+		rules: {
+			ServiceName:{ required:true, maxlength:100, remote: { url: "/Service/CheckUnique1/@Model.SerID" } },
+			ShortDescription:{ required:true, maxlength:100 },
+            SubType:{ required:true },
+            DeptCode:{ required:true },
+            SerType:{ required:true },
+            StartDate:{ValidStartDate:true},
+            EndDate:{ValidEndDate:true},
+            fundingcontact:{ContactRequired:true},
+            fundingamount: { AmountRequired: true, ValidMoney: true },
+            fundingend:{fundingenddate:true},
+            fundingneeds:{ValidMoney:true},
+            fundraisingneeds:{ValidMoney:true},
+            donoramount:{ValidMoney:true},
+            continuationamount:{ValidMoney:true}
+		},
+		messages:{
+			ServiceName:{
+				required:"Please input the Service Name",
+				maxlength:"Service Name is too long",
+                remote: "Please input other Service Name (the cause is duplicate)"
+			},
+			ShortDescription:{
+				required:"Please input the Short Description",
+                maxlength:"Short Description is too long"
+			},
+            SubType:{ required:"Please choose the Sub Type" },
+            DeptCode:{ required:"Please input the Dept Code" },
+            SerType:{ required:"Please choose the Service Type" },
+            fundingamount:{ValidMoney:"Funding Amount is not correct money field, in Funding tab"},
+            fundingneeds:{ValidMoney:"Funding Needs is not correct money field, in Funding tab"},
+            fundraisingneeds:{ValidMoney:"Fundraising Needs is not correct money field, in Funding tab"},
+            donoramount:{ValidMoney:"Donor Amount is not correct money field, in Funding tab"},
+            continuationamount:{ValidMoney:"Continuation Amount is not correct money field, in Funding tab"}
+		}
+	});
+});
+</script>
+<div class="container-right">
+		<div class="table-content">
+        
+			<p style="color:#69a017;font-size:large;margin-bottom:10px">Service Details</p>
+			<p>
+			
+			
+			
+			</p>
+		<div id="tabs">
+        @using (Html.BeginForm("Amend", "Service", FormMethod.Post, new { name = "AddService", enctype = "multipart/form-data", id = "AddService" }))
+        {
+            <span style="float:right;margin-right:10px">
+            <input type="button" onclick="window.location='/Service/MarkInactivate/@Model.SerID'" value="In-activate" />
+			<input type="submit" value="Save" />
+			<a href="/Service/List" style="text-decoration:none"><input type="button" value="Back" /> </a>
+			</span>
+            
+			<ul>
+				<li><a href="#tabs-1">Details 1</a></li>
+				<li><a href="#tabs-2">Details 2</a></li>
+				<li><a href="#tabs-3">Details 3</a></li>
+                <li id="contract-tab"><a href="#tabs-4">Contract</a></li>
+                <li id="funding-tab"><a href="#tabs-5">Funding</a></li>
+                <li><a href="#tabs-6">Organisations</a></li>
+                <li><a href="#tabs-7">Premises</a></li>
+			</ul>
+        
+			<div id="tabs-1">
+			<table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">Service Name &nbsp;<span style="color:red">*</span></td>
+					<td width="240px"><input name="ServiceName" type="text" value="@Model.SerName"/></td>
+					<td width="130px">Service Active</td>
+					<td><input type="checkbox" value="1" disabled="disabled" name="IsActive" checked="checked" /></td>
+				</tr>
+				<tr>
+					<td>Service Short Description<span style="color:red">*</span></td>
+					<td><textarea name="ShortDescription" class="standar-textarea">@Model.SerShortDescription</textarea></td>
+					<td>BU/Directorate Full Discription</td>
+					<td><textarea name="FullDescription" class="standar-textarea">@Model.SerFullDescription</textarea></td>
+				</tr>
+				<tr>
+					<td>Sub Type <span style="color:red">*</span></td>
+					<td><select name="SubType" class="standar-dropdown" id="subtype-dropdown">
+                        <option></option>
+                        <option @(Model.SerSubType == "Other" ? "selected=selected":"") value="Other">Other</option> 
+                        <option @(Model.SerSubType == "Contract" ? "selected=selected" : "") value="Contract">Contract</option>
+                        <option @(Model.SerSubType == "Funded" ? "selected=selected" : "") value="Funded">Funded</option>
+                    </select></td>
+					<td>Dept Code<span style="color:red">*</span></td>
+					<td><input name="DeptCode" class="standar-textbox" name="DeptCode" type="text" value="@Model.SerDeptCode" /></td>
+				</tr>
+				<tr>
+					<td>Lead Contact<span style="color:red">*</span></td>
+					<td><input type="hidden" name="LeadContactID" value="@Model.LeadContactID"/><input readonly="readonly" name="LeadContact" type="text" value="@(Model.LeadContactID==null? "":Model.Contact.FirstName)" /><a id="look-up-contact" onclick="AddrLookUp('AddService', 'LeadContactID', 'LeadContact')" class="link">Lookup</a></td>
+					<td>Service Type<span style="color:red">*</span></td>
+					<td><select name="SerType" class="standar-dropdown">
+                        <option></option>
+                        <option @(Model.SerType == "Service" ? "selected=selected" : "") value="Service">Service</option>
+                        <option @(Model.SerType == "Project" ? "selected=selected" : "") value="Project">Project</option>
+                        <option @(Model.SerType == "Programme" ? "selected=selected" : "") value="Programme">Programme</option>
+                    </select></td>
+				</tr>
+				<tr>
+					<td>Client Description</td>
+					<td><textarea name="ClientDescription" class="standar-textarea">@Model.ClientDescription</textarea></td>
+					<td>Service Discription Delivery</td>
+					<td><textarea name="DescriptionDelivery" class="standar-textarea">@Model.SerDescriptionDelivery</textarea></td>
+				</tr>
+				<tr>
+					<td>Service Attendance</td>
+					<td><select name="Attendance" class="standar-dropdown">
+                        <option></option>
+                        <option @(Model.SerAttendance == "Travel" ? "selected=selected" : "") value="Travel">Travel</option>
+                        <option @(Model.SerAttendance == "Civil" ? "selected=selected" : "") value="Civil">Civil</option>
+                        <option @(Model.SerAttendance == "Aid" ? "selected=selected" : "") value="Aid">Aid</option>
+                        <option @(Model.SerAttendance == "Religious" ? "selected=selected" : "") value="Religious">Religious</option>
+                    </select></td>
+					<td>Service Contract Code</td>
+					<td><input name="ContractCode" class="standar-textbox" type="text" value="@Model.SerContractCode" /></td>
+				</tr>
+				<tr>
+					<td>Service Start Expected</td>
+					<td><input name="StartExpected" id="service_start_expected_textbox" type="text" value="@ViewBag.StartExpected" /></td>
+					<td>Service Contract Value</td>
+					<td><input name="ContractValue" class="standar-textbox" type="text" value="@Model.SerContractValue" /></td>
+				</tr>
+				<tr>
+					<td>Service Start Date</td>
+					<td><input name="StartDate" id="service_start_date_textbox" type="text" value="@ViewBag.StartDate" /></td>
+					<td>Contract Staged Payment</td>
+					<td><input name="StagedPayment" value="1" type="checkbox" @(Model.SerStagedPayment == 0 ? "" : "checked=checked")  /></td>
+				</tr>
+				<tr>
+					<td>Service End Date</td>
+					<td><input name="EndDate" id="service_end_date_textbox" type="text" value="@ViewBag.EndDate" /></td>
+					<td>Referral Process/Method</td>
+					<td><select class="standar-dropdown" name="ReferralProcess">
+                        <option></option>
+                        <option @(Model.SerReferralProcess == "Letter/fax" ? "selected=selected" : "") value="Letter/fax">Letter/fax</option>
+                        <option @(Model.SerReferralProcess == "Telephone" ? "selected=selected" : "") value="Telephone">Telephone</option>
+                        <option @(Model.SerReferralProcess == "In Person" ? "selected=selected" : "") value="In Person">In Person</option>
+                        <option @(Model.SerReferralProcess == "Email" ? "selected=selected" : "") value="Email">Email</option>
+                    </select></td>
+				</tr>
+				<tr>
+					<td>Service Extendable</td>
+					<td><input name="Extendable" value="1" type="checkbox" id="extendable-checkbox" @(Model.SerExtendable == 0 ? "" : "checked=checked")/></td>
+					<td>Service Time Limited</td>
+					<td><input name="TimeLimited" value="1" type="checkbox" id="timelimited-checkbox" @(Model.SerTimeLimited == 0 ? "" : "checked=checked")/></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><select name="ExtendYear" disabled="disabled">
+                    @for (int i = 0; i < 101;i++ )
+                    {
+                        <option value="@i" @(Model.SerExtendYear == i ? "selected=selected" : "") >@i</option>
+                    }
+                    </select>Years 
+                    <select name="ExtendMonth" disabled="disabled">
+                    @for (int i = 0; i < 12;i++ )
+                    {
+                        <option value="@i" @(Model.SerExtendMonth == i ? "selected=selected" : "") >@i</option>
+                    }
+                    </select>Month </td>
+					<td>&nbsp;</td>
+					<td><select name="LimitedYear" disabled="disabled">
+                    @for (int i = 0; i < 101;i++ )
+                    {
+                        <option value="@i" @(Model.SerTimeLimitedYear == i ? "selected=selected" : "") >@i</option>
+                    }
+                    </select>Years 
+                    <select name="LimitedMonth" disabled="disabled">
+                    @for (int i = 0; i < 12;i++ )
+                    {
+                        <option value="@i" @(Model.SerTimeLimitedMonth == i ? "selected=selected" : "") >@i</option>
+                    }
+                    </select>Month </td>
+				</tr>	
+			</table>
+            
+			</div>
+			<div id="tabs-2">
+			<table class="table-only-border-out" width="750px">
+				
+				 @{ Html.RenderAction("GetHtml", "RefData", new { strFrom = "ServiceDetail2", refChecked = Model.SerDetail2RefList });  }
+				
+			</table>
+			</div>
+			<div id="tabs-3">
+				<table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">Client Support Process</td>
+					<td width="240px">
+						<div class="scroll">
+							<p><input class="hight-light-onclick" name="SerDetail3RefList[]" type="checkbox" />Referral</p>
+							<p><input class="hight-light-onclick" name="SerDetail3RefList[]" type="checkbox" />Initial Contact</p>
+							<p><input class="hight-light-onclick" name="SerDetail3RefList[]" type="checkbox" />Pre Employment</p>
+							<p><input class="hight-light-onclick" name="SerDetail3RefList[]" type="checkbox" />In Work Surrport</p>
+						</div>
+					</td>
+					<td width="130px">Client OutCome</td>
+					<td width="240px">
+						<div class="scroll">
+							<p><input type="checkbox" /></p>
+							<p><input type="checkbox" /></p>
+						</div>
+					</td>
+				</tr>
+				
+
+				
+				<tr>
+					<td>Intervention</td>
+					<td>
+						<div class="scroll">
+							<p><input type="checkbox" /></p>
+							<p><input type="checkbox" /></p>
+						</div>
+					</td>
+					<td>Target Client</td>
+					<td>
+						<div class="scroll">
+							<p><input type="checkbox" /></p>
+							<p><input type="checkbox" /></p>
+						</div>
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td>Client Jourmey</td>
+					<td>
+						<div class="scroll">
+							<p><input type="checkbox" /></p>
+							<p><input type="checkbox" /></p>
+						</div>
+					</td>
+					<td>Accreditations</td>
+					<td>
+						<div class="scroll">
+							<p><input type="checkbox" /></p>
+							<p><input type="checkbox" /></p>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Other Service</td>
+					<td>
+						<div class="scroll">
+							@foreach (var item in ViewBag.Service) 
+	                {
+		                <p style="width:300px;"><input class="hight-light-onclick" type="checkbox" @(Model.OtherService.Contains("," + item.ServiceID + ",") ? "checked=checked" : "")  name="OtherService[]" value="@item.ServiceID" />@item.ServiceName</p>
+		            }
+						</div>
+					</td>
+					<td>Referral Source</td>
+					<td>
+						<div class="scroll">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Support Center</td>
+					<td>
+						<div class="scroll">
+							
+						</div>
+					</td>
+					<td>Programme</td>
+					<td>
+						<select name="ProgrammeID" class="standar-dropdown">
+                        <option></option>
+                        @foreach (var item in ViewBag.Programme)
+                        {
+                        <option @(Model.ProgrammeID == item.ProgrammeID?"selected=selected":"") value="@item.ProgrammeID">@item.ProgrammeName</option>
+                        }
+                        </select>
+					</td>
+				</tr>
+				
+				
+			</table>
+			</div>
+		    <div id="tabs-4">
+			<table class="table-only-border-out" width="750px">
+				
+				 @{ Html.RenderAction("GetHtml", "RefData", new { strFrom = "ServiceContract", refChecked = Model.SerContractRefList });  }
+				
+			</table>
+			</div>
+            <div id="tabs-5">
+                @{ Html.RenderAction("GetFunding", "Service", new { id = Model.SerID });  }
+            </div>
+            <div class="error"></div>
+            }
+            <div id="tabs-6">
+                @{ Html.RenderAction("OrganisationsList", "Service", new { id = Model.SerID });  }
+            </div>
+            <div id="tabs-7">
+                @{ Html.RenderAction("PremisesList", "Service", new { id = Model.SerID });  }
+            </div>
+        </div>	
+		</div>
+	</div>

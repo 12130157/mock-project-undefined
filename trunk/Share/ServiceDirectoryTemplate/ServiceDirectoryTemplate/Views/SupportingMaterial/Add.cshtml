@@ -1,0 +1,103 @@
+﻿@{
+    //Layout = null;
+}
+@{
+    ViewBag.Title = "Add Supporting Material";
+}
+@model ServiceDirectoryTemplate.Models.User
+ <script type="text/javascript">
+$(document).ready(function () {
+ $("#AddMat").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            URL: { required: true},
+            Type: { required: true },
+            AddedBy: { required: true },
+            AddedDate: { required: true }
+        },
+        messages: {
+            URL: {
+                required: "Please input the URL"
+            },
+            Type: { required: "Please choose the Material Type" }
+        }
+    });
+});
+	</script>
+
+
+    <script type="text/javascript">
+        function checkInput() {
+            var str = "";
+            if (document.myform.URL.value == '') {
+                str += 'Please input the name organisation.';
+                $("#OrgName").css('border', '1px solid red');
+            }
+            else { $("#URL").css('border', '1px solid #cccccc'); }
+
+            if (str != '') {
+                $("#shoten").text(str);
+                smit.type = "button";
+            }
+            else {
+                $("#shoten").text('');
+                smit.type = "submit";
+            }
+        }
+</script>
+
+<form action="/SupportingMaterial/Create/@ViewBag.OrgID" method="post" name="AddMat" id="AddMat" name="myform">
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="">Organisation &gt;</a></p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Supporting Material Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+			<input type="submit" value="Save" onclick="checkInput()" id="smit" />
+			<a title="Return to amend Organisation" href="/Organisation/Amend/@ViewBag.OrgID#tabs-5"><input type="button" value="Back"  /></a>
+			</span>
+			
+			</p>
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1"><table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">URL &nbsp;<span style="color:red">*</span></td>
+					<td width="240px"><input class="standar-textbox" type="text" name="URL" /></td>
+					<td width="130px">Added By</td>
+					<td width="240px"><input type="hidden" value="@Model.UserID" name="AddedBy" /><input class="standar-textbox" type="text" readonly="readonly" name="AddedByName" value="@Model.Account" readonly="readonly" /></td>
+				</tr>
+				
+				<tr>
+					<td>Description</td>
+					<td><textarea class="standar-textarea" name="Description"></textarea></td>
+					<td>Added Date</td>
+					<td><input class="shstandarort-textbox" type="text" name="AddedDate" readonly="readonly" value="@DateTime.Now.ToString("dd/MM/yyyy hh:ss")" /></td>
+				</tr>
+				
+				<tr>
+					<td>Type&nbsp;<span style="color:red">*</span></td>
+					<td>
+                        <select  class="standar-dropdown" name="Type">
+                        <option></option>
+                            <option value="Doc">Doc</option>
+                            <option value="Pdf">Pdf</option>
+                            <option value="Excel">Excel</option>
+                        </select>
+
+                    </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				
+			</table>
+            </div>
+            <div class="error"></div>
+		</div>
+         <span id="shoten" style="color:red"></span>
+		</div>
+</div>
+</form>

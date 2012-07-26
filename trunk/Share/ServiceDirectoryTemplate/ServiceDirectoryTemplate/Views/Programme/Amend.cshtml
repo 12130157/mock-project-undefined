@@ -1,0 +1,63 @@
+﻿@model ServiceDirectoryTemplate.Models.Programme
+@{
+    ViewBag.Title = "Amend Programme";
+}
+<script language="javascript">
+$(document).ready(function () {
+    $("#AddProgramme").validate({
+        errorLabelContainer: $("#AddProgramme div.error"),
+        rules: {
+            ProgrammeName: { required: true, maxlength: 100, remote: { url: "/Programme/CheckUnique" } },
+            Description: { maxlength: 100 }
+        },
+        messages: {
+            ProgrammeName: {
+                required: "Please input the Programme Name",
+                maxlength: "Service Name is too long",
+                remote: "Please input other Programme Name (the cause is duplicate)"
+            },
+            Description: {
+                maxlength: "Short Description is too long"
+            }
+        }
+    });
+});
+</script>
+<div class="container-right">
+    <div class="table-content">
+<form action="/Programme/Amend/@Model.ProgrammeID" enctype="multipart/form-data" id="AddProgramme" method="post" name="AddProgramme">
+	    <p style="color:#69a017;font-size:large;margin-bottom:10px">Programme Details</p>
+	    <p>
+			
+	    <span style="float:right;margin-right:10px">
+        <input type="button" onclick="window.location='/Programme/MarkInactivate/@Model.ProgrammeID'" value="Deactivate" />
+	    <input type="submit" value="Save" /> 
+	    <a href="/Programme/List" style="text-decoration:none"><input type="button" value="Back" /> </a>
+	    </span>
+			
+	    </p>
+    <div id="tabs">
+	    <ul>
+		    <li><a href="#tabs-1">Details</a></li>
+	    </ul>
+	    <div id="tabs-1">
+            <table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="130px">Programme Name &nbsp;<span style="color:red">*</span></td>
+					<td width="240px"><input name="ProgrammeName" type="text" class="standar-textbox" value="@Model.ProgrammeName"/></td>
+					<td width="130px">Contact</td>
+					<td><input type="hidden" name="ContactID" value="@Model.ContactID" /><input readonly="readonly" name="LeadContact" type="text" value="@(Model.ContactID == null ? "" : Model.Contact.FirstName)" /><a id="look-up-contact" class="link" onclick="AddrLookUp('AddProgramme', 'ContactID', 'LeadContact')" style="color:Blue">Lookup</a></td>
+				</tr>
+                <tr>
+                    <td>Description</td>
+                    <td><textarea class="standar-textarea" name="Description">@Model.Description</textarea></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="error"></div>
+    </div>
+</form>
+    </div>
+</div>

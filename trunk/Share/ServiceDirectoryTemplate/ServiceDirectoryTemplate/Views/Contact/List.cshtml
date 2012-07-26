@@ -1,0 +1,162 @@
+﻿ @model IEnumerable<ServiceDirectoryTemplate.Models.Contact>
+@{
+    Layout = "../Shared/LayOutNull.cshtml";
+    ViewBag.Title = "Contact Lookup";
+}
+
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-contact").tablesorter({widgets: ['zebra']});
+});
+function closeThisForm() {
+    this.close();
+}
+function cleartext() {
+    this.firstname.value = "";
+    this.surname.value = "";
+
+
+}
+function FillData(tagId, tagName) {
+    var tag = opener.document.getElementsByName(tagId)[0];
+    var tagName = opener.document.getElementsByName(tagName)[0];
+    var obj = document.ListContact.contactId;
+    var objname=document.ListContact.name;
+    var arr=GetSelectedIdAndName(obj,objname);
+    var str=arr['Id'];
+    var strname=arr['Name'];
+    if (str != undefined) {
+        tag.value = str;
+        tagName.value = strname;
+        window.close();
+    }
+    else {
+        alert("Please choose the Contact");
+    }
+}
+function EditContact() {
+    var obj = document.ListContact.contactId;
+    var objname = document.ListContact.name;
+    var arr = GetSelectedIdAndName(obj, objname);
+    if (arr['Id'] != undefined) {
+        window.location = "/Contact/Edit/" + arr['Id']+"?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName";
+    }else alert("Please choose the Contact to edit");
+}
+function GetSelectedIdAndName(obj,objname){
+    var str;
+    var strname;
+    if (!obj)
+        return;
+    var length = obj.length;
+    if (length == undefined) {
+        if (obj.checked) {
+            str = obj.value;
+            strname = objname.value;
+        }
+    }
+    else {
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].checked) {
+                str = obj[i].value;
+                strname = objname[i].value;
+            }
+        }
+    }
+    return { Id: str, Name: strname };
+}
+function Activate(isActivate, ContactID) {
+    if(isActivate==false)
+        ActivateContact(ContactID);
+}
+function ActivateContact(ContactID) {
+    var re = confirm("Do you want to make this Contact active?");
+    if (re) {
+        $.ajax({
+            url: "/Contact/MarkActivate",
+            type: "GET",
+            data: ({ id: ContactID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/Contact/SearchContact', '.container-body', document.paging, document.paging.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+<form id="myform" name="ListContact" method="post" action="/Contact/List?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName">
+<div style=" border: 1px solid #000">
+<span>First Name:&nbsp; &nbsp; &nbsp; &nbsp;  <input type="text" name="FirstName" id="FirstName" value="@ViewBag.FirstName" style=" width:200px" />&nbsp; &nbsp;SurName:&nbsp; &nbsp; &nbsp; &nbsp; <input type="text" name="SurName" value="@ViewBag.SurName" id="SurName" style=" width:200px" /></span>
+</div>
+<br /><input type="hidden" name="TagID" value="@ViewBag.TagId" /><input type="hidden" name="TagName" value="@ViewBag.TagName" />
+<input type="submit" id="btnSearch" value="Search Contact" style=" width:120px" />
+<input type="button" name="btnCreate" value="Create" style=" width:75px" ONCLICK="window.location='/Contact/Add?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName'"/>
+<input type="button" name="btnClear" value="Clear" style =" width:75px" onClick="cleartext() " />
+<input type="button" name="btnNone" value="None" style =" width:75px" onClick="closeThisForm() " />
+
+<br />
+<input type="checkbox" id="isactive" value="true" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.paging.include.value=this.checked;AjaxPaging('/Contact/SearchContact?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName','.container-body',document.paging,document.paging.page.value);" />Include in-active contact?
+
+    <table class="sample" id="table-contact" width="750px">
+    <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+                    <td width="10px">&nbsp;</td>
+					<th width="250px">Contact Name</th> 
+					<th width="180px">Mobile Phone</th>
+					<th width="90px">Email</th>
+					<th width="110px">Contact Type</th>
+					<th>Is Active?</th>
+				</tr>
+		</thead>
+        <tbody>	
+			@foreach (var cont in Model) {
+                <tr>
+                  <td><a class="radio-content"><input type="hidden" name="name" value="@cont.FirstName" /><input type="radio" name="contactId" value="@cont.ContactID" onclick="Activate(@(cont.ContactIsActive == 1 ?"true":"false"),'@cont.ContactID')"/></a></td>
+                    <td class="organisation-name">
+                        <a title="Edit Information Contact" href="@(cont.ContactIsActive == 1 ? "/Contact/Edit/" + cont.ContactID + "?TagId="+ViewBag.TagId+"&TagName="+ViewBag.TagName : "javascript:ActivateContact('" + cont.ContactID + "')")">
+                        @cont.FirstName
+                        </a>
+                    </td>
+                    <td>
+                        @cont.MobilePhone
+                    </td>
+                    <td>
+                        @cont.EmailAddress
+                    </td>
+                    <td>
+                        @cont.ContactType
+                    </td>
+                    <td>
+                        @(cont.ContactIsActive==1?"Yes":"No")
+                    </td>
+                </tr>
+            }
+            </tbody>	
+			</table>           
+ </form>
+@{ Html.RenderAction("PagingHtml", "RefData", new {
+       urlRequest = "/Contact/SearchContact?TagId="+ViewBag.TagId+"&TagName="+ViewBag.TagName+"&FirstName="+ViewBag.FirstName+"&SurName="+ViewBag.SurName,
+    tagContainer = ".container-body",
+    formName="paging",
+    page = ViewBag.Page,
+    totalPage = ViewBag.TotalPage,
+    filter = ViewBag.Filter,
+    include = ViewBag.Include
+         
+});  }
+ <form id="form2" method="post" action="Select">
+ <script language=javascript>
+
+ </script>
+ <input type="button" onclick="FillData('@ViewBag.TagId','@ViewBag.TagName')" id="btnSelect" value="Select" />
+  <input type="button" id="btnEdit" onclick="EditContact()" value="Edit" />
+   <input type="button" id="btnClose" value="Close" onclick="closeThisForm()" />
+ </form>
+

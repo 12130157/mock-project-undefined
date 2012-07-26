@@ -1,0 +1,216 @@
+﻿@model ServiceDirectoryTemplate.Models.Directorate
+@{
+    //Layout = "../Shared/LayOutNull.cshtml";
+}
+@{
+    ViewBag.Title = "Amend Directorate";
+}
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#AddDirectorate").submit(function (e) {
+            var form=this;
+            if ($(this).valid()) {
+                if (form.pendding.value == 1)
+                    return false;
+                var Address1 = form.AddressLine1.value;
+                var PostCode = form.PostCode.value;
+                var Town = form.CityTown.value;
+                var County = form.County.value;
+                var CountryID = form.CountryID.value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Address/AddressIsNew",
+                    data: ({ Address1: Address1, PostCode: PostCode, Town: Town, County: County, CountryID: CountryID }),
+                    success: function (data) {
+                        form.pendding.value=1;
+                        if (data == "true") {
+                            var re = confirm("Address Details cannot be confirmed\nDo you wish to enter Unconfirmed Address Data");
+                            if (re == true) {
+                                form.submit();
+                            } else {
+                                form.AddressLine1.value = "";
+                                form.PostCode.value = "";
+                                form.CityTown.value = "";
+                                form.County.value = "";
+                                form.CountryID.selectedIndex = 0;
+                                form.AddressLine1.focus();
+                            }
+                        }
+                        else {
+                            form.submit();
+                        }
+                        form.pendding.value=0;
+                    }
+                });
+            }
+            return false;
+        });
+    $("#AddDirectorate").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            DirName: { required: true, maxlength: 100, remote: { url: "/Directorate/CheckUnique1/@Model.DirID" } },
+            DirShortDescription: { maxlength: 100 },
+            TypeOfBusinessID: { required: true },
+            AddressLine1: { required: true },
+            PhoneNumber: { required: true }
+        },
+        messages: {
+            DirName: {
+                required: "Please input the Directorate Name",
+                maxlength: "Directorate Name is too long",
+                remote: "Please input other Directorate Name (the cause is duplicate)"
+            },
+            DirShortDescription: {
+                maxlength: "Short Description is too long"
+            },
+            TypeOfBusinessID: { required: "Please choose the Bussiness Type" },
+            AddressLine1: { required: "Please input the Address Line" }
+        }
+    });
+});
+function ChangeAddr() {
+    document.AddDirectorate.CopyAddr.checked=false;
+}
+function CopyAddrFromOrg() {
+    if (document.AddDirectorate.CopyAddr.checked == true) {
+        document.AddDirectorate.AddressLine1.value = document.AddDirectorate.OrgAddr1.value;
+        document.AddDirectorate.AddressLine2.value = document.AddDirectorate.OrgAddr2.value;
+        document.AddDirectorate.AddressLine3.value = document.AddDirectorate.OrgAddr3.value;
+        document.AddDirectorate.PostCode.value = document.AddDirectorate.OrgCode.value;
+        document.AddDirectorate.CityTown.value = document.AddDirectorate.OrgTown.value;
+        document.AddDirectorate.County.value = document.AddDirectorate.OrgCounty.value;
+        for (var i = 0; i < document.AddDirectorate.CountryID.length; i++) {
+            if (document.AddDirectorate.CountryID[i].value == document.AddDirectorate.OrgCountry.value)
+                document.AddDirectorate.CountryID[i].selected = true;
+        }
+    }
+}
+	</script>
+
+
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="/Organisation/List">Organisation &gt;</a></p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Business Unit/Directorate Details</p>
+			<p>
+			
+			
+			</p>
+			<div id="tabs">
+<form action="/Directorate/Update/@Model.DirID" name="AddDirectorate" id="AddDirectorate" method="post" enctype="multipart/form-data">
+<input type="hidden" name="pendding" value="0" />
+            <span style="float:right;margin-right:10px">
+            <input type="button" onclick="window.location='/Directorate/MarkInactivate/@Model.DirID'" value="In-activate" />
+			<input type="submit" value="Save" /> 
+			<a title="Return to amend Organisation" href="/Organisation/Amend/@Model.OrgID#tabs-6"><input type="button" value="Back" /></a> 
+			</span>
+
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+                <li><a href="#tabs-2">Departments</a></li>
+			</ul>
+            
+            <input type="hidden" name="OrgID" value="@Html.DisplayFor(model => model.OrgID)" />
+			<div id="tabs-1"><table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="140px">BU/Directorate Name &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><input class="standar-textbox" type="text" name="DirName" value="@Html.DisplayFor(model => model.DirName)" /></td>
+					<td width="140px">Type of Business<span style="color:red">*</span></td>
+					<td width="230px"><input class="lookup-textbox" type="text" name="TypeOfBusinessID" readonly="readonly" value="@Html.DisplayFor(model => model.TypeOfBusiness)" /> <a onclick="SICLookUp('TypeOfBusinessID', 'SICCode')" class="link" style="color:Blue">Lookup</a></td>
+				</tr>
+				
+				<tr>
+					<td>BU/Directorate Short Description</td>
+					<td><textarea class="standar-textarea" name="DirShortDescription">@Html.DisplayFor(model => model.DirShortDescription)</textarea></td>
+					<td>SIC Code</td>
+					<td><input class="short-textbox" type="text" name="SICCode" readonly="readonly" value="@Model.DirSICCode" /></td>
+				</tr>
+				
+				<tr>
+					<td>Lead Contact</td>
+					<td><input type="hidden" name="ContactID" value="@Model.LeadContactID" /><input class="lookup-textbox" type="text" name="ContactName" value="@(Model.LeadContactID==null?"":Model.Contact.FirstName)" readonly="readonly" /> <a onclick="AddrLookUp('AddDirectorate', 'ContactID', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+					<td>BU/Directorate Full Discription</td>
+					<td><textarea class="standar-textarea" name="DirFullDescription" value="@Html.DisplayFor(model => model.DirFullDescription)"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+                    <input type="hidden" name="OrgAddr1" value="@Model.Organisation.OrgAddr1" />
+                    <input type="hidden" name="OrgAddr2" value="@Model.Organisation.OrgAddr2" />
+                    <input type="hidden" name="OrgAddr3" value="@Model.Organisation.OrgAddr3" />
+                    <input type="hidden" name="OrgCode" value="@Model.Organisation.OrgPostCode" />
+                    <input type="hidden" name="OrgTown" value="@Model.Organisation.CityTown" />
+                    <input type="hidden" name="OrgCounty" value="@Model.Organisation.County" />
+                    <input type="hidden" name="OrgCountry" value="@Model.Organisation.CountryID" />
+                    <input type="checkbox" name="CopyAddr" onchange="CopyAddrFromOrg()" /> Copy Address from Organisation</td>
+					<td>Phone Number</td>
+					<td><input class="standar-textbox" type="text" name="PhoneNumber" value="@Html.DisplayFor(model => model.DirPhone)" /></td>
+				</tr>
+				
+				<tr>
+					<td>Address Line 1&nbsp;<span style="color:red">*</span></td>
+					<td><input class="standar-textbox" type="text" name="AddressLine1" onchange="ChangeAddr()" value="@Html.DisplayFor(model => model.DirAddr1)" /></td>
+					<td>Fax</td>
+					<td><input class="standar-textbox" type="text" name="Fax" value="@Html.DisplayFor(model => model.DirFax)" /></td>
+				</tr>
+				<tr>
+					<td>Address Line 2</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine2" onchange="ChangeAddr()" value="@Html.DisplayFor(model => model.DirAddr2)"/></td>
+					<td>Email</td>
+					<td><input class="standar-textbox" type="text" name="Email" value="@Html.DisplayFor(model => model.DirEmail)" /></td>
+				</tr>
+				
+				<tr>
+					<td>Address Line 3</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine3" onchange="ChangeAddr()" value="@Html.DisplayFor(model => model.DirAddr3)" /></td>
+					<td>Web Address</td>
+					<td><input class="standar-textbox" type="text" name="WebAdress" value="@Html.DisplayFor(model => model.DirWebAddr)" /></td>
+				</tr>
+				
+				<tr>
+					<td>Postcode</td>
+					<td><input type="text" name="PostCode" onchange="ChangeAddr()" value="@Html.DisplayFor(model => model.DirPostCode)" /><a onclick="PostCodeLookUp('PostCode','AddressLine1','CityTown','County','CountryID','ChangeAddr')" class="link" style="color:Blue">Lookup</a></td>
+					<td>Charity Number</td>
+					<td><input class="standar-textbox" type="text" name="CharityNumber" value="@Html.DisplayFor(model => model.DirCharNumb)" /></td>
+				</tr>
+				<tr>
+					<td>Town/Village/City</td>
+					<td><input class="standar-textbox" type="text" onchange="ChangeAddr()" name="CityTown" value="@Html.DisplayFor(model => model.CityTown)" /></td>
+					<td>Company Number</td>
+					<td><input class="standar-textbox" type="text" name="CompanyNumber" value="@Html.DisplayFor(model => model.DirCompNumb)" /></td>
+				</tr>
+				<tr>
+					<td>Country</td>
+					<td><input class="standar-textbox" type="text" name="County" onchange="ChangeAddr()" value="@Html.DisplayFor(model => model.County)" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				<tr>
+					<td>Nation/Country</td>
+					<td>
+                        <select class="standar-dropdown" onchange="ChangeAddr()" name="CountryID">
+                        <option></option>
+                        @foreach (var country in ViewBag.ListCountry)
+                        {
+                                <option value="@country.CountryID" @if(Model.CountryID==@country.CountryID){ @("selected='selected'")}>@country.CountryName</option>
+                        }
+                        </select>
+                    </td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				
+			</table></div>
+            </form>
+            <div id="tabs-2">
+            
+            @{ Html.RenderAction("ListDepartment", "Directorate", new { id = ViewBag.test });  }
+                
+            </div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+    

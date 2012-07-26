@@ -1,0 +1,56 @@
+﻿@model ServiceDirectoryTemplate.Models.GovOfficeRegion
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container-right">
+		<div class="table-content">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Trust District Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+			<a href="/Goverment/List"><input type="button" value="Back" /></a> 
+			</span>
+			
+			</p>
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+            <table class="table-only-border-out" width="750px">
+             <tr>
+				<td>Government Office Region Name</td>
+				<td width="230px"><input class="standar-textbox" type="text" readonly="readonly" name="TrustRegionName" value="@Html.DisplayFor(model => model.GovOfficeRegionName)" /></td>
+				<td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>	
+			<tr>
+				<td width="140px">Description<span style="color:red">*</span></td>
+				<td width="230px"><input class="standar-textbox" type="text" name="Name" readonly="readonly" value="@Html.DisplayFor(model => model.GovOfficeRegionDescription)" /></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+			<tr>
+				<td>County &nbsp;<span style="color:red">*</span></td>
+				<td>
+                <textarea class="standar-textarea" name="Description" readonly="readonly">
+                 @foreach (var county in ViewBag.ListCounty)
+                 {
+                      @county.CountyName
+                      @("\n")
+                 }
+                </textarea>
+                </td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+				
+				
+		</table>
+            </div>
+		</div>
+		</div>
+	</div>

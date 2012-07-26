@@ -1,0 +1,27 @@
+﻿<!-- phần đầu -->
+@if (Session["Account"] == null)
+{ Session["Account"] = User.Identity.Name; }
+	<div class="headerwrapper">
+		
+		<div class="headercontainer">
+			<img src="@Url.Content("~/Content/images/logo.jpg")" />
+		</div>
+	</div>
+	
+	<div class="menuwrapper">
+		<ul class="menu">
+			<li>
+				<a href=""><span>Service Directory: the first project in FSoft</span></a>
+			</li>
+			<li style="float:right">
+            <a href="/Account/Logout"><span>Logout</span></a>
+            </li>
+            <li style="float:right">
+            <a style="text-decoration:none;"><span>
+                @if (Session["Account"] != ""){@("Welcome ") @Session["Account"]}
+                </span></a>
+            </li>
+		</ul>
+	</div>
+	
+<!-- kết thúc phần đầu -->

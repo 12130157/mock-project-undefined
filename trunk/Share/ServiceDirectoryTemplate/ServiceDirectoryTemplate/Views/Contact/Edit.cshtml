@@ -1,0 +1,100 @@
+﻿@model ServiceDirectoryTemplate.Models.Contact
+@{
+    ViewBag.Title = "Edit Contact";
+    Layout = "../Shared/LayOutNull.cshtml";
+}
+<script language="javascript">
+$(document).ready(function () {
+    $("#myform").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            firstname: { required: true, maxlength: 100 },
+            surname: { required: true, maxlength: 100 },
+            ContactType: { required: true }
+        },
+        messages: {
+            firstname: {
+                required: "Please input the First Name",
+                maxlength: "First Name is too long"
+            },
+            surname: {
+                required: "Please input the SurName",
+                maxlength: "SurName is too long"
+            },
+            ContactType: { required: "Please choose the Contact Type" }
+        }
+    });
+});
+</script>
+    <div>
+        <form action="/Contact/Update?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName" name="myform" id="myform" method ="post" enctype="multipart/form-data">
+            <input type="hidden" name="contID" value="@Model.ContactID" />
+             <input type="submit" value="Save" /> 
+		<a title="List Contact Screen" href="/Contact/List?TagId=@ViewBag.TagId&TagName=@ViewBag.TagName"><input type="button" value="Back" /> </a>
+            
+     <table class="table-only-border-out" width="750px">
+			<tr>
+				<td width="140px">First Name <span style="color:red">*</span></td>
+				<td width="230px">
+                    <input class="standar-textbox" type="text" name="firstname" value="@Html.DisplayFor(model => model.FirstName)" /></td>
+                <td width="140px">Manager Name</td>
+                
+				<td><input class="lookup-textbox" type="hidden" readonly="readonly" name="managerId" value="@Model.Contact1.ContactID" /><input class="lookup-textbox" type="text" readonly="readonly" name="managerName" value="@Model.Contact1.FirstName" /><a class="link" onclick="ManagerLookUp('myform', 'managerId', 'managerName')" >Lookup</a></td> 
+			</tr>
+				
+			<tr>
+				<td>SurName &nbsp;<span style="color:red">*</span></td>
+                <td><input class="standar-textbox"  type="text" name="surname" value="@Html.DisplayFor(model => model.Surname)" /></td>
+                <td>Contact Type  <span style="color:red">*</td>
+                <td><select name="ContactType">
+                        <option value="" ></option>
+                    @foreach (var type in ViewBag.ContactType)
+                        {
+                                <option value="@type.RefText" @(Model.ContactType == type.RefText ? "selected=selected" : "") >@type.RefText</option>
+                        }
+                </select></td>
+			</tr>	
+            <tr>
+                <td>KnowAs &nbsp;</td>
+                <td><input class="standar-textbox"  type="text" name="KnowAs" value="@Html.DisplayFor(model => model.KnownAs)" /></td>
+                <td>Best Contact Method &nbsp </td>
+                <td><select name="bestContactMethod">
+                        <option value="" ></option>
+                    @foreach (var method in ViewBag.BestContactMethod)
+                        {
+                                <option value="@method.RefText" @(Model.BestContactMethod == method.RefText ? "selected=selected" : "")>@method.RefText</option>
+                        }
+                    </select></td>
+            </tr>
+
+             <tr>
+                <td>Office Phone &nbsp;</td>
+                <td><input class="standar-textbox"  type="text" name="OfficePhone" value="@Html.DisplayFor(model => model.OfficePhone)" /></td>
+                <td>Job Role &nbsp </td>
+                <td><input type ="text" name="JobRole"  value="@Html.DisplayFor(model => model.JobRole)" /></td>
+            </tr>
+
+             <tr>
+                <td>Mobile Phone &nbsp;</td>
+                <td><input class="standar-textbox"  type="text" name="MobilePhone" value="@Html.DisplayFor(model => model.MobilePhone)" /></td>
+                <td>Work Base &nbsp </td>
+                <td><input type ="text" name="Workbase"  value="@Html.DisplayFor(model => model.Workbase)" /></td>
+            </tr>
+
+             <tr>
+                <td>ST Home Phone &nbsp;</td>
+                <td><input class="standar-textbox"  type="text" name="STHomePhone" value="@Html.DisplayFor(model => model.STHomePhone)" /></td>
+                <td>Job Title &nbsp </td>
+                <td><input type ="text" name="JobTitle"  value="@Html.DisplayFor(model => model.JobTitle)"/></td>
+            </tr>
+
+             <tr>
+                <td>Email Address &nbsp;</td>
+                <td><input class="standar-textbox"  type="text" name="knowAs" value="@Html.DisplayFor(model => model.EmailAddress)" /></td>
+                <td>Is Active? &nbsp </td>
+                <td><input type ="checkbox" value="1" name="ContactIsActive" @(Model.ContactIsActive==1?"checked=checked":"") /></td>
+            </tr>
+				
+		</table>
+        </form>
+    </div><div class="error"></div>
