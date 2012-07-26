@@ -3,3 +3,8 @@ C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Commons\bi
 C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Commons\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Commons\obj\Debug\MP.Commons.dll
 C:\Documents and Settings\QuyetNV\Desktop\PROJECT VS\MPApplication\MP.Commons\obj\Debug\MP.Commons.pdb
+C:\Documents and Settings\QuyetNV\Desktop\MockProject-undefined\SourceCode\MPApplication\MP.Commons\bin\MP.Commons.dll
+C:\Documents and Settings\QuyetNV\Desktop\MockProject-undefined\SourceCode\MPApplication\MP.Commons\bin\MP.Commons.pdb
+C:\Documents and Settings\QuyetNV\Desktop\MockProject-undefined\SourceCode\MPApplication\MP.Commons\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\QuyetNV\Desktop\MockProject-undefined\SourceCode\MPApplication\MP.Commons\obj\Debug\MP.Commons.dll
+C:\Documents and Settings\QuyetNV\Desktop\MockProject-undefined\SourceCode\MPApplication\MP.Commons\obj\Debug\MP.Commons.pdb
