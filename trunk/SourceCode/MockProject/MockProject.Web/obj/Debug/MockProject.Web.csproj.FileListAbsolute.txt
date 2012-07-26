@@ -3,3 +3,12 @@ E:\QUYET\MockProject\MockProject.Web\bin\MockProject.Web.dll
 E:\QUYET\MockProject\MockProject.Web\bin\MockProject.Web.pdb
 E:\QUYET\MockProject\MockProject.Web\obj\Debug\MockProject.Web.dll
 E:\QUYET\MockProject\MockProject.Web\obj\Debug\MockProject.Web.pdb
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\bin\MockProject.Web.dll
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\bin\MockProject.Web.pdb
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\bin\MockProject.Business.dll
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\bin\MockProject.Entities.dll
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\bin\MockProject.Entities.pdb
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\bin\MockProject.Business.pdb
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\obj\Debug\MockProject.Web.dll
+C:\Documents and Settings\dungpv2\Desktop\GoogleCode\SourceCode\MockProject\MockProject.Web\obj\Debug\MockProject.Web.pdb
