@@ -55,6 +55,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MP.Commons\MP.Commons.csproj">
+      <Project>{54840367-5416-490C-9592-D7A72EECD7E2}</Project>
+      <Name>MP.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MP.DataAccess\MP.DataAccess.csproj">
+      <Project>{9EFCDDEA-E1AC-46FF-BD48-CD21D17789E3}</Project>
+      <Name>MP.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MP.Entities\MP.Entities.csproj">
+      <Project>{CDD37C0D-A810-4305-A0A2-1BC193C224FE}</Project>
+      <Name>MP.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
