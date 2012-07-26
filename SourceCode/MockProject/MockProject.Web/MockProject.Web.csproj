@@ -166,13 +166,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="CreateProgramme.aspx.cs">
       <DependentUpon>CreateProgramme.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -187,6 +180,13 @@
     <Compile Include="ListProgramme.aspx.designer.cs">
       <DependentUpon>ListProgramme.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Lookups.aspx.cs">
+      <DependentUpon>Lookups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lookups.aspx.designer.cs">
+      <DependentUpon>Lookups.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MainTemplate.Master.cs">
       <DependentUpon>MainTemplate.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,11 +197,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contact.aspx" />
+    <Content Include="App_Data\ServiceDirectory.mdf">
+    </Content>
+    <Content Include="App_Data\ServiceDirectory_log.ldf">
+      <DependentUpon>ServiceDirectory.mdf</DependentUpon>
+    </Content>
     <Content Include="CreateProgramme.aspx" />
     <Content Include="ListProgramme.aspx" />
+    <Content Include="Lookups.aspx" />
     <Content Include="MainTemplate.Master" />
-    <Content Include="skins\css\ContactStyle.css" />
     <None Include="skins\images\forms\Thumbs.db" />
     <None Include="skins\images\login\Thumbs.db" />
     <None Include="skins\images\table\Thumbs.db" />
@@ -218,7 +222,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
