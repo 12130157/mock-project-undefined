@@ -187,12 +187,19 @@
     <Compile Include="ListProgramme.aspx.designer.cs">
       <DependentUpon>ListProgramme.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Lookups.aspx.cs">
-      <DependentUpon>Lookups.aspx</DependentUpon>
+    <Compile Include="LookupAddress.aspx.cs">
+      <DependentUpon>LookupAddress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Lookups.aspx.designer.cs">
-      <DependentUpon>Lookups.aspx</DependentUpon>
+    <Compile Include="LookupAddress.aspx.designer.cs">
+      <DependentUpon>LookupAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LookupTypeOfBusiness.aspx.cs">
+      <DependentUpon>LookupTypeOfBusiness.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LookupTypeOfBusiness.aspx.designer.cs">
+      <DependentUpon>LookupTypeOfBusiness.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainTemplate.Master.cs">
       <DependentUpon>MainTemplate.Master</DependentUpon>
@@ -212,7 +219,8 @@
     <Content Include="Contact.aspx" />
     <Content Include="CreateProgramme.aspx" />
     <Content Include="ListProgramme.aspx" />
-    <Content Include="Lookups.aspx" />
+    <Content Include="LookupAddress.aspx" />
+    <Content Include="LookupTypeOfBusiness.aspx" />
     <Content Include="MainTemplate.Master" />
     <None Include="skins\images\forms\Thumbs.db" />
     <None Include="skins\images\login\Thumbs.db" />

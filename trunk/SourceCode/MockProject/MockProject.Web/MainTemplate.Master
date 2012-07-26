@@ -180,6 +180,18 @@ $(document).pngFix( );
     
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            background: url('skins/images/shared/corner_top_left.jpg') no-repeat;
+            width: 15px;
+        }
+        .style3
+        {
+            background: url('skins/images/shared/corner_top_right.jpg') no-repeat;
+            width: 15px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -375,9 +387,9 @@ $(document).pngFix( );
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
 		<th rowspan="3" class="sized"><img src="skins/images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-		<th class="topleft"></th>
-		<td id="tbl-border-top">&nbsp;</td>
-		<th class="topright"></th>
+		<th class="style1"></th>
+		<td id="tbl-border-top"></td>
+		<th class="style3"></th>
 		<th rowspan="3" class="sized"><img src="skins/images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
@@ -395,6 +407,10 @@ $(document).pngFix( );
             </h3>
 			
         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        
+        
+            <p>
+                &nbsp;</p>
         
         
         </asp:ContentPlaceHolder>
