@@ -1,0 +1,18 @@
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Dao.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Dao.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\obj\Debug\Blog.Dao.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\obj\Debug\Blog.Dao.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Entities.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Dao.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Dao.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Common.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Entities.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Common.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\bin\Debug\Blog.Entities.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\obj\Debug\ResolveAssemblyReference.cache
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\obj\Debug\Blog.Dao.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Dao\obj\Debug\Blog.Dao.pdb

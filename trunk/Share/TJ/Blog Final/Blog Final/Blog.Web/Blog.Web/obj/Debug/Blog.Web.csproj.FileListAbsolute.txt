@@ -1,0 +1,39 @@
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Web.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Web.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\obj\Debug\Blog.Web.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\obj\Debug\Blog.Web.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.BU.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Dao.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Entities.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Common.dll
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.BU.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Common.pdb
+C:\Documents and Settings\duynt5\Desktop\Tech Specific\Blog Final\Blog.Web\Blog.Web\bin\Blog.Dao.pdb
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Web.dll
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Web.pdb
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.BU.dll
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Dao.dll
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Entities.dll
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Common.dll
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.BU.pdb
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Entities.pdb
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Common.pdb
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Dao.pdb
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\obj\Debug\Blog.Web.dll
+C:\Documents and Settings\duynt5\My Documents\Downloads\Blog Final\Blog Final\Blog.Web\Blog.Web\obj\Debug\Blog.Web.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Web.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Web.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.BU.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Dao.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Entities.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Common.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.BU.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Entities.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Common.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\bin\Blog.Dao.pdb
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\obj\Debug\Blog.Web.dll
+C:\TJ\Blog Final\Blog Final\Blog.Web\Blog.Web\obj\Debug\Blog.Web.pdb

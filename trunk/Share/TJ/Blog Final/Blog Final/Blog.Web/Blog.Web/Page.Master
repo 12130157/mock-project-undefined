@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="Blog.Web.Page" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>My Blog</title>
+    <link href="mystyle.css" rel="stylesheet" type="text/css"/>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body >
+    <form id="Form" runat="server">
+<div id="wrapper">
+
+	<div id="header">
+		<div id="menu">
+			<ul>
+				<li><a href="index.aspx?wuc=menu&item=hot">Home</a></li>
+				<li><a href="index.aspx?wuc=menu&item=hot">New Hot</a></li>
+				<li><a href="index.aspx?wuc=menu&item=hot">New Blog</a></li>
+				<li><a href="index.aspx?wuc=menu&item=hot">Photos</a></li>
+				<li><a href="index.aspx?wuc=menu&item=hot">About</a></li>
+			</ul>
+		</div>
+		<!-- end #menu -->
+		<div id="search">
+		    <asp:ContentPlaceHolder ID="contentSearch" runat="server" />
+			<!-- search here -->
+		</div>
+		<!-- end #search -->
+	</div>
+	<!-- end #header -->
+	<hr />
+	<!-- end #logo -->
+<!-- end #header-wrapper -->
+
+<div id="page">
+    <div id="content">
+        <asp:ContentPlaceHolder ID="contentContent" runat="server" />
+    </div>
+	<!-- end #content -->
+	<div id="sidebar">
+	<div id="logo">
+		<h1><a href="#">My Blog</a></h1>
+		
+	</div>
+	<div id="login">
+	    <asp:ContentPlaceHolder ID="contentLogOn" runat="server" />
+	    <!-- login here -->
+	</div>
+	<div id="Category">
+	    <asp:ContentPlaceHolder ID="contentCategories" runat="server" />
+	    <!-- Category Here -->
+	</div>
+	</div>
+	<!-- end #sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+	<div id="bottom-bg"><img src="images/img07.gif" alt="" /></div>
+<!-- end #page -->
+
+<div id="footer">
+	<p>Copyright (c) 2012 Design by Duynt5</p>
+</div>
+<!-- end #footer -->
+</div>
+</form>
+</body>
+</html>
+

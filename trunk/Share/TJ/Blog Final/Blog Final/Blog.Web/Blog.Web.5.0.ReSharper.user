@@ -1,0 +1,223 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlLogOnUser.ascx" caret="1029" fromTop="8" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlLogOn.ascx" caret="1108" fromTop="9" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlCategory.ascx" caret="323" fromTop="8" />
+      <File id="d:Miscellaneous Files/f:SqlProvider.cs/l:C!?Documents and Settings?duynt5?Desktop?Tech Specific?Blog day5 tren lop gan xong?Blog?Blog.WebUI?Blog.Common?SqlProvider.cs" caret="615" fromTop="13" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Web.config" caret="3676" fromTop="19" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Page.Master.cs" caret="489" fromTop="19" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementCategories.ascx" caret="641" fromTop="12" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlNews.ascx" caret="858" fromTop="8" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Index.aspx.cs" caret="2087" fromTop="14" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Global.asax.cs" caret="473" fromTop="15" />
+      <File id="EAE3A777-2A9D-4F0D-8257-968901EFEA64/f:UserDao.cs" caret="7022" fromTop="0" />
+      <File id="EAE3A777-2A9D-4F0D-8257-968901EFEA64/f:CommentDao.cs" caret="161" fromTop="7" />
+      <File id="EAE3A777-2A9D-4F0D-8257-968901EFEA64/f:CategoryDao.cs" caret="6656" fromTop="0" />
+      <File id="EAE3A777-2A9D-4F0D-8257-968901EFEA64/f:NewsDao.cs" caret="7374" fromTop="0" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:CategoryBU.cs" caret="1016" fromTop="18" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:CommentsBU.cs" caret="237" fromTop="5" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:NewsBU.cs" caret="1026" fromTop="19" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:UserBU.cs" caret="680" fromTop="13" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlCategory.ascx.cs" caret="540" fromTop="15" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlDetailNews.ascx.cs" caret="960" fromTop="0" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlLogOn.ascx.cs" caret="1240" fromTop="8" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlLogOnUser.ascx.cs" caret="592" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementCategories.ascx.cs" caret="4448" fromTop="12" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementNews.ascx.cs" caret="6143" fromTop="7" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="5126" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlNews.ascx.cs" caret="378" fromTop="13" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlSearch.ascx.cs" caret="99" fromTop="3" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Index.aspx" caret="681" fromTop="7" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Page.Master" caret="997" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="4208" fromTop="0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:NewsBU.cs" caret="1026" fromTop="25" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlDetailNews.ascx.cs" caret="428" fromTop="8" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlDetailNews.ascx.cs" caret="960" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementNews.ascx.cs" caret="900" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementNews.ascx.cs" caret="2282" fromTop="8" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementNews.ascx.cs" caret="5137" fromTop="12" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementNews.ascx.cs" caret="4798" fromTop="4" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementNews.ascx.cs" caret="6143" fromTop="7" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlNews.ascx.cs" caret="378" fromTop="13" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:UserBU.cs" caret="143" fromTop="7" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:UserBU.cs" caret="288" fromTop="15" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:UserBU.cs" caret="425" fromTop="23" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:UserBU.cs" caret="553" fromTop="24" />
+      <File id="EC3ED8B6-2CB1-4150-B64F-07BDC5F8AC44/f:UserBU.cs" caret="680" fromTop="22" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlLogOn.ascx.cs" caret="1240" fromTop="8" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="467" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="1654" fromTop="3" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="1805" fromTop="9" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="3581" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="4229" fromTop="24" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/d:UserControls/f:ControlManagementUser.ascx.cs" caret="5126" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="0" fromTop="0" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="4208" fromTop="29" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:Index.aspx" caret="143" fromTop="0" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="2797" fromTop="5" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="3852" fromTop="0" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="2" fromTop="0" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="1082" fromTop="17" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="857" fromTop="29" />
+      <File id="3AD3E06B-540C-4893-B4C7-D4E69F2C7023/f:mystyle.css" caret="3027" fromTop="8" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files\NUnit 2.6\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="public" priority="9" />
+      <Item value="using" priority="5" />
+      <Item value="Blog" priority="4" />
+      <Item value="Entities" priority="2" />
+      <Item value="Common" priority="0" />
+      <Item value="System" priority="3" />
+      <Item value="assembly" priority="3" />
+      <Item value="CLSCompliant" priority="3" />
+      <Item value="SqlException`0" priority="9" />
+      <Item value="e" priority="0" />
+      <Item value="Locale" priority="0" />
+      <Item value="true" priority="0" />
+      <Item value="UserDao`0" priority="3" />
+      <Item value="userDao" priority="2" />
+      <Item value="new" priority="7" />
+      <Item value="UserDao" priority="2" />
+      <Item value="Dao" priority="3" />
+      <Item value="News`0" priority="0" />
+      <Item value="NewsDao`0" priority="1" />
+      <Item value="newsDao" priority="1" />
+      <Item value="NewsDao" priority="1" />
+      <Item value="CommentDao`0" priority="1" />
+      <Item value="commentDao" priority="0" />
+      <Item value="CommentDao" priority="0" />
+      <Item value="CategoryDao`0" priority="1" />
+      <Item value="categoryDao" priority="1" />
+      <Item value="CategoryDao" priority="1" />
+      <Item value="ControlsCategories`0" priority="0" />
+      <Item value="labletitle" priority="0" />
+      <Item value="labelauthors" priority="0" />
+      <Item value="labelAuthors" priority="0" />
+      <Item value="labelContentnew" priority="0" />
+      <Item value="labelCreatetime" priority="0" />
+      <Item value="labelViewnumber" priority="0" />
+      <Item value="labelLoiname" priority="0" />
+      <Item value="labelLoiemail" priority="0" />
+      <Item value="labelCheckPassword" priority="1" />
+      <Item value="labelCheckid" priority="1" />
+      <Item value="labelOwner" priority="0" />
+      <Item value="dropInsertCategory" priority="0" />
+      <Item value="DataGetAllNews" priority="0" />
+      <Item value="Int32`0" priority="0" />
+      <Item value="CultureInfo`0" priority="3" />
+      <Item value="listNews" priority="0" />
+      <Item value="ControlSearch1" priority="0" />
+      <Item value="ControlLogOn`0" priority="1" />
+      <Item value="login" priority="0" />
+      <Item value="ControlLogOnUser`0" priority="0" />
+      <Item value="controlLogOn" priority="1" />
+      <Item value="controlLogOnUser" priority="0" />
+      <Item value="ControlDetailNews`0" priority="0" />
+      <Item value="controlDetailNews" priority="0" />
+      <Item value="ControlManagementCategories`0" priority="1" />
+      <Item value="controlManagementNews" priority="0" />
+      <Item value="controlManagementCategories" priority="0" />
+      <Item value="ControlManagementUser`0" priority="0" />
+      <Item value="controlManagementUser" priority="0" />
+      <Item value="ControlNews`0" priority="0" />
+      <Item value="controlNews" priority="0" />
+      <Item value="placeLogin" priority="0" />
+      <Item value="IsPostBack" priority="2" />
+      <Item value="private" priority="1" />
+      <Item value="if" priority="2" />
+      <Item value="Session" priority="0" />
+      <Item value="Response" priority="1" />
+      <Item value="else" priority="0" />
+      <Item value="static" priority="7" />
+      <Item value="internal" priority="1" />
+      <Item value="placeLogOn" priority="0" />
+      <Item value="comments" priority="0" />
+      <Item value="CommentsBU`0" priority="0" />
+      <Item value="prop" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Blog.Common.SqlProvider">
+      <Item value="SelectGetConnection`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Globalization.CultureInfo">
+      <Item value="CurrentCulture" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.Dao.UserDao">
+      <Item value="SelectFullUser`0" priority="0" />
+      <Item value="SelectUserById`0" priority="0" />
+      <Item value="CheckUserIdExists`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.Dao.NewsDao">
+      <Item value="SelectAllNews`0" priority="0" />
+      <Item value="SelectDetailNewById`0" priority="0" />
+      <Item value="SelectCommentById`0" priority="0" />
+      <Item value="DeleteNews`0" priority="0" />
+      <Item value="FillDataById`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.Dao.CategoryDao">
+      <Item value="SelectCategoryIdAndName`0" priority="0" />
+      <Item value="SelectAllCategory`0" priority="0" />
+      <Item value="FillDataCategoryById`0" priority="0" />
+      <Item value="SelectFullCategory`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.BU.CategoryBU">
+      <Item value="SelectAllCategory`0" priority="0" />
+      <Item value="SelectCategoryIdAndName`0" priority="0" />
+      <Item value="SelectFullCategory`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.BU.UserBU">
+      <Item value="SelectAllUsers`0" priority="0" />
+      <Item value="CheckUser`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.BU.NewsBU">
+      <Item value="SelectAllNews`0" priority="0" />
+      <Item value="SelectHotNew`0" priority="0" />
+      <Item value="SelectNewDetailById`0" priority="0" />
+      <Item value="SelectCommentById`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Int32">
+      <Item value="Parse`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.Web.UserControls.ControlDetailNews">
+      <Item value="SelectNewsById`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpResponse">
+      <Item value="Redirect`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Blog.Web.UserControls.ControlLogOn">
+      <Item value="Dispose`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.ControlCollection">
+      <Item value="Remove`0" priority="1" />
+      <Item value="Clear`0" priority="3" />
+      <Item value="RemoveAt`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.PlaceHolder">
+      <Item value="Controls" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Blog.Dao.CommentDao">
+      <Item value="InsertNewComment`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
