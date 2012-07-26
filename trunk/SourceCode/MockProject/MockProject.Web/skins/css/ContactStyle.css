@@ -1,0 +1,64 @@
+﻿body
+{
+}
+#mainFormContact
+{
+	height:500px;
+	width:700px; 
+	float:left; 
+	border:solid 1px #EFEFDE;
+	font-size:12px;
+}
+#header
+{
+	float:left;
+	width:700px;	
+	background-color:#CCCCCC;
+}
+.label
+{
+	margin-left:25px;
+	float:left;
+	width:100px;	
+}
+.textboxSearch
+{
+	float:left;
+	width:200px;	
+}
+#ButtonContact
+{
+	float:left;
+	margin-top:10px;
+	width:700px;	
+}
+.button
+{
+	float:left;
+	margin-left:10px;
+}
+#checkboxContact
+{
+	float:left;
+	color:Black;	
+	margin:50px 10px 10px 10px;
+	width:700px;
+}
+#gridView
+{
+	margin: 0px 0px 10px 0px;
+	float:left;
+	width:700px;
+	height:200px;
+	border:solid 1px gray;	
+}
+#paging
+{
+	float:right;
+	margin-right:10px;
+}
+#buttonfooter
+{
+	float:left;
+	width:700px;
+}
