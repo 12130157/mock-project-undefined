@@ -24,7 +24,7 @@
         </div>
         
         <div id="checkboxContact">
-            <asp:CheckBox ID="CheckBoxActive" runat="server" />Include in-active contact
+            <asp:CheckBox ID="CheckBoxActive" runat="server" /> &nbsp;Include in-active contact
         </div>
         <div id="gridView">
             <asp:GridView ID="GridView1" runat="server">
