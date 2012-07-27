@@ -1,0 +1,11 @@
+User input programme name and description
+
+If click lookup link => 
+	display all contacts in the system in a pop-up window
+	
+If click submit
+{
+	check data inputed in textboxs and contact
+	if data invalid => input again
+		else add new programme to database, and display message
+}

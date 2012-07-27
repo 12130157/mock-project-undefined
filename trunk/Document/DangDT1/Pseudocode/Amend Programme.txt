@@ -1,0 +1,16 @@
+When PageLoad()
+	{
+		Display information of the programme in 3 textboxes			
+	}
+	
+If Click Lookup Link
+	display all contacts in the system in a pop-up window
+
+If Click Deactive Button
+	Change the status of Programme to Inactive/Active
+	
+If Click Save button
+{
+	If all textboxes are not empty and ProgrammeName is unique
+		
+}
