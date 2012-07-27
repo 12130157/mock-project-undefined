@@ -1,10 +1,11 @@
 ﻿body
 {
 }
+/*Form Contact*/
 #mainFormContact
 {
 	height:500px;
-	width:700px; 
+	width:857px; 
 	float:left; 
 	border:solid 1px #EFEFDE;
 	font-size:12px;
@@ -13,7 +14,7 @@
 {
 	float:left;
 	width:700px;	
-	background-color:#CCCCCC;
+	font-weight:bold;
 }
 .label
 {
@@ -37,6 +38,12 @@
 	float:left;
 	margin-left:10px;
 }
+#searchContact
+{
+	margin-top:10px;
+	width:680px;
+	float:left;
+}
 #checkboxContact
 {
 	float:left;
@@ -46,9 +53,9 @@
 }
 #gridView
 {
-	margin: 0px 0px 10px 0px;
+	margin: 10px 0px 10px 10px;
 	float:left;
-	width:700px;
+	width:680px;
 	height:200px;
 	border:solid 1px gray;	
 }
@@ -56,9 +63,109 @@
 {
 	float:right;
 	margin-right:10px;
+	height:22px;
 }
 #buttonfooter
 {
 	float:left;
 	width:700px;
+}
+
+
+
+/*Form Create New Contact*/
+#mainCreateContact
+{
+	float:left;
+	width:700px;
+	border:solid 1px #EFEFDE;
+}
+#line1
+{
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;
+}
+#line2
+{	
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;
+}
+#line3
+{
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;	
+}
+#line4
+{
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;	
+}
+#line5 
+{
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;
+}
+#line6
+{
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;	
+}
+#line7
+{
+	margin-top:10px;
+	float:left;
+	width:700px;
+	height: 22px;	
+}
+.colum1
+{
+	float:left;
+	width:350px;	
+}
+.colum2
+{
+	float:left;
+	width:350px;
+}
+#label
+{
+	float:left;
+	width:100px;
+}
+.texboxCreateContact
+{
+	float:left;
+	width:200px;	
+	margin-right:10px;
+}
+.labelCreateContact
+{
+	float:left;
+	width:120px;
+	margin-left:15px;
+	
+}
+#buttonCreateContact
+{
+	float:left;
+	width:700px;
+	margin-top:20px;
+}
+.buttonContact
+{
+	float:right;
+	margin-right:20px;
+	width:100px;
 }
