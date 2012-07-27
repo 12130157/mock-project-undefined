@@ -24,14 +24,21 @@ $(document).pngFix( );
 });
     </script>
 
+    <style type="text/css">
+        .style1
+        {
+            width: 84px;
+        }
+    </style>
+
 </head>
 <body id="login-bg">
     <form id="form1" runat="server">
     <div id="login-holder">
         <!-- start logo -->
         <div id="logo-login">
-            <a href="#">
-                <img src="" width="156" height="40" alt="" /></a>
+            <!-- <a href="#">
+                <img src="" width="156" height="40" alt="" /></a> -->
         </div>
         <!-- end logo -->
         <div class="clear">
@@ -42,34 +49,42 @@ $(document).pngFix( );
             <div id="login-inner">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>
+                        <th class="style1">
                             Username
                         </th>
                         <td>
-                            <input type="text" class="login-inp" />
+                            <asp:TextBox ID="txtUsername" CssClass="login-inp" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvUsername" runat="server" 
+                                ErrorMessage="*" ControlToValidate="txtUsername"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <th>
+                        <th class="style1">
                             Password
                         </th>
                         <td>
-                            <input type="password" value="************" onfocus="this.value=''" class="login-inp" />
+                            <asp:TextBox ID="txtPassword" CssClass="login-inp" runat="server" Text="************" TextMode=Password></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                ControlToValidate="txtPassword" ErrorMessage="*"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <th>
+                        <th class="style1">
                         </th>
                         <td valign="top">
-                            <input type="checkbox" class="checkbox-size" id="login-check" /><label for="login-check">Remember
+                            <asp:CheckBox ID="CheckBox1" runat="server" CssClass="checkbox-size" Text="Remember me" />
+                            <!-- <input type="checkbox" class="checkbox-size" id="login-check" />
+                            <label for="login-check">Remember
                                 me</label>
+                                 -->
                         </td>
                     </tr>
                     <tr>
-                        <th>
-                        </th>
+                        <th class="style1">
+                            &nbsp;</th>
                         <td>
-                            <input type="button" class="submit-login" />
+                            <asp:Button ID="btnLogin" runat="server" Text="" CssClass="submit-login"/>
+                            <!-- <input type="button" class="submit-login" /> -->
                         </td>
                     </tr>
                 </table>
