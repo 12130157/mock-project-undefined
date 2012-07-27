@@ -98,7 +98,7 @@ $(function() {
 
 
 <!--  date picker script -->
-<link rel="stylesheet" href="css/datePicker.css" type="text/css" />
+<link rel="stylesheet" href="skins/css/datePicker.css" type="text/css" />
 <script src="skins/js/jquery/date.js" type="text/javascript"></script>
 <script src="skins/js/jquery/jquery.datePicker.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">

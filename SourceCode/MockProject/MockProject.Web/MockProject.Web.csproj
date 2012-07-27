@@ -173,6 +173,13 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreateContact.aspx.cs">
+      <DependentUpon>CreateContact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateContact.aspx.designer.cs">
+      <DependentUpon>CreateContact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateProgramme.aspx.cs">
       <DependentUpon>CreateProgramme.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,6 +193,13 @@
     </Compile>
     <Compile Include="ListProgramme.aspx.designer.cs">
       <DependentUpon>ListProgramme.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="LookupAddress.aspx.cs">
       <DependentUpon>LookupAddress.aspx</DependentUpon>
@@ -217,8 +231,10 @@
       <DependentUpon>ServiceDirectory.mdf</DependentUpon>
     </Content>
     <Content Include="Contact.aspx" />
+    <Content Include="CreateContact.aspx" />
     <Content Include="CreateProgramme.aspx" />
     <Content Include="ListProgramme.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="LookupAddress.aspx" />
     <Content Include="LookupTypeOfBusiness.aspx" />
     <Content Include="MainTemplate.Master" />
