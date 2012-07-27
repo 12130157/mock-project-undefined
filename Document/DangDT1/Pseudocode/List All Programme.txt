@@ -1,0 +1,19 @@
+When PageLoad()
+	Bind Data to GridView
+
+If Click "Display Active/Inactive", "Filter", "Sorting", "Paging"
+	Datagridview will display as user's action
+	
+If Click Delete Button 
+	Delete This Record
+	
+If Click Amend Button
+	Go To AmendProgramme Page
+	
+If Click Create Button
+	Go To AddProgramme Page
+	
+Search Function:
+	Fill in Filter Box and Click Filter Button
+	if(data has been found) show result
+		else display message
