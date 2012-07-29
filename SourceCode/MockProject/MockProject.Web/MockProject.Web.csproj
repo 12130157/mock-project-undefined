@@ -187,6 +187,20 @@
     <Compile Include="CreateProgramme.aspx.designer.cs">
       <DependentUpon>CreateProgramme.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GovernmentOfficeRegionDetail.aspx.cs">
+      <DependentUpon>GovernmentOfficeRegionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GovernmentOfficeRegionDetail.aspx.designer.cs">
+      <DependentUpon>GovernmentOfficeRegionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentOfficeRegionList.aspx.cs">
+      <DependentUpon>GovernmentOfficeRegionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GovernmentOfficeRegionList.aspx.designer.cs">
+      <DependentUpon>GovernmentOfficeRegionList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListProgramme.aspx.cs">
       <DependentUpon>ListProgramme.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,6 +237,13 @@
       <DependentUpon>MainTemplate.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ServiceDirectory.mdf">
@@ -233,11 +254,15 @@
     <Content Include="Contact.aspx" />
     <Content Include="CreateContact.aspx" />
     <Content Include="CreateProgramme.aspx" />
+    <Content Include="GovernmentOfficeRegionDetail.aspx" />
+    <Content Include="GovernmentOfficeRegionList.aspx" />
     <Content Include="ListProgramme.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="LookupAddress.aspx" />
     <Content Include="LookupTypeOfBusiness.aspx" />
     <Content Include="MainTemplate.Master" />
+    <Content Include="skins\css\StyleMemberOne.css" />
+    <Content Include="WebForm1.aspx" />
     <None Include="skins\images\forms\Thumbs.db" />
     <None Include="skins\images\login\Thumbs.db" />
     <None Include="skins\images\table\Thumbs.db" />
