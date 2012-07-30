@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockProject.Web", "MockProject.Web\MockProject.Web.csproj", "{764CC699-D8A5-4999-806A-D5F9D7935388}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockProject.Commons", "MockProject.Commons\MockProject.Commons.csproj", "{70A7E16B-9B1C-4C33-9315-666AE3EF8A64}"
