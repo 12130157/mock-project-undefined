@@ -1,9 +1,0 @@
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\bin\MockProject.Web.dll
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\bin\MockProject.Web.pdb
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\bin\MockProject.Business.dll
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\bin\MockProject.Entities.dll
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\bin\MockProject.Entities.pdb
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\bin\MockProject.Business.pdb
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\obj\Debug\MockProject.Web.dll
-C:\Documents and Settings\tai\Desktop\mock-project-undefined\SourceCode\MockProject\MockProject.Web\obj\Debug\MockProject.Web.pdb

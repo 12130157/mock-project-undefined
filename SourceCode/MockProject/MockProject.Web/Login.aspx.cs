@@ -17,5 +17,10 @@ namespace MockProject.Web
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            txtUsername.Text = "asdfsdaf";
+        }
     }
 }

@@ -237,13 +237,6 @@
       <DependentUpon>MainTemplate.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ServiceDirectory.mdf">
@@ -262,7 +255,6 @@
     <Content Include="LookupTypeOfBusiness.aspx" />
     <Content Include="MainTemplate.Master" />
     <Content Include="skins\css\StyleMemberOne.css" />
-    <Content Include="WebForm1.aspx" />
     <None Include="skins\images\forms\Thumbs.db" />
     <None Include="skins\images\login\Thumbs.db" />
     <None Include="skins\images\table\Thumbs.db" />
