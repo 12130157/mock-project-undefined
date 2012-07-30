@@ -3004,7 +3004,7 @@ label	{
 	font-size: 13px;
 	line-height: 12px;
 	margin: 0 auto;
-	width: 310px;
+	width: 314px;
 	}
 #login-inner label	{
 	color: #161616;
@@ -3133,4 +3133,4 @@ a:hover.back-login	{
 .searchBusiness
 {
 	padding-left:5px;
-}>>>>>>> .r40
+}

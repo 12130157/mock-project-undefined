@@ -87,7 +87,8 @@ $(document).pngFix( );
                         <th class="style1">
                             &nbsp;</th>
                         <td class="style2">
-                            <asp:Button ID="btnLogin" runat="server" Text="" CssClass="submit-login"/>
+                            <asp:Button ID="btnLogin" runat="server" Text="" CssClass="submit-login" 
+                                onclick="btnLogin_Click"/>
                             <!-- <input type="button" class="submit-login" /> -->
                         </td>
                     </tr>
