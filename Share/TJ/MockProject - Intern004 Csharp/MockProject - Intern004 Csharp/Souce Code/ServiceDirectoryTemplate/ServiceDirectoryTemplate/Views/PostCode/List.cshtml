@@ -1,0 +1,45 @@
+﻿ @model IEnumerable<ServiceDirectoryTemplate.Models.Address>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>List</title>
+</head>
+<body>
+    <table class="sample" width="750px">
+				<tr style="font-weight:bold;background:#d6d8db">
+					<th width="250px">Address</th>
+					<th width="180px">PostCode</th>
+					<th width="90px">Town</th>
+					<th width="110px">County</th>
+					<th>Country</th>
+				</tr>
+				
+			@foreach (var cont in Model) {
+                <tr>
+                    <td class="organisation-name">
+                        <a title="Edit Information Organisation" href="/Organisation/Edit/@cont.AddressID">
+                        @cont.Address1
+                        </a>
+                    </td>
+                    <td>
+                        @cont.PostCode
+                    </td>
+                    <td>
+                        @cont.TownID
+                    </td>
+                    <td>
+                        @cont.CountyID
+                    </td>
+                    <td>
+                        @cont.CountryID
+                    </td>
+                </tr>
+            }
+			</table>
+</body>
+</html>

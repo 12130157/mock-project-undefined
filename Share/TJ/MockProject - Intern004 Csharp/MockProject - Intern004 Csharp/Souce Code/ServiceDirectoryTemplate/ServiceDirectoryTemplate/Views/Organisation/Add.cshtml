@@ -1,0 +1,292 @@
+﻿@{
+    ViewBag.Title = "Add Organisation";
+}
+<script type="text/javascript">
+    function checkInput() {
+         var str="";
+         if (document.myform.OrgName.value == '') {
+             str += 'Please input the name organisation.';
+             $("#OrgName").css('border', '1px solid red');
+         }
+         else { $("#OrgName").css('border', '1px solid #cccccc'); }
+
+            if (document.myform.OrgShortDescription.value == '') {
+                str += 'Please input the short description.';
+                $("#OrgShortDescription").css('border', '1px solid red');
+            }
+            else { $("#OrgShortDescription").css('border', '1px solid #cccccc'); }
+
+            if (document.myform.TypeOfBusinessID.value == '') {
+                str += 'Please input the type of business.';
+                $("#TypeOfBusinessID").css('border', '1px solid red');
+            }
+            else { $("#TypeOfBusinessID").css('border', '1px solid #cccccc'); }
+
+            if (document.myform.AddressLine1.value == '') {
+                str += 'Please input the address line 1.';
+                $("#AddressLine1").css('border', '1px solid red');
+            }
+            else { $("#AddressLine1").css('border', '1px solid #cccccc'); }
+
+            if (document.myform.PhoneNumber.value == '') {
+                str += 'Please input the phone number.';
+                $("#PhoneNumber").css('border', '1px solid red');
+            }
+            else { $("#PhoneNumber").css('border', '1px solid #cccccc'); }
+
+            if (document.myform.PostCode.value == '') {
+                str += 'Please input the post code.';
+                $("#PostCode").css('border', '1px solid red');
+            }
+            else { $("#PostCode").css('border', '1px solid #cccccc'); }
+
+            if (str != '') {
+                $("#shoten").text(str);
+                smit.type = "button";
+            }
+            else {
+                $("#shoten").text('');
+                smit.type = "submit";
+            }
+        }
+$(document).ready(function () {
+    $("#myform").submit(function (e) {
+            var form=this;
+            if ($(this).valid()) {
+                if (form.pendding.value == 1)
+                    return false;
+                var Address1 = form.AddressLine1.value;
+                var PostCode = form.PostCode.value;
+                var Town = form.CityTown.value;
+                var County = form.County.value;
+                var CountryID = form.CountryID.value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Address/AddressIsNew",
+                    data: ({ Address1: Address1, PostCode: PostCode, Town: Town, County: County, CountryID: CountryID }),
+                    success: function (data) {
+                        form.pendding.value=1;
+                        if (data == "true") {
+                            var re = confirm("Address Details cannot be confirmed\nDo you wish to enter Unconfirmed Address Data");
+                            if (re == true) {
+                                form.submit();
+                            } else {
+                                form.AddressLine1.value = "";
+                                form.PostCode.value = "";
+                                form.CityTown.value = "";
+                                form.County.value = "";
+                                form.CountryID.selectedIndex = 0;
+                                form.AddressLine1.focus();
+                            }
+                        }
+                        else {
+                            form.submit();
+                        }
+                        form.pendding.value=0;
+                    }
+                });
+            }
+            return false;
+        });
+    $("#myform").validate({
+        errorLabelContainer: $("#myform div.error"),
+        rules: {
+            OrgName: { required: true, maxlength: 100, remote: { url: "/Organisation/CheckUnique" }  },
+            OrgShortDescription: { required: true, maxlength: 100 },
+            TypeOfBusinessID: { required: true },
+            PostCode: { required: true },
+            AddressLine1: { required: true },
+            PhoneNumber: { required: true }
+        },
+        messages: {
+            OrgName: {
+                required: "Please input the Organisation Name",
+                maxlength: "Organisation Name is too long",
+                remote: "Please input other Organisation Name (the cause is duplicate)"
+            },
+            OrgShortDescription: {
+                required: "Please input the Short Description",
+                maxlength: "Short Description is too long"
+            },
+            TypeOfBusinessID: { required: "Please choose the Bussiness Type" },
+            PostCode: { required: "Please input the PostCode" },
+            AddressLine1: { required: "Please input the Address Line" },
+            PhoneNumber: { required: "Please input the Phone Number" }
+        }
+    });
+});
+</script>
+
+<form action="/Organisation/Create" method="post" name="myform" id="myform">
+<input type="hidden" name="pendding" value="0" />
+<div class="container-right">
+	<div class="table-content">
+		<p style="color:#69a017;font-size:large;margin-bottom:10px">Organisation Details</p>
+		<p>
+			
+		<span style="float:right;margin-right:10px">
+		<input type="submit" value="Save"  id="smit" /> 
+		<a href="/Organisation/List" title="List Organisation Screen"><input type="button" value="Back" /> </a>
+
+		</span>
+			
+		</p>
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Details 1</a></li>
+			<li><a href="#tabs-2">Details 2</a></li>
+			<li><a href="#tabs-3">Details 3</a></li>
+				
+		</ul>
+		<div id="tabs-1">
+        <table class="table-only-border-out" width="750px">
+			<tr>
+				<td width="140px">Organisation Name<span style="color:red">*</span></td>
+				<td width="230px"><input id="OrgName" class="standar-textbox" type="text" name="OrgName" /></td>
+				<td width="140px">Preferred Organisation</td>
+				<td width="230px"><input type="checkbox" name="PreferredOrg" /></td>
+			</tr>
+				
+			<tr>
+				<td rowspan="2">Organisation Short Description &nbsp;<span style="color:red">*</span></td>
+				<td rowspan="2"><textarea id="OrgShortDescription" class="standar-textarea" name="OrgShortDescription"></textarea></td>
+				
+			<td>Expression of Interest</td> 
+			<td><input type="checkbox"/></td>
+			</tr>
+				
+			<tr>
+				<td>Type of Business<span style="color:red">*</span></td> 
+				<td><input id="TypeOfBusinessID" class="lookup-textbox" type="text" readonly="readonly" name="TypeOfBusinessID" value="" /><a onclick="SICLookUp('TypeOfBusinessID', 'SICCode')" class="link" style="color:Blue">Lookup</a></td> 
+			</tr>
+				
+			<tr>
+				<td>Lead Contact</td>
+				<td><input type="hidden" name="ContactID" /><input class="lookup-textbox" type="text" name="ContactName" readonly="readonly"/> <a onclick="AddrLookUp('myform', 'ContactID', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+				<td>SIC Code</td>
+				<td><input class="short-textbox" readonly="readonly" name="SICCode" /></td>
+			</tr>
+				
+				
+				
+				
+			<tr>
+				<td>
+					Address Line 1 &nbsp;<span style="color:red">*</span>
+				</td>
+				<td>
+					<input id="AddressLine1" class="standar-textbox"  type="text" name="AddressLine1" />
+				</td>
+					
+				<td rowspan="2">
+					Organisation Full Description
+				</td>
+				<td rowspan="2">
+					<textarea class="standar-textarea" name="OrgFullDescription"></textarea>
+				</td>
+					
+			</tr>
+						
+			<tr>
+				<td>
+					Address Line 2
+				</td>
+				<td>
+					<input class="standar-textbox"  type="text" name="AddressLine2" />
+				</td>
+					
+			</tr>	
+				
+			<tr>
+				<td>Address Line 3</td>
+				<td><input class="standar-textbox"  type="text" name="AddressLine3" /> </td>
+				<td>Phone Number &nbsp;<span style="color:red">*</span></td>
+				<td><input id="PhoneNumber" class="standar-textbox"   type="text" name="PhoneNumber" /></td>
+			</tr>		
+				
+			<tr>
+				<td>Postcode &nbsp;<span style="color:red">*</span></td>
+				<td><input id="PostCode" type="text" name="PostCode" /> <a onclick="PostCodeLookUp('PostCode','AddressLine1','CityTown','County','CountryID')" class="link" style="color:Blue">Lookup</a></td>
+				<td>Fax</td>
+				<td><input class="standar-textbox"   type="text" name="Fax" /></td>
+			</tr>
+			<tr>
+				<td>City/Town</td>
+				<td><input class="standar-textbox"  type="text" name="CityTown" /> </td>
+				<td>Email</td>
+				<td><input class="standar-textbox"   type="text" name="Email" /></td>
+			</tr>	
+			<tr>
+				<td>County</td>
+				<td><input class="standar-textbox"  type="text" name="County" /> </td>
+				<td>Web Address</td>
+				<td><input class="standar-textbox"   type="text" name="WebAddress" /></td>
+			</tr>	
+			<tr>
+				<td>Nation/Country</td>
+				<td>
+                    <select class="standar-dropdown" name="CountryID">
+                    <option></option>
+                    @foreach (var country in ViewBag.ListCountry)
+                    {
+                            <option value="@country.CountryID">@country.CountryName</option>
+                    }
+                    </select>
+                </td>
+				<td>Charity Number</td>
+				<td><input class="standar-textbox"   type="text" name="CharityNumber" /></td>
+			</tr>	
+				
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp; </td>
+				<td>Company Number</td>
+				<td><input class="standar-textbox"   type="text" name="CompanyNumber" /></td>
+			</tr>	
+				
+		</table>
+        </div>
+		<div id="tabs-2"><table class="table-only-border-out" width="750px">
+        @{ Html.RenderAction("GetHtml", "RefData", new { strFrom = "OrganisationDetail2", refChecked = ViewBag.RefChecked });  }
+			
+		</table></div>
+		<div id="tabs-3"><table class="table-only-border-out" width="750px">
+			<tr>
+				<td width="130px">EOI Programmes</td>
+				<td width="240px">
+					<div class="scroll">
+                    @foreach (var pro in ViewBag.ListProgramme)
+                    {
+                        <p><input name="EOIProgramme[]" type="checkbox" value="@pro.ProID" />@pro.ProName</p>
+                    }
+					</div>
+				</td>
+				<td width="130px">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+				
+				
+			<tr>
+				<td width="130px">EOI Service</td>
+				<td width="240px">
+					<div class="scroll">
+					@foreach (var ser in ViewBag.ListService)
+                    {
+                        <p><input name="EOIService[]" type="checkbox" value="@ser.SerID" />@ser.SerName</p>
+                    }
+					</div>
+				</td>
+				<td width="130px">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+        </div>
+
+        <div class="error"></div>
+	</div>
+
+    <span id="shoten" style="color:red"></span>
+			
+	</div>
+</div>
+    </form>

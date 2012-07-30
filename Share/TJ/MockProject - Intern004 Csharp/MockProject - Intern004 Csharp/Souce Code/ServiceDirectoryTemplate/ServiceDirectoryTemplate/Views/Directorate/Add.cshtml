@@ -1,0 +1,202 @@
+﻿@{
+    //Layout = null;
+}
+@{
+    ViewBag.Title = "Add Directorate";
+}
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#AddDirectorate").submit(function (e) {
+            var form=this;
+            if ($(this).valid()) {
+                if (form.pendding.value == 1)
+                    return false;
+                var Address1 = form.AddressLine1.value;
+                var PostCode = form.PostCode.value;
+                var Town = form.CityTown.value;
+                var County = form.County.value;
+                var CountryID = form.CountryID.value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Address/AddressIsNew",
+                    data: ({ Address1: Address1, PostCode: PostCode, Town: Town, County: County, CountryID: CountryID }),
+                    success: function (data) {
+                        form.pendding.value=1;
+                        if (data == "true") {
+                            var re = confirm("Address Details cannot be confirmed\nDo you wish to enter Unconfirmed Address Data");
+                            if (re == true) {
+                                form.submit();
+                            } else {
+                                form.AddressLine1.value = "";
+                                form.PostCode.value = "";
+                                form.CityTown.value = "";
+                                form.County.value = "";
+                                form.CountryID.selectedIndex = 0;
+                                form.AddressLine1.focus();
+                            }
+                        }
+                        else {
+                            form.submit();
+                        }
+                        form.pendding.value=0;
+                    }
+                });
+            }
+            return false;
+        });
+    $("#AddDirectorate").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            DirName: { required: true, maxlength: 100, remote: { url: "/Directorate/CheckUnique" } },
+            DirShortDescription: { maxlength: 100 },
+            TypeOfBusinessID: { required: true },
+            AddressLine1: { required: true },
+            PhoneNumber: { required: true }
+        },
+        messages: {
+            DirName: {
+                required: "Please input the Directorate Name",
+                maxlength: "Directorate Name is too long",
+                remote: "Please input other Directorate Name (the cause is duplicate)"
+            },
+            DirShortDescription: {
+                maxlength: "Short Description is too long"
+            },
+            TypeOfBusinessID: { required: "Please choose the Bussiness Type" },
+            AddressLine1: { required: "Please input the Address Line" }
+        }
+    });
+});
+function ChangeAddr() {
+    document.AddDirectorate.CopyAddr.checked=false;
+}
+function CopyAddrFromOrg() {
+    if (document.AddDirectorate.CopyAddr.checked == true) {
+        document.AddDirectorate.AddressLine1.value = document.AddDirectorate.OrgAddr1.value;
+        document.AddDirectorate.AddressLine2.value = document.AddDirectorate.OrgAddr2.value;
+        document.AddDirectorate.AddressLine3.value = document.AddDirectorate.OrgAddr3.value;
+        document.AddDirectorate.PostCode.value = document.AddDirectorate.OrgCode.value;
+        document.AddDirectorate.CityTown.value = document.AddDirectorate.OrgTown.value;
+        document.AddDirectorate.County.value = document.AddDirectorate.OrgCounty.value;
+        for (var i = 0; i < document.AddDirectorate.CountryID.length; i++) {
+            if (document.AddDirectorate.CountryID[i].value == document.AddDirectorate.OrgCountry.value)
+                document.AddDirectorate.CountryID[i].selected = true;
+        }
+    }
+}
+	</script>
+<form action="/Directorate/Create/@ViewBag.OrgID" name="AddDirectorate" id="AddDirectorate" method="post">
+<input type="hidden" name="pendding" value="0" />
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="">Organisation &gt;</a></p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Business Unit/Directorate Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+			<input type="submit" value="Save" /> 
+			<a title="Return to amend Organisation" href="/Organisation/Amend/@ViewBag.OrgID#tabs-6"><input type="button" value="Back" /></a> 
+			</span>
+			
+			</p>
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1"><table class="table-only-border-out" width="750px">
+				<tr>
+					<td width="140px">BU/Directorate Name &nbsp;<span style="color:red">*</span></td>
+					<td width="230px"><input class="standar-textbox" type="text" name="DirName" /></td>
+					<td width="140px">Type of Business<span style="color:red">*</span></td>
+					<td width="230px"><input class="lookup-textbox" type="text" name="TypeOfBusinessID" readonly="readonly" /> <a onclick="SICLookUp('TypeOfBusinessID', 'SICCode')" class="link" style="color:Blue">Lookup</a></td>
+				</tr>
+				
+				<tr>
+					<td>BU/Directorate Short Description</td>
+					<td><textarea class="standar-textarea" name="DirShortDescription"></textarea></td>
+					<td>SIC Code</td>
+					<td><input class="short-textbox" type="text" name="SICCode" readonly="readonly"</td>
+				</tr>
+				
+				<tr>
+					<td>Lead Contact</td>
+					<td><input type="hidden" name="ContactID" value="" /><input class="lookup-textbox" type="text" name="ContactName" readonly="readonly" /> <a onclick="AddrLookUp('AddDirectorate', 'ContactID', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+					<td>BU/Directorate Full Discription</td>
+					<td><textarea class="standar-textarea" name="DirFullDescription"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+                    <input type="hidden" name="OrgAddr1" value="@ViewBag.OrgAddr1" />
+                    <input type="hidden" name="OrgAddr2" value="@ViewBag.OrgAddr2" />
+                    <input type="hidden" name="OrgAddr3" value="@ViewBag.OrgAddr3" />
+                    <input type="hidden" name="OrgCode" value="@ViewBag.OrgCode" />
+                    <input type="hidden" name="OrgTown" value="@ViewBag.OrgTown" />
+                    <input type="hidden" name="OrgCounty" value="@ViewBag.OrgCounty" />
+                    <input type="hidden" name="OrgCountry" value="@ViewBag.OrgCountry" />
+                    <input type="checkbox" name="CopyAddr" onchange="CopyAddrFromOrg()" /> Copy Address from Organisation</td>
+					<td>Phone Number &nbsp;<span style="color:red">*</span></td>
+					<td><input class="standar-textbox" type="text" name="PhoneNumber" /></td>
+				</tr>
+				
+				<tr>
+					<td>Address Line 1</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine1" onchange="ChangeAddr()" /></td>
+					<td>Fax</td>
+					<td><input class="standar-textbox" type="text" name="Fax" /></td>
+				</tr>
+				<tr>
+					<td>Address Line 2</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine2" onchange="ChangeAddr()" /></td>
+					<td>Email</td>
+					<td><input class="standar-textbox" type="text" name="Email" /></td>
+				</tr>
+				
+				<tr>
+					<td>Address Line 3</td>
+					<td><input class="standar-textbox" type="text" name="AddressLine3" onchange="ChangeAddr()" /></td>
+					<td>Web Address</td>
+					<td><input class="standar-textbox" type="text" name="WebAdress" /></td>
+				</tr>
+				
+				<tr>
+					<td>Postcode</td>
+					<td><input type="text" name="PostCode" /><a onclick="PostCodeLookUp('PostCode','AddressLine1','CityTown','County','CountryID','ChangeAddr')" class="link" onchange="ChangeAddr()" style="color:Blue">Lookup</a></td>
+					<td>Charity Number</td>
+					<td><input class="standar-textbox" type="text" name="CharityNumber" /></td>
+				</tr>
+				<tr>
+					<td>Town/Village/City</td>
+					<td><input class="standar-textbox" type="text" name="CityTown" onchange="ChangeAddr()" /></td>
+					<td>Company Number</td>
+					<td><input class="standar-textbox" type="text" name="CompanyNumber" /></td>
+				</tr>
+				<tr>
+					<td>Country</td>
+					<td><input class="standar-textbox" type="text" name="County" onchange="ChangeAddr()" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				<tr>
+					<td>Nation/Country</td>
+					<td>
+                        <select class="standar-dropdown" onchange="ChangeAddr()" name="CountryID">
+                        <option></option>
+                        @foreach (var country in Model)
+                        {
+                                <option value="@country.CountryID">@country.CountryName</option>
+                        }
+                        </select>
+                    </td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				
+			</table></div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+    </form>

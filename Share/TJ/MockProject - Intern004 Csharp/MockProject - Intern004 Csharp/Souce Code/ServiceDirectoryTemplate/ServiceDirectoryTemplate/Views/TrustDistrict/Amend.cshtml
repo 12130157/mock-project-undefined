@@ -1,0 +1,70 @@
+﻿@model ServiceDirectoryTemplate.Models.TrustDistrict
+@{
+    ViewBag.Title = "Amend Trust District";
+}
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#myform").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            Name: { required: true, maxlength: 100, remote: { url: "/TrustDistrict/CheckUnique1/@Model.TrustDistrictID?TrustRegionID=@Model.TrustRegionID" } }
+        },
+        messages: {
+            Name: {
+                required: "Please input the Trust District Name",
+                maxlength: "Trust District Name is too long",
+                remote: "Please input other Trust District Name (the cause is duplicate)"
+            }
+        }
+    });
+});
+	</script>
+<form action="/TrustDistrict/Update" method="post" name="myform" id="myform">
+<input type="hidden" name="TrustDistrictID" value="@Html.DisplayFor(model => model.TrustDistrictID)" />
+<div class="container-right">
+		<div class="table-content">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Trust District Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+    <input type="button" onclick="window.location='/TrustDistrict/MarkInactivate/@Model.TrustDistrictID'" value="In-activate" />
+			<input type="submit" value="Save" /> 
+			<a href="/TrustRegion/Amend/@Model.TrustRegionID#tabs-2"><input type="button" value="Back" /></a> 
+			</span>
+			
+			</p>
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+            <table class="table-only-border-out" width="750px">
+             <tr>
+				<td>Trust Region Name</td>
+				<td width="230px"><input value="@Model.TrustRegion.TrustRegionName" readonly="readonly" class="standar-textbox" type="text" name="TrustRegionName" /></td>
+				<td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>	
+			<tr>
+				<td width="140px">Trust District Name <span style="color:red">*</span></td>
+				<td width="230px"><input class="standar-textbox" type="text" name="Name" value="@Html.DisplayFor(model => model.TrustDistrictName)" /></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+			<tr>
+				<td>Description</td>
+				<td><textarea class="standar-textarea" name="Description">@Html.DisplayFor(model => model.TrustDistrictDescription)</textarea></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+				
+				
+		</table>
+            </div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+</form>

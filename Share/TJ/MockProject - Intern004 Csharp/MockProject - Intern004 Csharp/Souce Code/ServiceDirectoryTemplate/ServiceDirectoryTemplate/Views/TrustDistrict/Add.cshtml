@@ -1,0 +1,72 @@
+﻿@model ServiceDirectoryTemplate.Models.TrustRegion
+@{
+    //Layout = null;
+    ViewBag.Title = "Add Team";
+}
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#myform").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            Name: { required: true, maxlength: 100, remote: { url: "/TrustDistrict/CheckUnique/@Model.TrustRegionID" } }
+        },
+        messages: {
+            Name: {
+                required: "Please input the Trust District Name",
+                maxlength: "Trust District Name is too long",
+                remote: "Please input other Trust District Name (the cause is duplicate)"
+            }
+        }
+    });
+});
+	</script>
+<form action="/TrustDistrict/Create" method="post" name="myform" id="myform">
+<div class="container-right">
+		<div class="table-content">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Trust District Details</p>
+			<p>
+			
+			<span style="float:right;margin-right:10px">
+			<input type="submit" value="Save" /> 
+			<a href="/TrustRegion/Amend/@Model.TrustRegionID#tabs-2"><input type="button" value="Back" /></a> 
+			</span>
+			
+			</p>
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+            <table class="table-only-border-out" width="750px">
+             <tr>
+				<td>Trust Region Name</td>
+				<td width="230px">
+                <input type="hidden" name="TrustRegionId" value="@Model.TrustRegionID" />
+                <input class="standar-textbox" readonly="readonly" type="text" name="TrustRegionName" value="@Model.TrustRegionName" /></td>
+				<td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>	
+			<tr>
+				<td width="140px">Trust District Name <span style="color:red">*</span></td>
+				<td width="230px"><input class="standar-textbox" type="text" name="Name" /></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+			<tr>
+				<td>Description</td>
+				<td><textarea class="standar-textarea" name="Description"></textarea></td>
+                <td width="140px"> </td>
+                <td width="230px"> </td>
+			</tr>
+				
+				
+				
+		</table>
+            </div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+</form>

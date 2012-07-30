@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.TrustDistrict>
+           <script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-district").tablesorter({widgets: ['zebra']});
+});
+function FilterDistric(str) {
+    document.pagingDistrict.filter.value = str;
+    AjaxPaging('/TrustRegion/ListDistrict/@ViewBag.RegionId','#tabs-2',document.pagingDistrict,document.pagingDistrict.page.value);
+}
+function ActivateDistrict(DistrictID) {
+    var re = confirm("Do you want to make this District active?");
+    if (re) {
+        $.ajax({
+            url: "/TrustDistrict/MarkActivate",
+            type: "GET",
+            data: ({ id: DistrictID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/TrustRegion/ListDistrict/@ViewBag.RegionId', '#tabs-2', document.pagingDistrict, document.pagingDistrict.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+<p style="color: rgb(105, 160, 23); font-size: medium; margin-bottom: 10px;">Trust District List</p>
+<p>
+<span style="font-size:10px">
+			<a href="javascript:FilterDistric('all')">All</a> | <a href="javascript:FilterDistric('0-9')">0-9</a> | <a href="javascript:FilterDistric('abcde')">A B C D E </a>
+		| <a href="javascript:FilterDistric('fghij')">F G H I J</a> | <a href="javascript:FilterDistric('klmn')">K L M N</a> | <a href="javascript:FilterDistric('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterDistric('stuv')">S T U V</a> | <a href="javascript:FilterDistric('wxyz')">W X Y Z</a>
+			</span>
+<span style="float:right;margin-right:10px">
+<a href="/TrustDistrict/Add/@ViewBag.RegionId"><input type="button" value="Create" /></a> <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.pagingDistrict.include.value=this.checked;AjaxPaging('/TrustRegion/ListDistrict/@ViewBag.RegionId','#tabs-2',document.pagingDistrict,document.pagingDistrict.page.value);" /> Include In-active</span>
+			
+</p>
+<table id="table-district" class="sample" width="740px">
+<thead>
+	<tr style="font-weight:bold;background:#d6d8db">
+		<th width="230px">District Name</th>
+		<th width="180px">Description</th>
+		<th width="90px">Region</th>
+		<th width="110px">Is Active?</th>
+	</tr>
+    </thead>
+    <tbody>
+    @foreach (var trustDistrict in Model)
+                    { 
+                    <tr>
+                    <td class="organisation-name">
+                        <a href="@(trustDistrict.TrustDistrictIsActive == 1 ? "/TrustDistrict/Amend/" + trustDistrict.TrustDistrictID : "javascript:ActivateDistrict('" + trustDistrict.TrustDistrictID + "')")" >@trustDistrict.TrustDistrictName</a>
+                    </td>
+                    <td>@trustDistrict.TrustDistrictDescription</td>
+                    <td>@trustDistrict.TrustRegion.TrustRegionName</td>
+                    <td>@(trustDistrict.TrustDistrictIsActive==1?"Yes":"No")</td>
+                </tr>
+                             
+                    }
+</tbody>
+</table>
+@{ Html.RenderAction("PagingHtml", "RefData", new {
+       urlRequest = "/TrustRegion/ListDistrict/" + ViewBag.RegionId,
+       tagContainer = "#tabs-2",
+         formName = "pagingDistrict",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.GovOfficeRegion>
+@{
+    ViewBag.Title = "List Organisation";
+}
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-gov").tablesorter({widgets: ['zebra']});
+});
+function FilterGov(str) {
+    document.paging.filter.value = str;
+    AjaxPaging('/Goverment/List','.container-body',document.paging,document.paging.page.value);
+}
+function ActivateGov(OrgID) {
+    var re = confirm("Do you want to make this Organisation active?");
+    if (re) {
+        $.ajax({
+            url: "/Goverment/MarkActivate",
+            type: "GET",
+            data: ({ id: OrgID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/Goverment/List', '.container-body', document.paging, document.paging.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+<div class="container-right">
+		<div class="table-content">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px">Government Office Region List</p>
+			<p>
+			<span style="font-size:10px">
+			<a href="javascript:FilterGov('all')">All</a> | <a href="javascript:FilterGov('0-9')">0-9</a> | <a href="javascript:FilterGov('abcde')">A B C D E </a>
+		| <a href="javascript:FilterGov('fghij')">F G H I J</a> | <a href="javascript:FilterGov('klmn')">K L M N</a> | <a href="javascript:FilterGov('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterGov('stuv')">S T U V</a> | <a href="javascript:FilterGov('wxyz')">W X Y Z</a>
+			</span>
+			<span style="float:right;margin-right:10px"> <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.paging.include.value=this.checked;AjaxPaging('/Goverment/List','.container-body',document.paging,document.paging.page.value);" />  Include In-active</span>
+			
+			</p>
+			
+			<table class="sample" id="table-gov" width="750px">
+            <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+					<th width="250px">Govt Office Region Name</th>
+					<th width="180px">Description</th>
+					<th width="90px">County</th>
+					<th width="110px">Is Active?</th>
+				</tr>
+            </thead>
+            <tbody>
+				@foreach (var org in Model) {
+                <tr>
+                    <td class="organisation-name" title="Edit Informa">
+                        <a title="Edit Information Organisation" href="/Goverment/Edit/@org.GovOfficeRegionID">@org.GovOfficeRegionName</a>
+                    </td>
+                    <td>@org.GovOfficeRegionDescription</td>
+                    <td> </td>
+                    <td>@(org.GovIsActivate==1?"Yes":"No")</td>
+                </tr>
+            }
+			</tbody>
+			</table>
+			
+			@{ Html.RenderAction("PagingHtml", "RefData", new {
+          urlRequest = "/Goverment/List",
+         tagContainer = ".container-body",
+         formName="paging",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+		</div>
+	</div>

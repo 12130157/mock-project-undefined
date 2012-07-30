@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Look Up Address";
+    Layout = "~/Views/Shared/LayOutNull.cshtml";
+}
+@model IEnumerable<ServiceDirectoryTemplate.Models.AddressLookUp>
+<script type="text/javascript" language="javascript">
+$(function () {
+    $('#tabs').tabs();
+    $("#table-premise").tablesorter({ widgets: ['zebra'] });
+});
+function FilterAddress(str) {
+    document.pagingAddress.filter.value = str;
+    AjaxPaging('/Service/NewPremiseLink/@ViewBag.SerID','.container-body',document.pagingAddress,document.pagingAddress.page.value);
+}
+function LookUp(IdTag, NameTag) {
+    var index = GetSelected(document.Contact.index);
+    //var id = document.Contact.id;
+    //var name = document.Contact.name;
+    var id = document.getElementsByName('id');
+    var name = document.getElementsByName('name');
+    var idvar = GetIndexValue(id, index);
+    var namevar = GetIndexValue(name, index);
+    if (idvar != undefined || idvar != "") {
+        IdTag.value = idvar;
+        NameTag.value = namevar;
+        window.close();
+    }
+    else {
+        alert("Please choose the Contact");
+    }
+    
+    //opener.document.AddService.ClientDescription.value="test";
+}
+function GetIndexValue(obj, index) {
+    if (index == undefined || obj == undefined) return "";
+    var length = obj.length;
+    if (length == undefined)
+        return obj.value;
+	for(var i = 0; i < length; i++) {
+		return obj[i].value;
+    }
+	return "";
+}
+function Activate(isActivate, ContactID) {
+    if(isActivate==false)
+        ActivateContact(ContactID);
+}
+function ActivateContact(ContactID) {
+    var re = confirm("Do you want to make this Contact active?");
+    if (re) {
+        $.ajax({
+            url: "/Contact/MarkActivate",
+            type: "GET",
+            data: ({ id: ContactID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/RefData/LookupAddr?FormName=@ViewBag.FormName&IdTag=@ViewBag.IdTag&NameTag=@ViewBag.NameTag', '.container-body', document.pagingAddress, document.pagingAddress.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+    <div class="table-content" style="width:750px;">
+		<p style="text-align:left"><a href="">Address Look Up</a></p>
+		<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Address Look Up</p>
+        
+<form action="#" method="post" name="Contact" id="Contact" enctype="multipart/form-data">
+<span style="font-size:10px">
+		<a href="javascript:FilterAddress('all')">All</a> | <a href="javascript:FilterAddress('0-9')">0-9</a> | <a href="javascript:FilterAddress('abcde')">A B C D E </a>
+		| <a href="javascript:FilterAddress('fghij')">F G H I J</a> | <a href="javascript:FilterAddress('klmn')">K L M N</a> | <a href="javascript:FilterAddress('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterAddress('stuv')">S T U V</a> | <a href="javascript:FilterAddress('wxyz')">W X Y Z</a>
+		</span><br />
+        <input type="checkbox" id="isactive" value="true" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.pagingAddress.include.value=this.checked;AjaxPaging('/RefData/LookupAddr?FormName=@ViewBag.FormName&IdTag=@ViewBag.IdTag&NameTag=@ViewBag.NameTag','.container-body',document.pagingAddress,document.pagingAddress.page.value);" />Include in-active contact?
+<table class="sample" id="table-premise" width="750px">
+<thead>
+<tr style="font-weight:bold;background:#d6d8db">
+    <td>&nbsp;</td>
+	<th>First name</th>
+	<th>Surname</th>
+	<th>Contact Type</th>
+    <td>Job Title</dt>
+</tr>
+</thead>
+
+<tbody>
+@{var count = 0;}
+@foreach (var item in Model)
+{
+	<tr>
+        <td><input type="radio" name="index" value="@count" onclick="Activate(@(item.ContactIsActive == 1 ? "true" : "false"),'@item.ContactID')" /><input type="hidden" name="id" value="@item.ContactID" /></td>
+        <td><input type="hidden" name="name" value="@item.FirstName" /><a href="@(item.ContactIsActive == 1 ? "#": "javascript:ActivateContact('" + @item.ContactID + "')")">@item.FirstName</a></td>
+        <td>@item.Surname</td>
+        <td>@item.ContactType</td>
+        <td>@item.JobTitle</td>
+    </tr>
+    count++;
+}
+
+</tbody>
+</table>
+</form>
+@{Html.RenderAction("PagingHtml", "RefData", new
+  {
+      urlRequest = "/RefData/LookupAddr?FormName=" + ViewBag.FormName + "&IdTag=" + ViewBag.IdTag + "&NameTag=" + ViewBag.NameTag,
+      tagContainer = ".container-body",
+      formName = "pagingAddress",
+      page = ViewBag.Page,
+      totalPage = ViewBag.TotalPage,
+      filter = ViewBag.Filter,
+      include = ViewBag.Include
+  }
+  );
+}
+<p><span style="float:right;"><input style="width:70px" type="button" onclick="LookUp(opener.document.@ViewBag.FormName.@ViewBag.IdTag,opener.document.@ViewBag.FormName.@ViewBag.NameTag)" value="Ok" /><input style="width:70px" type="button" onclick="window.close()" value="Cancel" /></span><div style="clear:both"></div></p>
+        </div>

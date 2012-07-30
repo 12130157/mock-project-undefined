@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/LayOutNull.cshtml";
+    ViewBag.Title = "Add new Premise Link to Service";
+}
+@model IEnumerable<ServiceDirectoryTemplate.Models.Premise>
+
+<script type="text/javascript" language="javascript">
+$(function () {
+    $('#tabs').tabs();
+    $("#table-premise").tablesorter({ widgets: ['zebra'] });
+});
+function FilterPremise(str) {
+    document.pagingPremise.filter.value = str;
+    AjaxPaging('/Service/NewPremiseLink/@ViewBag.SerID','.container-body',document.pagingPremise,document.pagingPremise.page.value);
+}
+</script>
+<a>/Service/NewPremiseLink/@ViewBag.SerID</a>
+    <div class="table-content" style="width:750px;">
+		<p style="text-align:left"><a href="">Service &gt; New Premise Link</a></p>
+		<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">New Link to Service</p>
+		
+		<div id="tabs" style="width:750px">
+			<ul>
+				<li><a href="#tabs-1">New Link to Service</a></li>
+			</ul>
+        </div>
+        <div id="tabs-1" style="width:750px">
+<form action="/Service/AddPremiseLink/@ViewBag.SerID" method="post" name="NewLink" id="NewLink" enctype="multipart/form-data">
+<span style="font-size:10px">
+		<a href="javascript:FilterPremise('all')">All</a> | <a href="javascript:FilterPremise('0-9')">0-9</a> | <a href="javascript:FilterPremise('abcde')">A B C D E </a>
+		| <a href="javascript:FilterPremise('fghij')">F G H I J</a> | <a href="javascript:FilterPremise('klmn')">K L M N</a> | <a href="javascript:FilterPremise('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterPremise('stuv')">S T U V</a> | <a href="javascript:FilterPremise('wxyz')">W X Y Z</a>
+		</span>
+<table class="sample" id="table-premise" width="750px">
+<thead>
+<tr style="font-weight:bold;background:#d6d8db">
+    <td>&nbsp;</td>
+	<th>Premise name</th>
+	<th>Address</th>
+	<th>Phone Number</th>
+</tr>
+</thead>
+
+<tbody>
+@foreach (var item in Model)
+{
+	<tr>
+        <td><input type="checkbox" name="id[]" value="@item.PremiseID" /></td>
+        <td><a style="color:Blue;">@item.LocationName</a></td>
+        <td>@item.PremiseAddr1</td>
+        <td>@item.PremisePhone</td>
+    </tr>
+}
+
+</tbody>
+</table>
+</form>
+@{Html.RenderAction("PagingHtml", "RefData", new
+  {
+      urlRequest = "/Service/NewPremiseLink/" + ViewBag.SerID,
+      tagContainer = ".container-body",
+      formName = "pagingPremise",
+      page = ViewBag.Page,
+      totalPage = ViewBag.TotalPage,
+      filter = ViewBag.Filter,
+      include = 0
+  }
+  );
+}
+<p><span style="float:right;"><input style="width:70px" type="button" onclick="document.NewLink.submit()" value="Ok" /><input style="width:70px" type="button" onclick="window.close()" value="Cancel" /></span><div style="clear:both"></div></p>
+        </div>
+    </div>
