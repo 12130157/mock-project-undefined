@@ -1,0 +1,63 @@
+/*CSS for page Login*/
+body
+{
+   background:#f3f3f3; 
+    }
+a
+{
+  text-decoration:none; 
+    }
+.login-wrapper
+{
+    margin:auto;
+    width:500px;
+    height:300px;
+    border:1px solid #cccccc;
+    margin-top:100px;
+    padding:10px;
+    background:white;
+    }
+.logo-login
+{
+    text-align:center;
+    }
+.welcome-login
+{
+    font-weight:bold;
+    color:Red;
+    padding-left:100px;
+    }
+.button
+{
+ padding:4px; 
+ font-weight:bold;
+}
+.text-box
+{
+      width:200px;
+      height:24px;
+      border:1px solid #cccccc;
+      padding:3px;
+    }
+.table
+{
+    width:500px;
+    padding-left:80px;
+    padding-right:50px;
+}
+div.error{
+}
+label.error{
+	color: red;
+	display: block;
+	width: auto;
+}
+input.error, textarea.error{
+	border:1px solid red;
+	background-image:url(../Content/images/redcon.png);
+	background-repeat: no-repeat;
+	background-position:top right;
+}
+select.error{
+	border:1px solid red;
+}

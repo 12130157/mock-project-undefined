@@ -1,0 +1,192 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="SD.Web.Shares.Site1" %>
+
+<%@ Register TagPrefix="cc1" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=3.5.50927.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <link href="../Css/Stylesheet1.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="../Scripts/jquery-1.2.6.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        p.MsoTitle
+        {
+            margin-bottom: .0001pt;
+            text-align: center;
+            font-size: 18.0pt;
+            font-family: "Arial" , "sans-serif";
+            font-weight: bold;
+            margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <cc1:ToolkitScriptManager runat="server" ID="ScriptManager1" />
+    <div id="wrapper">
+        <div id="headerwrapper">
+            <%-- <div id="header">
+               <a class="logo" href="/">
+                    <img src="/Image/logo.png" /></a></div>
+            <div id="headerRight">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <a class="logo" href="/">
+                            <img src="/Image/user.png" /></a>
+                        </td>
+                         <td rowspan="2">
+                            Welcome:<asp:Label runat="server" ID="lbluser" Text="Guest"></asp:Label>
+                            <br />
+                            <asp:LinkButton runat="server" ID="lbtnOut" Text="Logout" OnClick="lbtnOut_Click"></asp:LinkButton>
+                        </td>
+                    </tr>
+                </table>   
+            </div>--%>
+            <!-- End header-->
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td style="width: 50%">
+                    <div id="HeaderLeft">
+                            <a class="logo" href="/">
+                                <img src="/Image/logo.png" /></a></div>
+                    </td>
+                    <td style="width: 20%"></td>
+                    <td>
+                    <div>
+                        <table>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a class="logo" href="/">
+                                        <img src="/Image/user.png" /></a>
+                                </td>
+                                <td>
+                                    <asp:Label runat="server" ID="lbluser" Text="Guest" CssClass="UserSession"></asp:Label>
+                                    <br />
+                                    <asp:LinkButton runat="server" CssClass="logout" ID="lbtnOut" Text="Logout" OnClick="LbtnOutClick"></asp:LinkButton>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- End headerwrapper-->
+        <div id="contentwrapper">
+            <table style="height: 100%;">
+                <tr>
+                    <td width="204" valign="top" style="height: 100%;">
+                        <div id="danhsach">
+                            <cc1:Accordion ID="accordionMenu" HeaderCssClass="divframeHead" HeaderSelectedCssClass="divframeHeadSelected"
+                                FadeTransitions="true" runat="server" AutoSize="None" Width="200px" Height="500px"
+                                SuppressHeaderPostbacks="True" ContentCssClass="accoditionContent">
+                                <Panes>
+                                    <cc1:AccordionPane ID="AccordionPane4" runat="server" >
+                                        <Header>
+                                            <a href="/Views/Organisation/ListOrganisation.aspx">Organisation</a>
+                                        </Header>
+                                        <Content>
+                                            <a href="/Views/Organisation/ListOrganisation.aspx">Organisation Maintenance</a>
+                                        </Content>
+                                    </cc1:AccordionPane>
+                                    <cc1:AccordionPane ID="AccordionPane1" runat="server">
+                                        <Header>
+                                            Services</Header>
+                                        <Content>
+                                            <a href="/Views/Services/ListProgramme.aspx">Programme Maintenance</a><br />
+                                            <hr/>
+                                            <a href="/Views/Services/ListServices.aspx">Service Maintenance</a><br />
+                                        </Content>
+                                    </cc1:AccordionPane>
+                                    <cc1:AccordionPane ID="AccordionPane6" runat="server">
+                                        <Header>
+                                            Geography</Header>
+                                        <Content>
+                                            <a href="/Views/Geography/TrustRegionList.aspx">Trust Regions/Districts</a><br />
+                                            <hr/>
+                                            <a href="/Views/Geography/GovernmentOfficeRegionList.aspx">Government Office Region
+                                            </a>
+                                            <br />
+                                        </Content>
+                                    </cc1:AccordionPane>
+                                    <cc1:AccordionPane ID="AccordionPane2" runat="server">
+                                        <Header>
+                                            <a href="/Views/Premises/ListPremise.aspx">Premises</a></Header>
+                                        <Content>
+                                            <a href="/Views/Premises/ListPremise.aspx">Premise Maintenance</a><br />
+                                            <br />
+                                        </Content>
+                                    </cc1:AccordionPane>
+                                </Panes>
+                            </cc1:Accordion>
+                        </div>
+                        <%--    <div id="menu">
+                            <div class="title">
+                                <a href="/Views/Organisation/ListOrganisation.aspx">Organisation</a></div>
+                            <div class="title">
+                                <a href="#">Services</a></div>
+                            <div class="detail">
+                                <ul>
+                                    <li><a href="/Views/Services/ListProgramme.aspx">Programme Maintenance</a></li>
+                                    <li><a href="/Views/Services/ListServices.aspx">Service Maintenance</a></li>
+                                </ul>
+                            </div>
+                            <div class="title">
+                                <a href="#">Geography</a></div>
+                            <div class="detail">
+                                <ul>
+                                    <li><a href="/Views/Geography/TrustRegionList.aspx">Trust Regions/Trust Districts Maintenances</a></li>
+                                    <li><a href="/Views/Geography/GovernmentOfficeRegionList.aspx">Government Office Region
+                                        – List and View</a></li>
+                                </ul>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                             <div class="title">
+                                <a href="/Views/Premises/ListPremise.aspx">Premises</a>
+                             </div>
+                           
+                        </div>--%>
+                    </td>
+                    <td valign="top" style="height: 100%;">
+                        <div id="primary">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footerwrapper">
+            <center>
+                <div id="footercontent">
+                    <b>
+                        <center>
+                            Services Directory</center>
+                    </b>Tel/Fax: (04) 6285 2092 / (04) 6285 2091&nbsp; Hotline: 0972 803 849<br />
+                    Website: <a href="http://h3t.info" target="_blank">http://G2.info</a>&nbsp; Email:
+                    <a href="mailto:Haicuong2803@gmail.com">Haicuong2803@gmai.com</a>
+                    <br />
+                    Designed by: G2@2011
+                </div>
+            </center>
+        </div>
+    </div>
+    <!-- End wrapper-->
+    </form>
+</body>
+</html>

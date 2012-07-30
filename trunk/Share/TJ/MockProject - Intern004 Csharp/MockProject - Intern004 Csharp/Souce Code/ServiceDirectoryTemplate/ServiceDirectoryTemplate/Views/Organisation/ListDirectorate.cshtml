@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.Directorate>
+@{
+    ViewBag.Title = "List Directorate";
+}
+
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-directorate").tablesorter({widgets: ['zebra']});
+});
+function FilterDirectorateTab(str) {
+    document.pagingDirectorate.filter.value = str;
+    AjaxPaging('/Organisation/ListDirectorate/@ViewBag.OrgID', '#tabs-6', document.pagingDirectorate, document.pagingDirectorate.page.value);
+}
+function ActivateDir(DirID) {
+    var re = confirm("Do you want to make this Directorate active?");
+    if (re) {
+        $.ajax({
+            url: "/Directorate/MarkActivate",
+            type: "GET",
+            data: ({ id: DirID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/Organisation/ListDirectorate/@ViewBag.OrgID', '#tabs-6', document.pagingDirectorate, document.pagingDirectorate.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+			<p style="color:#69a017;font-size:medium;margin-bottom:10px">Directorate List</p>
+			<p>
+			<span style="font-size:10px">
+			<a href="javascript:FilterDirectorateTab('all')">All</a> | <a href="javascript:FilterDirectorateTab('0-9')">0-9</a> | <a href="javascript:FilterDirectorateTab('abcde')">A B C D E </a>
+		| <a href="javascript:FilterDirectorateTab('fghij')">F G H I J</a> | <a href="javascript:FilterDirectorateTab('klmn')">K L M N</a> | <a href="javascript:FilterDirectorateTab('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterDirectorateTab('stuv')">S T U V</a> | <a href="javascript:FilterDirectorateTab('wxyz')">W X Y Z</a>
+			</span>
+			<span style="float:right;margin-right:10px"><a href="/Directorate/Add/@ViewBag.OrgID"><input type="button" value="Create" /></a> <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.pagingDirectorate.include.value=this.checked;AjaxPaging('/Organisation/ListDirectorate/@ViewBag.OrgID','#tabs-6',document.pagingDirectorate,document.pagingDirectorate.page.value);" /> Include In-active</span>
+			
+			</p>
+			
+			<table class="sample" id="table-directorate" width="750px">
+            <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+					<th >BU/Directorate Name</th>
+					<th >Head Office Address Line 1</th>
+					<th >Postcode</th>
+					<th >Contact</th>
+					<th>Is Active?</th>
+				</tr>
+			</thead>
+            <tbody>
+				@foreach (var dir in Model) {
+                <tr>
+                    <td class="organisation-name">
+                        <a title="Edit Information Organisation" href="@(dir.DirIsActive == 1 ? "/Directorate/Amend/" + dir.DirID : "javascript:ActivateDir('" + dir.DirID + "')")">
+                        @dir.DirName
+                        </a>
+                    </td>
+                    <td>
+                        @dir.DirAddr1
+                    </td>
+                    <td>
+                        @dir.DirPostCode
+                    </td>
+                    <td>
+                        @(dir.LeadContactID==null? "": dir.Contact.FirstName)
+                    </td>
+                    <td>
+                        @(dir.DirIsActive == 1 ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+			</tbody>		
+			</table>
+			
+		@{ Html.RenderAction("PagingHtml", "RefData", new {
+         urlRequest = "/Organisation/ListDirectorate/"+ViewBag.OrgID,
+         tagContainer = "#tabs-6",
+         formName="pagingDirectorate",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+

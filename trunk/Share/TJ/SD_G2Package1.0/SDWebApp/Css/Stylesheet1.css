@@ -1,0 +1,650 @@
+﻿html
+{
+    height: 100%;
+    margin-bottom: 1px;
+}
+body
+{
+    background: url( "../Image/contentwrapperbg.gif" ) repeat scroll 0 0 transparent;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+    font-size: 12pt;
+    margin: 0;
+}
+.clear
+{
+    clear: both;
+}
+#wrapper
+{
+    width: 100%;
+    height: 850px;
+}
+
+#headerwrapper
+{
+    background: url( "../Image/headerwrapperbg.gif" ) repeat-x scroll center top transparent;
+    height: 135px;
+    text-align: center;
+}
+#header
+{
+    height: 15%;
+    margin: 0 auto; /* width: 982px;*/
+}
+#header a.logo
+{
+    display: block;
+    float: left;
+    height: 50px;
+    margin: 32px 0 0 260px;
+    width: 192px;
+}
+#header a:hover
+{
+    text-decoration: none;
+}
+#headerRight
+{
+    height: 15%;
+    margin: 0 auto; /* width: 982px;*/
+}
+#headerRight a.logo
+{
+    display: block;
+    float: right;
+    height: 50px;
+    margin: 32px 0 0 260px;
+    width: 192px;
+}
+img
+{
+    border: 0 none;
+}
+a:link, a:active, a:visited
+{
+    color: #3C8FD6;
+    text-decoration: none;
+}
+a:hover
+{
+    color: #62971F;
+    text-decoration: underline;
+}
+a
+{
+    outline: medium none;
+}
+.logout
+{
+	font-style:normal;
+	font-size:small;
+}
+.NoData
+{
+	 font-size:small;
+	 color:#000000;
+	 font-style:italic;	 
+}
+/*CONTENT */
+
+#contentwrapper
+{
+    width: 1000px;
+    height: 75%;
+    margin: 0px auto;
+    border: 1px solid #95c7e5;
+}
+#primary
+{
+    width: 790px;
+    float: right;
+    height: 100%;
+    background-color: #cfecec;
+}
+.TitleContent
+{
+    color: #0076a3;
+    font-size: 16pt;
+    font-weight: bold;
+}
+.filter
+{
+    height: 40px;
+    font-size: 10pt;
+    font-weight: bold;
+}
+.Gridview
+{
+    font-size: small;
+}
+
+/* MENU */
+#menu
+{
+    width: 204px;
+    height: 75%;
+}
+.title
+{
+    font-weight: bold;
+    height: 30px;
+    width: 204px;
+    background: url( "../Image/leftTitleBg.jpg" ) transparent;
+    text-align: center;
+    padding-top: 10px;
+}
+.title a
+{
+    color: white;
+}
+.detail
+{
+    width: 204px;
+    height: 100px;
+}
+.detail ul
+{
+    list-style: none;
+    margin-left: -40px;
+}
+
+.detail ul li
+{
+    position: relative;
+    width: 204px;
+    line-height: 40px;
+    border-bottom: 1px dotted #000;
+    background-color: #fff;
+    background: url( "../Image/sidecategbottom.gif" ) repeat-x scroll 0 0 transparent;
+}
+.detail ul li a
+{
+    color: #4A5A67;
+    font-size: 11pt;
+    font-weight:bold;
+    text-decoration: none;
+}
+.detail ul li a:hover
+{
+    color: powderblue;
+    font-size: 11pt;
+    font-weight:bold;
+    text-decoration: none;
+}
+.detail ul li a:active
+{
+    color: royalblue;
+    font-size: 11pt;
+    text-decoration: none;
+}
+/* edit menu*/
+#danhsach
+{
+    width: 204px;
+}
+.divframeHead
+{
+    background: url( "../Image/leftTitleBg.jpg" ) transparent;
+    line-height: 30px;
+    text-align: center; /*  padding-left:10px;*/
+    border-bottom: 1px solid #CCC;
+    margin: 0px 0px 0px 0px;
+    font-weight: bold;
+    color: White;
+    cursor: pointer;
+    text-decoration: none;
+}
+.divframeHead a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.divframeHeadSelected
+{
+    background: url( "../Image/leftTitleBg.jpg" ) transparent;
+    line-height: 30px; /* padding-left:10px;*/
+    text-align: center;
+    border-bottom: 1px solid #CCC;
+    margin: 0px 0px 0px 0px;
+    font-weight: bold;
+    color: White;
+    cursor: pointer;
+    text-decoration: none;
+}
+.divframeHeadSelected a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.accoditionContent
+{
+    border: 1px dashed #CCC;
+    border-top: none;
+    padding: 15px;
+    text-align: left;
+    font-weight:bold;
+    font-size:12px;
+    line-height: 20px; /* padding-top: 10px;*/
+    background-color:white;
+    color: black;
+}
+.accoditionContent a
+{
+    color: black;
+    text-decoration: none;
+}
+.accoditionContent a:hover,a:active
+{
+    color: powderblue;
+}
+
+/*end menu*/
+/* FOOTER*/
+
+#footerwrapper
+{
+    background: url( "../Image/footerwrapperbg.jpg" ) repeat-x scroll 0 0 transparent;
+    height: 15%;
+    text-align: center;
+    width: 100%;
+}
+#footer
+{
+    background: url( "../Image/footerBg.jpg" ) no-repeat scroll left top transparent;
+    height: 50px;
+    margin: 0 auto;
+    width: 982px;
+}
+#footercontent
+{
+    text-align: center;
+    width: 978px;
+}
+#footercontent a
+{
+    color: #000000;
+}
+
+
+
+/*phần tiêu đề*/
+.style1
+{
+    width: 99.3%;
+}
+.style2
+{
+    height: 40px;
+    font-size: 10pt;
+}
+
+
+/*login*/
+
+#login-bg
+{
+    background: url(../Image/login_bg.gif) repeat top center;
+    width: 100%;
+    height: 100%;
+}
+#login-holder
+{
+    margin: 0px auto 0 auto;
+    width: 508px;
+}
+#loginbox
+{
+    background: url(../Image/loginbox_bg.png) no-repeat;
+    font-size: 12px;
+    height: 212px;
+    line-height: 12px;
+    padding-top: 60px;
+    position: relative;
+    width: 508px;
+}
+#forgotbox
+{
+    background: url(../Image/loginbox_bg.png) no-repeat;
+    display: none;
+    font-size: 12px;
+    height: 212px;
+    line-height: 12px;
+    padding-top: 60px;
+    position: relative;
+    width: 508px;
+}
+#login-inner
+{
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 13px;
+    line-height: 12px;
+    margin: 0 auto;
+    width: 310px;
+}
+#login-inner label
+{
+    color: #161616;
+    cursor: pointer;
+    font-family: Tahoma;
+    font-weight: bold;
+    line-height: 12px;
+    padding-left: 10px;
+}
+.checkbox-size
+{
+    width: 13px;
+    height: 13px;
+    margin: 5px 0;
+}
+#login-inner th
+{
+    padding: 0 0 6px 0;
+    text-align: left;
+    width: 95px;
+}
+#login-inner td
+{
+    padding: 0 0 6px 0;
+}
+.login-inp
+{
+    background: url(../Image/inp_login.gif) no-repeat;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    height: 28px;
+    padding: 6px 6px 0 10px;
+    width: 204px;
+}
+#logo-login
+{
+    float: left;
+    height: 35px;
+    margin: 145px 0 0 15px;
+}
+a.forgot-pwd
+{
+    bottom: 30px;
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 12px;
+    position: absolute;
+    right: 40px;
+}
+a:hover.forgot-pwd
+{
+    color: #fff;
+}
+#forgotbox-text
+{
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 12px;
+    margin: 0 auto 40px auto;
+    width: 380px;
+}
+#forgot-inner
+{
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 13px;
+    line-height: 12px;
+    margin: 0 auto;
+    width: 330px;
+}
+#forgot-inner label
+{
+    color: #161616;
+    cursor: pointer;
+    font-family: Tahoma;
+    font-weight: bold;
+    line-height: 12px;
+    padding-left: 10px;
+}
+#forgot-inner th
+{
+    padding: 0 0 6px 0;
+    text-align: left;
+    width: 110px;
+}
+#forgot-inner td
+{
+    padding: 0 0 6px 0;
+}
+a.back-login
+{
+    background: url(../Image/icon_back_login.gif) no-repeat 0 4px;
+    bottom: 30px;
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 12px;
+    padding: 0 0 0 10px;
+    position: absolute;
+    right: 40px;
+}
+a:hover.back-login
+{
+    color: #fff;
+}
+.submit-login
+{
+    background: url(../Image/submit_login.gif) no-repeat;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 29px;
+    text-indent: -3000px;
+    width: 73px;
+}
+.submit-login:hover
+{
+    background: url(../Image/submit_login.gif) no-repeat 0 -29px;
+}
+.UserSession {
+    font-weight: bold;
+    font-size:11px;
+      
+}
+/*datetime picker*/
+
+
+table.jCalendar
+{
+    border: 1px solid #000;
+    background: #aaa;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+table.jCalendar th
+{
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+    padding: 3px 5px;
+}
+
+table.jCalendar td
+{
+    background: #ccc;
+    color: #000;
+    padding: 3px 5px;
+    text-align: center;
+}
+table.jCalendar td.other-month
+{
+    background: #ddd;
+    color: #aaa;
+}
+table.jCalendar td.today
+{
+    background: #666;
+    color: #fff;
+}
+table.jCalendar td.selected
+{
+    background: #f66;
+    color: #fff;
+}
+table.jCalendar td.selected.dp-hover
+{
+    background: #f33;
+    color: #fff;
+}
+table.jCalendar td.dp-hover, table.jCalendar tr.activeWeekHover td
+{
+    background: #fff;
+    color: #000;
+}
+table.jCalendar tr.selectedWeek td
+{
+    background: #f66;
+    color: #fff;
+}
+table.jCalendar td.disabled, table.jCalendar td.disabled.dp-hover
+{
+    background: #bbb;
+    color: #888;
+}
+table.jCalendar td.unselectable, table.jCalendar td.unselectable:hover, table.jCalendar td.unselectable.dp-hover
+{
+    background: #bbb;
+    color: #888;
+}
+
+/* For the popup */
+
+/* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
+
+div.dp-popup
+{
+    position: relative;
+    background: #ccc;
+    font-size: 10px;
+    font-family: arial, sans-serif;
+    padding: 2px;
+    width: 171px;
+    line-height: 1.2em;
+}
+div#dp-popup
+{
+    position: absolute;
+    z-index: 199;
+}
+div.dp-popup h2
+{
+    font-size: 12px;
+    text-align: center;
+    margin: 2px 0;
+    padding: 0;
+}
+a#dp-close
+{
+    font-size: 11px;
+    padding: 4px 0;
+    text-align: center;
+    display: block;
+}
+a#dp-close:hover
+{
+    text-decoration: underline;
+}
+div.dp-popup a
+{
+    color: #000;
+    text-decoration: none;
+    padding: 3px 2px 0;
+}
+div.dp-popup div.dp-nav-prev
+{
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 100px;
+}
+div.dp-popup div.dp-nav-prev a
+{
+    float: left;
+}
+/* Opera needs the rules to be this specific otherwise it doesn't change the cursor back to pointer after you have disabled and re-enabled a link */
+div.dp-popup div.dp-nav-prev a, div.dp-popup div.dp-nav-next a
+{
+    cursor: pointer;
+}
+div.dp-popup div.dp-nav-prev a.disabled, div.dp-popup div.dp-nav-next a.disabled
+{
+    cursor: default;
+}
+div.dp-popup div.dp-nav-next
+{
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    width: 100px;
+}
+div.dp-popup div.dp-nav-next a
+{
+    float: right;
+}
+div.dp-popup a.disabled
+{
+    cursor: default;
+    color: #aaa;
+}
+div.dp-popup td
+{
+    cursor: pointer;
+}
+div.dp-popup td.disabled
+{
+    cursor: default;
+}
+/*end datetime*/
+#create
+{
+  text-align: right;	
+}
+.Error
+{
+	font-size: 10pt;
+	color: Red
+}
+.ErrorLogin
+{
+	color:red;
+	font-size: 12px;
+	font-style:italic;
+}
+/*datetime picker*/
+.MyCalendar .ajax__calendar_container {
+    border:1px solid #000000;
+    background-color: #ffffff;
+    color: #333333;
+}
+.MyCalendar .ajax__calendar_hover {
+    color: red;
+}
+/*end datetime*/
+
+/* mutitextbox*/
+.DetailMulti
+{
+    font-size:10pt;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+    resize: none;
+    margin-top: 5px;
+}
+/*end mutitextbox*/
+
+.labelformat
+{
+	font-weight: normal;
+}

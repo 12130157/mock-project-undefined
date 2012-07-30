@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Opening Times";
+    Layout = null;
+}
+@model ServiceDirectoryTemplate.Models.PremiseOpenSchedule
+           <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/myscript.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.timePicker.min.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/jquery.timepicker.css")" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+<div class="wrapper" style="width:430px; margin-top:10px;">
+<script type="text/javascript" language="javascript">
+    $(function () {
+        var checkbox = document.getElementsByName("id[]");
+        for (var i = 0; i < checkbox.length; i++) {
+            //$('#End' + checkbox[i].value).timepicker({ 'timeFormat': 'H:i', 'step': 15 });
+            $('#Start' + checkbox[i].value).timepicker({ 'timeFormat': 'H:i', 'step': 15 }).change(function () {
+                var id = $(this).attr("id").replace("Start","");
+                $('#End' + id).timepicker({ 'minTime': $(this).val(), 'timeFormat': 'H:i', 'step': 15 });
+            });
+        }
+        ClickCheckbox();
+    });
+function Back() {
+    var checkbox = document.getElementsByName("id[]");
+    for (var i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].checked) {
+            opener.document.getElementsByName("Start" + checkbox[i].value)[0].value 
+                            = document.getElementsByName("Start" + checkbox[i].value)[0].value;
+            opener.document.getElementsByName("End" + checkbox[i].value)[0].value 
+                            = document.getElementsByName("End" + checkbox[i].value)[0].value;
+            opener.document.getElementsByName("Check" + checkbox[i].value)[0].value = "true";
+        } else {
+            opener.document.getElementsByName("Start" + checkbox[i].value)[0].value="";
+            opener.document.getElementsByName("End" + checkbox[i].value)[0].value="";
+            opener.document.getElementsByName("Check" + checkbox[i].value)[0].value = "false";
+        }
+    }
+    window.close();
+}
+function ClickCheckbox() {
+    var checkbox = document.getElementsByName("id[]");
+    for (var i = 0; i < checkbox.length; i++) {
+        var start=document.getElementsByName("Start" + checkbox[i].value)[0];
+        var end=document.getElementsByName("End" + checkbox[i].value)[0];
+        if (checkbox[i].checked) {
+            start.disabled = false;
+            end.disabled = false;
+            if(start.value==""){
+                start.value="09:00";
+            }
+            if(end.value==""){
+                end.value="17:00";
+            }
+        } else {
+            start.disabled = true;
+            end.disabled = true;
+        }
+    }
+}
+</script>
+<div class="container-body" style="width:400px; margin-top:10px">
+    <div class="table-content" style="width:400px;">
+		<p style="text-align:left"><a href="">Service &gt; New Service Link</a></p>
+		<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">New Link to Premise</p>
+
+<form action="#" method="get" name="OpeningTimes" id="OpeningTimes" enctype="multipart/form-data">
+
+<table class="sample" id="table-service" width="400px">
+<thead>
+<tr style="font-weight:bold;background:#d6d8db">
+    <td>&nbsp;</td>
+	<th>Weekend Day</th>
+	<th>Start Time</th>
+	<th>End Time</th>
+</tr>
+</thead>
+
+<tbody>
+	<tr>
+        <td><input type="checkbox" name="id[]" value="Monday" @(ViewBag.Monday=="true"?"checked=checked":"") onclick="ClickCheckbox()" /></td>
+        <td>Monday</td>
+        <td><input type="text" size="10" id="StartMonday" name="StartMonday" value="@Model.StartMonday" /></td>
+        <td><input type="text" size="10" id="EndMonday" name="EndMonday"" value="@Model.EndMonday" /></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="id[]" value="Tuesday" @(ViewBag.Tuesday == "true" ? "checked=checked" : "") onclick="ClickCheckbox()" /></td>
+        <td>Tuesday</td>
+        <td><input type="text" size="10" id="StartTuesday" name="StartTuesday" value="@Model.StartTuesday" /></td>
+        <td><input type="text" size="10" id="EndTuesday" name="EndTuesday"" value="@Model.EndTuesday" /></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="id[]" value="Wednesday" @(ViewBag.Wednesday == "true" ? "checked=checked" : "") onclick="ClickCheckbox()" /></td>
+        <td>Wednesday</td>
+        <td><input type="text" size="10" id="StartWednesday" name="StartWednesday" value="@Model.StartWednesday" /></td>
+        <td><input type="text" size="10" id="EndWednesday" name="EndWednesday"" value="@Model.EndWednesday" /></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="id[]" value="Thursday" @(ViewBag.Thursday == "true" ? "checked=checked" : "") onclick="ClickCheckbox()" /></td>
+        <td>Thursday</td>
+        <td><input type="text" size="10" id="StartThursday" name="StartThursday" value="@Model.StartThursday" /></td>
+        <td><input type="text" size="10" id="EndThursday" name="EndThursday"" value="@Model.EndThursday" /></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="id[]" value="Friday" @(ViewBag.Friday == "true" ? "checked=checked" : "") onclick="ClickCheckbox()" /></td>
+        <td>Friday</td>
+        <td><input type="text" size="10" id="StartFriday" name="StartFriday" value="@Model.StartFriday" /></td>
+        <td><input type="text" size="10" id="EndFriday" name="EndFriday"" value="@Model.EndFriday" /></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="id[]" value="Saturday" @(ViewBag.Saturday == "true" ? "checked=checked" : "") onclick="ClickCheckbox()" /></td>
+        <td>Saturday</td>
+        <td><input type="text" size="10" id="StartSaturday" name="StartSaturday" value="@Model.StartSaturday" /></td>
+        <td><input type="text" size="10" id="EndSaturday" name="EndSaturday"" value="@Model.EndSaturday" /></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="id[]" value="Sunday" @(ViewBag.Sunday == "true" ? "checked=checked" : "") onclick="ClickCheckbox()" /></td>
+        <td>Sunday</td>
+        <td><input type="text" size="10" id="StartSunday" name="StartSunday" value="@Model.StartSunday" /></td>
+        <td><input type="text" size="10" id="EndSunday" name="EndSunday"" value="@Model.EndSunday" /></td>
+    </tr>
+</tbody>
+</table>
+
+<div class="error" style="clear:both"></div>
+<span style="float:right"><input type="reset" value="Reset" /><input type="button" value="Back" onclick="Back()" /></span><div style="clear:both"></div>
+</form>
+</div>
+</div>
+</body>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.ProjectMinorWork>
+
+
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-pmw").tablesorter({widgets: ['zebra']});
+});
+function FilterPMW(str) {
+    document.pagingPMW.filter.value = str;
+    AjaxPaging('/ProjectMinorWork/List/@ViewBag.PremiseId', '#tabs-7', document.pagingPMW, document.pagingPMW.page.value);
+}
+function ActivatePMW(TeamID) {
+    var re = confirm("Do you want to make this Project/Minor Work active?");
+    if (re) {
+        $.ajax({
+            url: "/ProjectMinorWork/MarkActivate",
+            type: "GET",
+            data: ({ id: TeamID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/ProjectMinorWork/List/@ViewBag.PremiseId', '#tabs-7', document.pagingPMW, document.pagingPMW.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+			<p style="color:#69a017;font-size:medium;margin-bottom:10px">Team List</p>
+			<p>
+			<span style="font-size:10px">
+			<a href="javascript:FilterPMW('all')">All</a> | <a href="javascript:FilterPMW('0-9')">0-9</a> | <a href="javascript:FilterPMW('abcde')">A B C D E </a>
+		| <a href="javascript:FilterPMW('fghij')">F G H I J</a> | <a href="javascript:FilterPMW('klmn')">K L M N</a> | <a href="javascript:FilterPMW('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterPMW('stuv')">S T U V</a> | <a href="javascript:FilterPMW('wxyz')">W X Y Z</a>
+			</span>
+			<span style="float:right;margin-right:10px"><a href="/ProjectMinorWork/Add/@ViewBag.PremiseId"><input type="button" value="Create" /></a> <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.pagingPMW.include.value=this.checked;AjaxPaging('/ProjectMinorWork/List/@ViewBag.PremiseId','#tabs-7',document.pagingPMW,document.pagingPMW.page.value);" /> Include In-active</span>
+			
+			</p>
+			
+			<table class="sample" id="table-pmw" width="750px">
+            <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+					<th >Description</th>
+					<th >Enq Received Date</th>
+					<th >Notes Action</th>
+					<th >Directorate</th>
+					<th>Contact</th>
+                    <th>Is Activate?</th>
+				</tr>
+			</thead>
+            <tbody>	
+				@foreach (var pmw in Model) {
+                <tr>
+                    <td class="organisation-name">
+                        <a title="Edit Information Project/Minor Work" href="@(pmw.PMWIsActive == 1 ? "/ProjectMinorWork/Amend/" + pmw.PMWID : "javascript:ActivatePMW('" + pmw.PMWID + "')")">
+                        @pmw.PMWDescription
+                        </a>
+                    </td>
+                    <td>
+                        @pmw.PMWEnquiryReceivedDate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @pmw.NotesActions
+                    </td>
+                    <td>
+                        @(pmw.Directorate==null? "":pmw.Directorate1.DirName)
+                    </td>
+                    <td>
+                        @pmw.Contact1.FirstName
+                    </td>
+                    <td>
+                        @(pmw.PMWIsActive == 1 ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+				</tbody>
+			</table>
+			
+		@{ Html.RenderAction("PagingHtml", "RefData", new {
+         urlRequest = "/ProjectMinorWork/List/" + ViewBag.PremiseId,
+         tagContainer = "#tabs-7",
+         formName = "pagingPMW",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+

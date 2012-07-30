@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.Service>
+@{
+    ViewBag.Title = "List Service";
+}
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-service").tablesorter({widgets: ['zebra']});
+});
+function CopyService() {
+    var radioObj=document.CopySer.ServiceID;
+    if(!radioObj)
+        return;
+    var radioLength = radioObj.length;
+    if (radioLength == undefined)
+        if (radioObj.checked)
+        { document.location = "/Service/Copy/" + radioObj.value; return; }
+        else
+        { alert('Please choose a Service to copy'); return;} 
+	for(var i = 0; i < radioLength; i++) {
+		if(radioObj[i].checked) {
+		    { document.location = "/Service/Copy/" + radioObj[i].value; return;}
+		}
+    }
+    alert('Please choose a Service to copy');
+	return;
+}
+function FilterService(str) {
+    document.paging.filter.value = str;
+    AjaxPaging('/Service/List','.container-body',document.paging,document.paging.page.value);
+}
+function ActivateService(SerID) {
+    var re = confirm("Do you want to make this Service active?");
+    if (re) {
+        $.ajax({
+            url: "/Service/MarkActivate",
+            type: "GET",
+            data: ({ id: SerID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/Service/List', '.container-body', document.paging, document.paging.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+<div class="container-right">
+	<div class="table-content">
+		<p style="color:#69a017;font-size:large;margin-bottom:10px">Service List</p>
+        <form action="/Service/Copy" enctype="multipart/form-data" id="CopySer" method="post"  name="CopySer">	
+		<p>
+		<span style="font-size:10px">
+		<a href="javascript:FilterService('all')">All</a> | <a href="javascript:FilterService('0-9')">0-9</a> | <a href="javascript:FilterService('abcde')">A B C D E </a>
+		| <a href="javascript:FilterService('fghij')">F G H I J</a> | <a href="javascript:FilterService('klmn')">K L M N</a> | <a href="javascript:FilterService('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterService('stuv')">S T U V</a> | <a href="javascript:FilterService('wxyz')">W X Y Z</a>
+		</span>
+		<span style="float:right;margin-right:10px"><input type="button" onclick="CopyService()" value="Copy" /> <a href="/Service/Add" style="text-decoration:none"><input type="button" value="Create" /></a> 
+        <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.paging.include.value=this.checked;AjaxPaging('/Service/List','.container-body',document.paging,document.paging.page.value);" /> Include In-active</span>
+			
+		</p>
+		
+		<table class="sample" id="table-service" width="750px">
+        <thead>
+			<tr style="font-weight:bold;background:#d6d8db">
+				<td width="10px">&nbsp;</td>
+				<th width="220px">Service Name</th>
+				<th width="180px">Description</th>
+				<th width="90px">Service Type</th>
+				<th width="110px">Contact</th>
+				<th>Is Active?</th>
+			</tr>
+		</thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+			<tr>
+                <td><a class="radio-content"><input type="radio" name="ServiceID" value="@item.SerID" /></a></td>
+                <td class="organisation-name"><a href="@(item.SerIsActive == 1 ? "/Service/Amend/" + item.SerID : "javascript:ActivateService('" + item.SerID + "')")">@item.SerName</a></td>
+                <td>@item.SerShortDescription</td><td>@item.SerType</td><td>@item.Contact.FirstName</td>
+                <td>@(item.SerIsActive==1? "Yes":"No")</td>
+            </tr>
+        }
+		</tbody>
+        
+		</table>
+        </form>
+		@{ Html.RenderAction("PagingHtml", "RefData", new {
+         urlRequest = "/Service/List",
+         tagContainer = ".container-body",
+         formName="paging",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+	</div>
+</div>

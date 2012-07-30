@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    
+    @RenderPage("Asset.cshtml")
+    <script type="text/javascript" language="javascript">
+        $(function () {
+        	$('#tabs').tabs();
+            $("input:[class=hight-light-onclick]:checked").parent("p").css("background-color", "#8CB8FF");
+            $(".hight-light-onclick").click(function () {
+	            var isChecked = $(this).attr("checked");
+	            if(isChecked=="checked")
+		            $(this).parent("p").css("background-color", "#8CB8FF");
+	            else 
+		            $(this).parent("p").css("background-color", "white");
+            });
+
+	    });
+//	    $(window).ready(function () { 
+//            var tabIndex=GetTabsSelected();
+//            if(tabIndex!=undefined)
+//                $('#tabs').tabs({seleced: tabIndex});
+//        });
+
+        function OpenPopUP(url) { 
+            mypopupwindow=window.open(url);
+        }
+        
+	</script>
+
+</head>
+
+<body>
+ <!-- Header Page-->
+    @RenderPage("_Header.cshtml")
+ <!-- End Header Page-->
+
+<!-- phần nội dung chính -->
+<div class="wrapper">
+	<div class="container-left">
+		 <!-- LeftMenu Page-->
+    @RenderPage("_LeftMenu.cshtml")
+    <!-- End LeftMenu Page-->
+	</div>
+	
+<!--Main Content Page-->
+    <div class="container-body">
+    @RenderBody()
+    </div>
+<!--End Main Content Page-->
+
+	<div style="clear:both"></div>
+</div>
+<script>//$(".sample tr:odd").css("background-color", "#f2f7ff");</script>
+</body>
+</html>
+

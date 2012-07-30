@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>LogOn</title>
+    <link href="@Url.Content("~/Content/login.css")" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="@Url.Content("~/Content/images/photoshop.ico")" type="image/x-icon" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.tablesorter.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/myscript.js")" type="text/javascript"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        $("#myform").validate({
+            errorLabelContainer: $("div.error"),
+            rules: {
+                Account: { required: true, maxlength: 100 },
+                Password: { required: true, maxlength: 100 }
+            },
+            messages: {
+                Account: {
+                    required: "Please input the Account Name",
+                    maxlength: "Account Name is too long"
+                },
+                Password: {
+                    required: "Please input the Password",
+                    maxlength: "Password is too long"
+                }
+            }
+        });
+    });
+</script>
+        
+        <!-- phần đầu -->
+        <div class="login-wrapper">
+	        <div class="logo-login">
+			        <img src="@Url.Content("~/Content/images/logo.jpg")" />
+	        </div>
+	
+		    <ul class="welcome-login">
+			    <li>
+				    Service Directory: Admin System
+			    </li>
+			
+		    </ul>
+            <form action="/Account/LoginProcess" method="post" name="myform" id="myform">
+            <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl"/>
+            <table class="table">
+            
+                <tr>
+                    <td width="100px">Account</td>
+                    <td><input class="text-box" type="text" id="Account" name="Account" value="@ViewBag.Account" /></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input class="text-box" type="password" id="Password" name="Password" /></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><input class="button" type="submit" value="Okie" /><input class="button" type="reset" value="Reset" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><div class="error"><label class="error">@ViewBag.Error</label></div></td>
+                </tr>
+            </table>
+            
+            </form>
+        </div>
+	
+<!-- kết thúc phần đầu -->
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Enter Project Code";
+}
+@RenderPage("Asset.cshtml")
+<script type="text/javascript">
+    $(function () {
+        $('#tabs').tabs();
+    });
+</script>
+<form action="/Service/EnterProjectCode/@ViewBag.LinkID" method="post" name="EnterProjectCode" id="EnterProjectCode" enctype="multipart/form-data">
+    <div class="table-content" style="width:420px;">
+		<p style="text-align:left"><a href="">Service &gt; Enter Project Code</a></p>
+		<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Enter Project Code</p>
+		
+		<div id="tabs" style="width:420px">
+			<ul>
+				<li><a href="#tabs-1">Project Code</a></li>
+			</ul>
+        </div>
+        <div id="tabs-1" style="width:420px">
+			<table class="table-only-border-out" width="420px">
+            <tr>
+                <td width="130px">Project Code</td>
+                <td width="240px"><input type="text" name="projectcode" value="@ViewBag.Code" /></td>
+            </tr>
+
+            </table>
+            <span style="float:right;"><input style="width:70px" type="submit" value="Select" /><input style="width:70px" type="button" onclick="window.close()" value="Exit" /></span><div style="clear:both"></div>
+        </div>
+    </div>
+</form>

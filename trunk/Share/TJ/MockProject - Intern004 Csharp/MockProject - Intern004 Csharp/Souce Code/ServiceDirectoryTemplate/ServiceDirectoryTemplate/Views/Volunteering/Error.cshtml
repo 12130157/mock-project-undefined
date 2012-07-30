@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+@model System.Web.Mvc.HandleErrorInfo
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+</head>
+<body>
+    <h2>
+        Sorry, an error occurred while processing your request. Click <a href="javascript:history.back()">here</a> to back
+    </h2>
+    <p>@ViewBag.Mess<br />@(Model==null? "": "Error Type: "+Model.Exception.GetType())</p>
+</body>
+</html>

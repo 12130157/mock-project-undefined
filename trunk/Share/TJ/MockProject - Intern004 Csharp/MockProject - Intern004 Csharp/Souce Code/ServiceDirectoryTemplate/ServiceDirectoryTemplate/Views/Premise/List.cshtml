@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.Premise>
+@{
+    ViewBag.Title = "List Premise";
+}
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-premise").tablesorter({widgets: ['zebra']});
+});
+function FilterPre(str) {
+    document.paging.filter.value = str;
+    AjaxPaging('/Premise/List','.container-body',document.paging,document.paging.page.value);
+}
+function ActivatePre(PreID) {
+    var re = confirm("Do you want to make this Premise active?");
+    if (re) {
+        $.ajax({
+            url: "/Premise/MarkActivate",
+            type: "GET",
+            data: ({ id: PreID}),
+            dataType: "html",
+            success: function (data) {
+                if (data == "ok")
+                    AjaxPaging('/Premise/List', '.container-body', document.paging, document.paging.page.value);
+                else {
+                    alert('Have error while processing your request');
+                    loaded();
+                }
+            },
+            error: function () {
+                alert('Reqest server error'); loaded();
+            }
+        }); 
+    }
+}
+</script>
+<div class="container-right">
+		<div class="table-content">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px">Premise List</p>
+			<p>
+			<span style="font-size:10px">
+			<a href="javascript:FilterPre('all')">All</a> | <a href="javascript:FilterPre('0-9')">0-9</a> | <a href="javascript:FilterPre('abcde')">A B C D E </a>
+		| <a href="javascript:FilterPre('fghij')">F G H I J</a> | <a href="javascript:FilterPre('klmn')">K L M N</a> | <a href="javascript:FilterPre('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterPre('stuv')">S T U V</a> | <a href="javascript:FilterPre('wxyz')">W X Y Z</a>
+			</span>
+			<span style="float:right;margin-right:10px"><a href="/Premise/Add" title="Add new premise"><input type="button" value="Create" /></a> <input type="checkbox" @(ViewBag.Include=="true" ? "checked=checked":"") onchange="document.paging.include.value=this.checked;AjaxPaging('/Premise/List','.container-body',document.paging,document.paging.page.value);" /> Include In-active</span>
+			
+			</p>
+			
+			<table class="sample" id="table-premise" width="750px">
+            <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+					<th width="250px">Location Name</th>
+					<th width="180px">Address Line 1</th>
+					<th width="180px">Postcode</th>
+					<th>Is Active?</th>
+				</tr>
+			</thead>
+            <tbody>	
+			@foreach (var pre in Model) {
+                <tr>
+                    <td class="organisation-name">
+                        <a title="Edit Information Organisation" href="@(pre.PremiseIsActive == 1 ? "/Premise/Amend/" + pre.PremiseID : "javascript:ActivatePre('" + pre.PremiseID + "')")">
+                        @pre.LocationName
+                        </a>
+                    </td>
+                    <td>
+                        @pre.PremiseAddr1
+                    </td>
+                    <td>
+                        @pre.PremisePostCode
+                    </td>
+                    <td>
+                        @(pre.PremiseIsActive == 1 ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+            </tbody>
+			</table>
+			
+		@{ Html.RenderAction("PagingHtml", "RefData", new {
+         urlRequest = "/Premise/List",
+         tagContainer = ".container-body",
+         formName="paging",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+		</div>
+	</div>

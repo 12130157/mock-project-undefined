@@ -1,0 +1,149 @@
+﻿ @model IEnumerable<ServiceDirectoryTemplate.Models.Address>
+
+
+<script language="javascript">
+$(function () {
+    $("#table-address").tablesorter({widgets: ['zebra']});
+});
+function closeThisForm() {
+    this.close();
+}
+function cleartext() {
+    this.firstname.value = "";
+    this.surname.value = "";
+
+
+}
+function FillData(tagCode, tagAddr, tagTown, tagCounty, tagCountry) {
+    var code = opener.document.getElementsByName(tagCode)[0];
+    var addr = opener.document.getElementsByName(tagAddr)[0];
+    var town = opener.document.getElementsByName(tagTown)[0];
+    var county = opener.document.getElementsByName(tagCounty)[0];
+    var country = opener.document.getElementsByName(tagCountry)[0];
+
+    var objcode = document.ListAddress.Code;
+    var objtown = document.ListAddress.TownName;
+    var objcounty = document.ListAddress.CountyName;
+    var objcountry = document.ListAddress.CountryName;
+    var objaddr1 = document.ListAddress.Address1;
+
+    var arr=GetSelected(objcode,objtown,objcounty,objcountry,objaddr1);
+    if (arr['Address1'] != undefined) {
+        code.value = arr['PostCode'];
+        addr.value = arr['Address1'];
+        town.value = arr['Town'];
+        county.value = arr['County'];
+        for(var i=0; i<country.length; i++)
+        {
+            if(country[i].value==arr['Country'])
+                country[i].selected=true;
+        }
+        window.close();
+    }
+    else {
+        alert("Please choose the Address");
+    }
+}
+function GetSelected(objcode,objtown,objcounty,objcountry,objaddr1){
+    var code;
+    var town;
+    var county;
+    var country;
+    var addr;
+    if (!objaddr1)
+        return;
+    var length = objcode.length;
+    if (length == undefined) {
+        if (objcode.checked) {
+            addr = objaddr1.value;
+            country = objcountry.value;
+            county = objcounty.value;
+            town = objtown.value;
+            code = objcode.value;
+
+        }
+    }
+    else {
+        for (var i = 0; i < objcode.length; i++) {
+            if (objcode[i].checked) {
+                addr = objaddr1[i].value;
+                country = objcountry[i].value;
+                county = objcounty[i].value;
+                town = objtown[i].value;
+                code = objcode[i].value;
+            }
+        }
+    }
+    
+    return { Address1: addr, Country: country, County: county, Town: town, PostCode: code,};
+}
+</script>
+<form id="ListAddress" name="ListAddress" method="post" action="/Address/List?TagCode=@ViewBag.TagCode&TagAddr1=@ViewBag.TagAddr1&TagTown=@ViewBag.TagTown&TagCounty=@ViewBag.TagCounty&TagCountry=@ViewBag.TagCountry">
+<div style="border: 1px solid #000">
+<span>Postcode:&nbsp; &nbsp; &nbsp; &nbsp;  <input type="text" name="PostCode" id="PostCode" value="@ViewBag.PostCode"/>&nbsp; &nbsp;Street:&nbsp; &nbsp; &nbsp; &nbsp; <input type="text" name="Street" value="@ViewBag.Street" id="Street" />&nbsp; &nbsp;Town:&nbsp; &nbsp; &nbsp; &nbsp; <input type="text" name="Town" value="@ViewBag.Town" id="Town" /></span>
+</div>
+<br />
+<input type="submit" id="btnSearch" value="Search Address" style=" width:120px" />
+<input type="button" name="btnClear" value="Clear" style =" width:75px" onClick="cleartext() " />
+<input type="button" name="btnNone" value="None" style =" width:75px" onClick="closeThisForm() " />
+
+<br />
+
+    <table class="sample" id="table-address" width="750px">
+    <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+                    <td>&nbsp;</td>
+					<th>Address</th> 
+					<th>Post code</th>
+					<th>Town</th>
+					<th>County</th>
+					<th>Country</th>
+				</tr>
+		</thead>
+        <tbody>	
+			@foreach (var cont in Model) {
+                <tr>
+                  <td><a class="radio-content">
+                  <input type="hidden" name="Address1" value="@cont.Address1" />
+                  <input type="hidden" name="TownName" value="@cont.Town.TownName" />
+                  <input type="hidden" name="CountyName" value="@cont.County.CountyName" />
+                  <input type="hidden" name="CountryName" value="@cont.CountryID" />
+                  <input type="radio" name="Code" value="@cont.PostCode"/></a></td>
+                    <td class="organisation-name">
+                        <a >@cont.Address1 @cont.Town.TownName</a>
+                    </td>
+                    <td>
+                        @cont.PostCode
+                    </td>
+                    <td>
+                        @cont.Town.TownName
+                    </td>
+                    <td>
+                        @cont.County.CountyName
+                    </td>
+                    <td>
+                        @cont.Country.CountryName
+                    </td>
+                </tr>
+            }
+            </tbody>	
+			</table>           
+ </form>
+@{ Html.RenderAction("PagingHtml", "RefData", new {
+    urlRequest = "/Address/SearchAddress?TagCode=" + ViewBag.TagCode + "&TagAddr1=" + ViewBag.TagAddr1 + "&TagTown=" + ViewBag.TagTown + "&TagCounty=" + ViewBag.TagCounty + "&TagCountry=" + ViewBag.TagCountry + "&PostCode=" + ViewBag.PostCode + "&Street=" + ViewBag.Street + "&Town=" + ViewBag.Town,
+    tagContainer = ".container-body",
+    formName="paging",
+    page = ViewBag.Page,
+    totalPage = ViewBag.TotalPage,
+    filter = ViewBag.Filter,
+    include = ViewBag.Include
+         
+});  }
+ <form id="form2" method="post" action="Select">
+ <script language=javascript>
+
+ </script>
+ <input type="button" onclick="FillData('@ViewBag.TagCode','@ViewBag.TagAddr1','@ViewBag.TagTown','@ViewBag.TagCounty','@ViewBag.TagCountry')" id="btnSelect" value="Select" />
+   <input type="button" id="btnClose" value="Close" onclick="closeThisForm()" />
+ </form>
+

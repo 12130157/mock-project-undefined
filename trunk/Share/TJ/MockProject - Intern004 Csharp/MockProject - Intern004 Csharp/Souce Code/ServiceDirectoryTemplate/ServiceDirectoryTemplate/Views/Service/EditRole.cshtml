@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Edit Role";
+}
+@RenderPage("Asset.cshtml")
+<script type="text/javascript">
+    $(function () {
+        $('#tabs').tabs();
+//        $("#role-Funder").click(function () {
+//            var ls = document.EditRole.role;
+//            for (var i = 0; i < ls.length; i++) {
+//                if(ls[i].value=="Funder")
+//                    ls[i].checked=ls[i].checked=true?false:true;
+//            }
+//        });
+        //$("input[name=role]").click(function () {
+            //this.checked=this.checked=true?false:true;
+        //});
+    });
+function RoleChange(obj){
+    var divID = obj.value;
+    var isChecked = obj.checked;
+    if (isChecked == true)
+        $("#" + divID).attr("class", "dept-blue");
+    else
+        $("#" + divID).attr("class", "blue-hover");
+}
+</script>
+<form action="/Service/EditRole/@ViewBag.LinkID" method="post" name="EditRole" id="EditRole" enctype="multipart/form-data">
+    <div class="table-content" style="width:420px;">
+		<p style="text-align:left"><a href="">Service &gt; Edit Role</a></p>
+		<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Edit Role</p>
+		
+		<div id="tabs" style="width:420px">
+			<ul>
+				<li><a href="#tabs-1">Role List</a></li>
+			</ul>
+        </div>
+        <div id="tabs-1" style="width:420px">
+			<table class="table-only-border-out" width="420px">
+            <tr>
+                <td><div class="@(ViewBag.Funder == null ? "blue-hover" : "dept-blue")" id="Funder"><input type="checkbox" @ViewBag.Funder onchange="RoleChange(this)" name="role[]" value="Funder" />Funder</div></td>
+            </tr>
+            <tr>
+                <td><div class="@(ViewBag.Lead == null ? "blue-hover" : "dept-blue")" id="Lead"><input type="checkbox" @ViewBag.Lead onchange="RoleChange(this)" name="role[]" value="Lead" />Lead</div></td>
+            </tr>
+            <tr>
+                <td><div class="@(ViewBag.Delivery == null ? "blue-hover" : "dept-blue")" id="Delivery"><input type="checkbox" @ViewBag.Delivery onchange="RoleChange(this)" name="role[]" value="Delivery" />Delivery</div></td>
+            </tr>
+            <tr>
+                <td><div class="@(ViewBag.Auditor == null ? "blue-hover" : "dept-blue")" id="Auditor"><input type="checkbox" @ViewBag.Auditor onchange="RoleChange(this)" name="role[]" value="Auditor" />Auditor</div></td>
+            </tr>
+            </table>
+            <span style="float:right;"><input style="width:70px" type="submit" value="Ok" /><input style="width:70px" type="button" onclick="window.close()" value="Cancel" /></span><div style="clear:both"></div>
+        </div>
+    </div>
+</form>

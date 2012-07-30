@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "Add Project/Minor Work";
+}
+<script type="text/javascript">
+    $.validator.addMethod("ValidActualStartDate", function(value, element, param) {
+	    if(!value) return true;
+	    var start = document.AddPMW.AuthorisedDate.value;
+        if(!start) return true;
+        return IsDateBefore(value, start);
+	}, "Actual Start Date must before Authorised Date");
+    $.validator.addMethod("ValidActualCompletionDate", function(value, element, param) {
+	    if(!value) return true;
+	    var start = document.AddPMW.ActualStartDate.value;
+        if(!start) return true;
+        return IsDateBefore(value, start);
+	}, "Actual Completion Date must before Actual Start Date");
+    $.validator.addMethod("ValidAuthorisedDate", function(value, element, param) {
+	    if(!value) return true;
+	    var start = document.AddPMW.PMWEnquiryReceivedDate.value;
+        return IsDateBefore(value, start);
+	}, "Authorised Date must before Enquiry Received Date");
+    $.validator.addMethod("ValidAnticipatedCompletion", function(value, element, param) {
+	    if(!value) return true;
+	    var start = document.AddPMW.PMWEnquiryReceivedDate.value;
+        return IsDateBefore(value, start);
+    }, "Anticipated Completion must before Enquiry Received Date");
+    $.validator.addMethod("ValidStatus", function(value, element, param) {
+        var Status=document.AddPMW.PMWStatus;
+        var ActualStartDate=document.AddPMW.ActualStartDate.value;
+        var ActualCompletionDate=document.AddPMW.ActualCompletionDate.value;
+        var ActualCompletionDate=document.AddPMW.ActualCompletionDate.value;
+
+        if(!ActualStartDate||IsDateBefore(ActualStartDate, GetToday()))
+	        Status.value="Work Not Started";
+        else if(!ActualCompletionDate&&IsDateBefore(GetToday(),ActualStartDate))
+            Status.value="Work in Progresss";
+        else if(ActualCompletionDate&&IsDateBefore(GetToday(),ActualCompletionDate))
+            Status.value="Work Completed";
+        else
+            Status.value="";
+        return true;
+	}, "");
+    $.validator.addMethod("moneytary", function (value, element, param) {
+        if (!value) return true;
+        return /^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?$/.test(value);
+    }, "Some money fields is not correct");
+$(document).ready(function () {
+    $("#PMWEnquiryReceivedDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#AuthorisedDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#ActualStartDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#AnticipatedCompletion").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#ActualCompletionDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#AddPMW").validate({
+        errorLabelContainer: $("div.error"),
+        rules: {
+            PMWDescription: { required: true },
+            PMWEnquiryReceivedDate: { required: true },
+            PMWContact: { required: true },
+            ActualStartDate: { ValidActualStartDate: true },
+            ActualCompletionDate: { ValidActualCompletionDate: true },
+            AuthorisedDate: { ValidAuthorisedDate: true },
+            AnticipatedCompletion: { ValidAnticipatedCompletion: true },
+            PMWStatus: { ValidStatus: true },
+            EstimatedCost: { moneytary: true },
+            ActualCost: { moneytary: true },
+        },
+        messages: {
+            PMWDescription: { required: "Please input the P/MW Description" },
+            PMWEnquiryReceivedDate: { required: "Please input the PMW Enquiry Received Date" },
+            PMWContact: { required: "Please choose the Contact" },
+            EstimatedCost: { moneytary: "The Estimated Cost must be money format (9,999.99)" },
+            ActualCost: { moneytary: "The Actual Cost must be money format (9,999.99)" }
+        }
+    });
+    IsTBAClicked(document.AddPMW.PMWIsTBA.checked);
+});
+function IsTBAClicked(checked){
+    if(checked==true){
+        document.AddPMW.NotesActions.disabled=true;
+        document.AddPMW.EstimatedCost.disabled=true;
+    }
+    else {
+        document.AddPMW.NotesActions.disabled=false;
+        document.AddPMW.EstimatedCost.disabled=false;
+    }
+}
+</script>
+<form action="/ProjectMinorWork/Add/@ViewBag.PremiseId" name="AddPMW" id="AddPMW" method="post">
+<div class="container-right">
+		<div class="table-content">
+			<p style="text-align:left"><a href="">Premise </a> &gt; </p>
+			<p style="color:#69a017;font-size:large;margin-bottom:10px;text-align:left">Project/Minor Work Details</p>
+			
+			<span style="float:right;margin-right:10px">
+			<input type="submit" value="Save" /> 
+			<a title="Return to amend Department" href="/Premise/Amend/@ViewBag.PremiseId#tabs-7"><input type="button" value="Back" /></a> 
+			</span>
+
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Details</a></li>
+			</ul>
+			<div id="tabs-1">
+			<table class="table-only-border-out" width="750px">
+				<tr>
+					<td rowspan="2" width="130px">P/MW Description &nbsp;<span style="color:red">*</span></td>
+					<td rowspan="2" width="230px"><textarea class="standar-textarea" name="PMWDescription"></textarea></td>
+                    <td>Contact</td>
+                    <td><input type="hidden" name="PMWContact" /><input type="text" name="ContactName" readonly="readonly" /> <a onclick="AddrLookUp('AddPMW', 'PMWContact', 'ContactName')" class="link" style="color:Blue">Lookup</a></td>
+                </tr>
+                <tr>
+					<td width="150px">Authorised By Name</td>
+					<td width="230px"><input type="hidden" name="AuthorisedByName" /><input type="text" name="AuthorisedName" readonly="readonly" /> <a onclick="AddrLookUp('AddPMW', 'AuthorisedByName', 'AuthorisedName')" class="link" style="color:Blue">Lookup</a></td>
+				</tr>
+				
+				<tr>
+					<td><input type="radio" name="ProjectOrMinorWork" value="1" checked="checked" />Project</td>
+					<td><input type="radio" name="ProjectOrMinorWork" value="2" />Minor Work</td>
+                    <td>Status</td>
+					<td><input type="text" readonly="readonly" name="PMWStatus" /></td>
+                </tr>
+                <tr>
+					<td>Is TBA?</td>
+                    <td><input type="checkbox" value="1" name="PMWIsTBA" onclick="IsTBAClicked(this.checked)" /></td>
+                    <td>Enquiry Received Date&nbsp;<span style="color:red">*</span></td>
+                    <td><input type="text" name="PMWEnquiryReceivedDate" id="PMWEnquiryReceivedDate" size="15" /></td>
+				</tr>
+                <tr>
+					<td rowspan="2">Notes Actions</td>
+					<td rowspan="2"><textarea class="standar-textarea" name="NotesActions"></textarea></td>
+                    <td>Authorised Date</td>
+                    <td><input type="text" name="AuthorisedDate" id="AuthorisedDate" size="15" /></td>
+				</tr>
+				<tr>
+					<td>Actual Start Date</td>
+					<td><input type="text" name="ActualStartDate" id="ActualStartDate" size="15" /></td>
+                </tr>
+                <tr>
+                    <td>Estimated Cost</td>
+                    <td><input type="text" name="EstimatedCost" /></td>
+                    <td>Anticipated Completion</td>
+                    <td><input type="text" name="AnticipatedCompletion" id="AnticipatedCompletion" size="15" /></td>
+                </tr>
+                <tr>
+                    <td>Actual Cost</td>
+                    <td><input type="text" name="ActualCost" /></td>
+                    <td>Actual Completion Date</td>
+                    <td><input type="text" name="ActualCompletionDate" id="ActualCompletionDate" size="15" /></td>
+                </tr>
+                <tr>
+                    <td>Diretorate</td>
+                    <td><select name="DirectorateID" class="standar-dropdown">
+                        <option></option>
+                        @foreach (var dir in ViewBag.DirectorateList)
+                        {
+                            <option value="@dir.Id">@dir.Name</option>
+                        }
+                    </select></td>
+                </tr>
+			</table>
+			
+			</div>
+            <div class="error"></div>
+		</div>
+		</div>
+	</div>
+</form>

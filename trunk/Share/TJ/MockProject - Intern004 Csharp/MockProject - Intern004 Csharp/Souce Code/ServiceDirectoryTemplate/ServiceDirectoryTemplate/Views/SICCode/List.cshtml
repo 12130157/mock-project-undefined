@@ -1,0 +1,115 @@
+﻿ @model IEnumerable<ServiceDirectoryTemplate.Models.SICCode>
+@{
+    Layout = "../Shared/LayOutNull.cshtml";
+    ViewBag.Title = "SIC Code Lookup";
+}
+<script type="text/javascript" language="javascript">
+$(function () {
+    $("#table-sic").tablesorter({widgets: ['zebra']});
+});
+function closeThisForm() {
+    this.close();
+}
+function cleartext() {
+    document.Lookup.BusinessName.value = "";
+    document.Lookup.SICCode.value = "";
+
+
+}
+function FillData(tagId, tagName) {
+    var tag = opener.document.getElementsByName(tagId)[0];
+    var tagName = opener.document.getElementsByName(tagName)[0];
+    var obj = document.Lookup.Code;
+    var objname = document.Lookup.Name;
+    var arr=GetSelectedIdAndName(obj,objname);
+    var str=arr['Id'];
+    var strname=arr['Name'];
+    if (str != undefined) {
+        tag.value = str;
+        tagName.value = strname;
+        window.close();
+    }
+    else {
+        alert("Please choose the Contact");
+    }
+}
+function GetSelectedIdAndName(obj,objname){
+    var str;
+    var strname;
+    if (!obj)
+        return;
+    var length = obj.length;
+    if (length == undefined) {
+        if (obj.checked) {
+            str = obj.value;
+            strname = objname.value;
+        }
+    }
+    else {
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].checked) {
+                str = obj[i].value;
+                strname = objname[i].value;
+            }
+        }
+    }
+    return { Id: str, Name: strname };
+}
+    </script>
+
+    <form id="form1" method="post" name="Lookup" action="/SICCode/List?TagName=@ViewBag.TagName&TagCode=@ViewBag.TagCode">
+       <span> 
+       <div style=" border: 1px solid #000">Business Name:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtname" name="BusinessName" style=" width:300px" value="@ViewBag.BusinessName" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        SIC Code:<input type="text" id="txtsic" name="SICCode" style=" width:75px" value="@ViewBag.SICCode" />
+        </div>
+        </span>
+        <br />
+  
+        <input type="submit" id="btnsearch" value="Search" style=" width:75px" />
+         <input type="button" id="btnnone" value="None" style=" width:75px" onclick="closeThisForm()" />
+          <input type="button" id="btnclear" value="Clear" style=" width:75px" onclick="cleartext()" />
+          <br />
+    
+    <table class="sample" id="table-sic" width="750px">
+    <thead>
+				<tr style="font-weight:bold;background:#d6d8db">
+                    <td width="50px">&nbsp;</td>
+					<th width="600px">Business Name</th>
+					<th width="180px">SIC Code</th>
+					
+				</tr>
+	</thead>	
+    <tbody>		
+			@foreach (var cont in Model) {
+       
+                <tr>
+                
+                    <td><a class="radio-content"><input type="hidden" name="Name" value="@cont.TypeOfBusiness"/><input type="radio" name="Code" value="@cont.SICCode1" /></a></td>
+                    <td class="organisation-name">
+                       
+                        @cont.TypeOfBusiness
+                    
+                    </td>
+                    <td>
+                        @cont.SICCode1
+                    </td>
+                    
+                </tr>
+            }
+            </tbody>
+			</table>
+            </form>
+@{ Html.RenderAction("PagingHtml", "RefData", new {
+       urlRequest = "/SICCode/SearchSICCode?TagName=" + ViewBag.TagName + "&TagCode=" + ViewBag.TagCode + "&BusinessName=" + ViewBag.BusinessName + "&SICCode=" + ViewBag.SICCode,
+    tagContainer = ".container-body",
+    formName="paging",
+    page = ViewBag.Page,
+    totalPage = ViewBag.TotalPage,
+    filter = ViewBag.Filter,
+    include = ViewBag.Include
+         
+});  }
+
+         <input type="button" onclick="FillData('@ViewBag.TagName','@ViewBag.TagCode')" id="btnselect" value="Select" style=" width:75px" />
+          <input type="button" id="btnclose" value="Close" style=" width:75px" onclick="closeThisForm()" />
+

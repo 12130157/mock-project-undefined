@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ServiceDirectoryTemplate.Models.Directorate>
+@{
+    ViewBag.Title = "List all Directorate";
+}
+<script language="javascript">
+$(function () {
+    $("#table-organisation").tablesorter({widgets: ['zebra']});
+});
+function FilterDirectorate(str) {
+    document.paging.filter.value = str;
+    AjaxPaging('/Directorate/List','.container-body',document.paging,document.paging.page.value);
+}
+</script>
+<div class="container-right">
+		<div class="table-content">
+			<p style="color:#69a017;font-size:large;margin-bottom:10px">Directorate Lists All</p>
+			<p>
+			<span style="font-size:10px">
+			<a href="javascript:FilterDirectorate('all')">All</a> | <a href="javascript:FilterDirectorate('0-9')">0-9</a> | <a href="javascript:FilterDirectorate('abcde')">A B C D E </a>
+		| <a href="javascript:FilterDirectorate('fghij')">F G H I J</a> | <a href="javascript:FilterDirectorate('klmn')">K L M N</a> | <a href="javascript:FilterDirectorate('opqr')">O P Q R</a> 
+		| <a href="javascript:FilterDirectorate('stuv')">S T U V</a> | <a href="javascript:FilterDirectorate('wxyz')">W X Y Z</a>
+			</span>
+			<span style="float:right;margin-right:10px"><a href="Add"><input type="submit" value="Create" /></a> <input type="checkbox" @(ViewBag.Include==true ? "checked=checked":"") onchange="document.paging.include.value=this.checked;AjaxPaging('/Directorate/List','.container-body',document.paging,document.paging.page.value);" /> Include In-active</span>
+			
+			</p>
+			
+			<table class="sample" id="#table-directorate" width="750px">
+				<tr style="font-weight:bold;background:#d6d8db">
+					<th width="250px">BU/Directorate Name</th>
+					<th width="180px">Head Office Address Line 1</th>
+					<th width="90px">Postcode</th>
+					<th width="110px">Contact</th>
+					<th>Is Active?</th
+				</tr>
+				
+				@foreach (var dir in Model) {
+                <tr>
+                    <td class="organisation-name">
+                        <a title="Edit Information Organisation" href="/Directorate/Amend/@dir.DirID">
+                        @dir.DirName
+                        </a>
+                    </td>
+                    <td>
+                        @dir.DirAddr1
+                    </td>
+                    <td>
+                        @dir.DirPostCode
+                    </td>
+                    <td>
+                        @(dir.LeadContactID==null?"":dir.Contact.FirstName)
+                    </td>
+                    <td>
+                        @(dir.DirIsActive == 1 ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+				
+			</table>
+			
+		@{ Html.RenderAction("PagingHtml", "RefData", new {
+         urlRequest = "/Directorate/List",
+         tagContainer = ".container-body",
+         formName="paging",
+         page = ViewBag.Page,
+         totalPage = ViewBag.TotalPage,
+         filter = ViewBag.Filter,
+         include = ViewBag.Include
+         
+        });  }
+		</div>
+	</div>
+
