@@ -1,0 +1,45 @@
+﻿.top-list-programme
+{
+	height:40px;
+}
+.content-list-programme
+{
+	border:1px solid #8a9baa;
+	height:200px;
+	padding:10px;
+}
+.left-clp
+{
+	width:400px;
+	float:left;
+}
+.right-clp
+{
+	float:left;
+	
+}
+.label-llclp
+{
+	width:150px;
+	float:left;
+}
+.textbox-llclp
+{
+	width:250px;
+	float:left;
+}
+.button-container
+{
+	float:right;
+}
+.LabelListProgramme
+{
+}
+.TextBoxListProgramme
+{
+	width:200px;
+}
+.distance-each-left-ctp
+{
+	height:30px;
+}
