@@ -29,6 +29,10 @@ $(document).pngFix( );
         {
             width: 84px;
         }
+        .style2
+        {
+            width: 218px;
+        }
     </style>
 
 </head>
@@ -52,7 +56,7 @@ $(document).pngFix( );
                         <th class="style1">
                             Username
                         </th>
-                        <td>
+                        <td class="style2">
                             <asp:TextBox ID="txtUsername" CssClass="login-inp" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvUsername" runat="server" 
                                 ErrorMessage="*" ControlToValidate="txtUsername"></asp:RequiredFieldValidator>
@@ -62,7 +66,7 @@ $(document).pngFix( );
                         <th class="style1">
                             Password
                         </th>
-                        <td>
+                        <td class="style2">
                             <asp:TextBox ID="txtPassword" CssClass="login-inp" runat="server" Text="************" TextMode=Password></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                 ControlToValidate="txtPassword" ErrorMessage="*"></asp:RequiredFieldValidator>
@@ -71,7 +75,7 @@ $(document).pngFix( );
                     <tr>
                         <th class="style1">
                         </th>
-                        <td valign="top">
+                        <td valign="top" class="style2">
                             <asp:CheckBox ID="CheckBox1" runat="server" CssClass="checkbox-size" Text="Remember me" />
                             <!-- <input type="checkbox" class="checkbox-size" id="login-check" />
                             <label for="login-check">Remember
@@ -82,7 +86,7 @@ $(document).pngFix( );
                     <tr>
                         <th class="style1">
                             &nbsp;</th>
-                        <td>
+                        <td class="style2">
                             <asp:Button ID="btnLogin" runat="server" Text="" CssClass="submit-login"/>
                             <!-- <input type="button" class="submit-login" /> -->
                         </td>
